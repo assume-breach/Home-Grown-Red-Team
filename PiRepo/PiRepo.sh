@@ -28,7 +28,7 @@ mkidr Defense_Evasion
 mkdir Persistence
 mkdir Lateral_Movement
 mkdir Exfiltration
-mkdir Miscellaneous
+mkdir Cloud
 mkdir Payload_Development
 mkdir Hak5_Implants
 
@@ -88,6 +88,7 @@ git clone https://github.com/rvrsh3ll/MSBuildAPICaller.git
 git clone https://github.com/sevagas/macro_pack.git
 git clone https://github.com/klezVirus/inceptor.git
 git clone https://github.com/0xsp-SRD/mortar.git
+git clone https://github.com/Mr-Un1k0d3r/RedTeamCCode.git
 
 echo "Cloning Delivery Resources"
 
@@ -145,7 +146,7 @@ git clone https://github.com/SecurityRiskAdvisors/RedTeamSIEM.git
 
 echo "Cloning Situational Awareness Resources"
 
-cd /Repo/Situational_Awareness
+cd /home/pi/Repo/Situational_Awareness
 
 mkdir Host_Situtational_Awareness
 cd Host_Situational_Awareness
@@ -160,7 +161,9 @@ git clone https://github.com/mitchmoser/SharpShares.git
 git clone https://github.com/Flangvik/SharpAppLocker/.git
 git clone https://github.com/rvrsh3ll/SharpPrinter.git
 
-cd ../Domain_Situational_Awareness
+cd ../
+mkdir Domain_Situational_Awareness
+cd Domain_Situational_Awareness
 
 git clone https://github.com/FuzzySecurity/StandIn.git
 git clone https://github.com/outflanknl/Recon-AD.git
@@ -173,7 +176,7 @@ git clone https://github.com/improsec/ImproHound.git
 git clone https://github.com/adrecon/ADRecon.git
 git clone https://github.com/bats3c/ADCSPwn.git
 
-cd /Repo/Credential_Dumping/
+cd /home/pi/Repo/Credential_Dumping/
 
 git clone https://github.com/gentilkiwi/mimikatz.git
 git clone https://github.com/outflanknl/Dumpert.git
@@ -196,7 +199,7 @@ git clone https://github.com/helpsystems/nanodump.git
 
 echo "Cloning Privilege Escallation Resources"
 
-cd /Repo/Privilege_Escallation
+cd /home/pi/Repo/Privilege_Escallation
 
 git clone https://github.com/rsmudge/ElevateKit.git
 git clone https://github.com/rasta-mouse/Watson.git
@@ -206,7 +209,7 @@ git clone https://github.com/carlospolop/PEASS-ng.git
 git clone https://github.com/CCob/SweetPotato.git
 git clone https://github.com/S3cur3Th1sSh1t/MultiPotato.git
 
-cd /Repo/Defense_Evasion
+cd /home/pi/Repo/Defense_Evasion
 
 git clone https://github.com/hlldz/RefleXXion.git
 git clone https://github.com/wavestone-cdt/EDRSandblast.git
@@ -227,7 +230,7 @@ git clone https://github.com/Soledge/BlockEtw.git
 git clone https://github.com/mdsecactivebreach/firewalker.git
 git clone https://github.com/Cerbersec/KillDefenderBOF.git
 
-cd /Repos/Privilege_Escallation
+cd /home/pi/Repo/Persistence
 
 git clone https://github.com/0xthirteen/SharpStay.git
 git clone https://github.com/fireeye/SharPersist.git
@@ -240,4 +243,66 @@ git clone https://github.com/HarmJ0y/DAMP.git
 git clone https://github.com/0x09AL/IIS-Raid.git
 git clone https://github.com/antonioCoco/SharPyShell.git
 
+cd /home/pi/Repo/Lateral_Movement
 
+git clone https://github.com/RiccardoAncarani/LiquidSnake.git
+git clone https://github.com/NetSPI/PowerUpSQL.git
+git clone https://github.com/0xthirteen/SharpRDP.git
+git clone https://github.com/0xthirteen/MoveKit.git
+git clone https://github.com/juliourena/SharpNoPSExec.git
+git clone https://github.com/lgandx/Responder.git
+git clone https://github.com/SecureAuthCorp/impacket.git
+git clone https://github.com/mdsecactivebreach/Farmer.git
+git clone https://github.com/FortyNorthSecurity/CIMplant.git
+git clone https://github.com/Mr-Un1k0d3r/PowerLessShell.git
+git clone https://github.com/FSecureLABS/SharpGPOAbuse.git
+git clone https://github.com/ropnop/kerbrute.git 
+git clone https://github.com/blackarrowsec/mssqlproxy.git
+git clone https://github.com/Kevin-Robertson/Invoke-TheHash.git
+git clone https://github.com/Kevin-Robertson/InveighZero.git
+git clone https://github.com/jnqpblc/SharpSpray/git
+git clone https://github.com/byt3bl33d3r/CrackMapExec.git
+git clone https://github.com/pkb1s/SharpAllowedToAct.git
+git clone https://github.com/bohops/SharpRDPHijack.git
+git clone https://github.com/klezVirus/CheeseTools.git
+git clone https://github.com/iomoath/SharpSpray.git
+
+cd /home/pi/Repo/Exfiltration
+
+git clone https://github.com/Flangvik/SharpExfiltrate.git
+git clone https://github.com/Arno0x/DNSExfiltrator.git
+git clone https://github.com/FortyNorthSecurity/Egress-Assess.git
+
+cd /home/pi/Repo/Cloud
+
+mkdir AWS
+git clone https://github.com/RhinoSecurityLabs/pacu.git
+git clone https://github.com/duo-labs/cloudmapper.git
+git clone https://github.com/andresriancho/enumerate-iam.git
+
+cd ../
+mkdir Azure
+cd Azure
+
+git clone https://github.com/fox-it/adconnectdump.git
+git clone https://github.com/Azure/Stormspotter.git
+git clone https://github.com/dirkjanm/ROADtools.git
+git clone https://github.com/NetSPI/MicroBurst.git
+git clone https://github.com/Gerenios/AADInternals.git 
+
+cd /home/pi/Repo/Hak5_Implants
+
+git clone https://github.com/hak5/omg-payloads.git
+git clone https://github.com/hak5/bashbunny-payloads.git
+git clone https://github.com/hak5/usbrubberducky-payloads.git
+git clone https://github.com/hak5/pineapple-community-packages.git
+git clone https://github.com/hak5/pineapple-modules.git
+git clone https://github.com/hak5/mk7-docs.git
+git clone https://github.com/hak5/keycroc-payloads.git
+git clone https://github.com/hak5/sharkjack-payloads.git
+git clone https://github.com/hak5/lanturtle-modules.git
+git clone https://github.com/hak5/hak5-docs.git
+git clone https://github.com/hak5/packetsquirrel-payloads.git
+git clone https://github.com/hak5/nano-tetra-modules.git
+git clone https://github.com/hak5/signalowl-payloads.git
+git clone https://github.com/hak5/plunderbug-scripts.git
