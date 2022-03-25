@@ -25,16 +25,21 @@ mkdir Situational_Awareness
 mkdir Credential_Dumping
 mkdir Privilege_Escallation
 mkidr Defense_Evasion
+mkdir Social_Engineering
+mkdir Phishing
 mkdir Persistence
 mkdir Lateral_Movement
 mkdir Exfiltration
 mkdir Cloud
 mkdir Payload_Development
 mkdir Hak5_Implants
+mkdir Wireless
 
 echo "Getting Resources"
 sleep 2
+
 echo "Cloning Recon Resources"
+
 cd Recon
 git clone https://github.com/RustScan/RustScan.git
 git clone https://github.com/OWASP/Amass.git
@@ -51,6 +56,23 @@ git clone https://github.com/smicallef/spiderfoot.git
 git clone https://github.com/rbsec/dnscan.git
 git clone https://github.com/BishopFox/spoofcheck.git
 git clone https://github.com/vysecurity/LinkedInt.git
+git clone https://github.com/ChrisTruncer/EyeWitness.git
+git clone https://github.com/michenriksen/aquatone.git
+git clone https://github.com/nmap/nmap.git
+git clone https://github.com/darkoperator/dnsrecon.git
+git clone https://github.com/SpiderLabs/social_mapper.git
+git clone https://github.com/xillwillx/skiptracer.git
+git clone https://github.com/dchrastil/ScrapedIn.git
+git clone https://github.com/NickSanzotta/linkScrape.git
+git clone https://github.com/ElevenPaths/FOCA
+git clone https://github.com/laramies/theHarvester.git
+git clone https://github.com/laramies/metagoofil.git
+git clone https://github.com/killswitch-GUI/SimplyEmail.git
+git clone https://github.com/dxa4481/truffleHog.git
+git clone https://github.com/ChrisTruncer/Just-Metadata.git
+git clone https://github.com/nccgroup/typofinder.git
+git clone https://github.com/thewhiteh4t/pwnedOrNot.git
+git clone https://github.com/metac0rtex/GitHarvester.git
 
 echo "Cloning Initial Access Resources"
 cd ../Initial_Access
@@ -61,6 +83,14 @@ git clone https://github.com/blacklanternsecurity/TREVORspray.git
 echo "Cloning Payload Development Resources"
 
 cd ../Payload_Development
+
+git clone https://github.com/trustedsec/unicorn.git
+git clone https://github.com/nccgroup/demiguise.git
+git clone https://github.com/secretsquirrel/the-backdoor-factory.git
+git clone https://github.com/govolution/avet.git
+git clone https://github.com/threatexpress/metatwin.git
+git clone https://github.com/cobbr/PSAmsi.git
+git clone https://github.com/3gstudent/Worse-PDF.git
 git clone https://github.com/optiv/Ivy.git
 git clone https://github.com/phra/PEzor.git
 git clone https://github.com/med0x2e/GadgetToJScript.git
@@ -94,10 +124,6 @@ echo "Cloning Delivery Resources"
 
 cd ../Delivery
 git clone https://github.com/mdsecactivebreach/o365-attack-toolkit.git
-git clone https://github.com/kgretzky/evilginx2.git
-git clone https://github.com/gophish/gophish.git
-git clone https://github.com/fireeye/PwnAuth.git
-git clone https://github.com/drk1wi/Modlishka.git
 git clone https://github.com/beefproject/beef.git
 
 echo "Cloning Your C2 Resources"
@@ -118,6 +144,8 @@ git clone https://github.com/bats3c/shad0w.git
 git clone https://github.com/BishopFox/sliver.git
 git clone https://github.com/byt3bl33d3r/SILENTTRINITY.git
 git clone https://github.com/n1nj4sec/pupy.git
+sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libreadline5 libsqlite3-dev libpcap-dev subversion git-core autoconf postgresql pgadmin3 curl zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev nmap -y
+sudo curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
 
 echo "Cloning Staging Resources"
 
@@ -147,7 +175,6 @@ git clone https://github.com/SecurityRiskAdvisors/RedTeamSIEM.git
 echo "Cloning Situational Awareness Resources"
 
 cd /home/pi/Repo/Situational_Awareness
-
 mkdir Host_Situtational_Awareness
 cd Host_Situational_Awareness
 
@@ -209,6 +236,8 @@ git clone https://github.com/carlospolop/PEASS-ng.git
 git clone https://github.com/CCob/SweetPotato.git
 git clone https://github.com/S3cur3Th1sSh1t/MultiPotato.git
 
+echo "Cloning Defense Evasion Resources"
+
 cd /home/pi/Repo/Defense_Evasion
 
 git clone https://github.com/hlldz/RefleXXion.git
@@ -230,6 +259,30 @@ git clone https://github.com/Soledge/BlockEtw.git
 git clone https://github.com/mdsecactivebreach/firewalker.git
 git clone https://github.com/Cerbersec/KillDefenderBOF.git
 
+echo "Cloning Social Engineering Resources"
+
+cd /home/pi/Social_Engineering
+git clone https://github.com/trustedsec/social-engineer-toolkit.git
+git clone https://github.com/bhdresh/SocialEngineeringPayloads.git
+
+
+echo "Cloning Phishing Resources"
+
+cd /home/pi/Phishing
+git clone https://github.com/ryhanson/phishery.git
+git clone https://github.com/kgretzky/evilginx2.git
+git clone https://github.com/fireeye/PwnAuth.git
+git clone https://github.com/drk1wi/Modlishka.git
+git clone https://github.com/securestate/king-phisher.git
+git clone https://github.com/Raikia/FiercePhish.git
+git clone https://github.com/fireeye/ReelPhish.git
+git clone https://github.com/gophish/gophish.git
+git clone https://github.com/ustayready/CredSniper.git
+git clone https://github.com/pentestgeek/phishing-frenzy.git
+git clone https://github.com/L4bF0x/PhishingPretexts.git
+
+echo "Cloning Persistence Resources"
+
 cd /home/pi/Repo/Persistence
 
 git clone https://github.com/0xthirteen/SharpStay.git
@@ -242,6 +295,8 @@ git clone https://github.com/sensepost/reGeorg.git
 git clone https://github.com/HarmJ0y/DAMP.git
 git clone https://github.com/0x09AL/IIS-Raid.git
 git clone https://github.com/antonioCoco/SharPyShell.git
+
+echo "Cloning Lateral Movement Resources"
 
 cd /home/pi/Repo/Lateral_Movement
 
@@ -266,6 +321,12 @@ git clone https://github.com/pkb1s/SharpAllowedToAct.git
 git clone https://github.com/bohops/SharpRDPHijack.git
 git clone https://github.com/klezVirus/CheeseTools.git
 git clone https://github.com/iomoath/SharpSpray.git
+git clone https://github.com/BloodHoundAD/SharpHound.git
+git clone https://github.com/PowerShellMafia/PowerSploit.git
+git clone https://github.com/NetSPI/PowerUpSQL.git
+git clone https://github.com/DanMcInerney/icebreaker.git
+git clone https://github.com/JavelinNetworks/HoneypotBuster.git
+echo "Cloning Exfiltration Resources"
 
 cd /home/pi/Repo/Exfiltration
 
@@ -273,12 +334,15 @@ git clone https://github.com/Flangvik/SharpExfiltrate.git
 git clone https://github.com/Arno0x/DNSExfiltrator.git
 git clone https://github.com/FortyNorthSecurity/Egress-Assess.git
 
+echo "Cloning Cloud Resources"
+
 cd /home/pi/Repo/Cloud
 
 mkdir AWS
 git clone https://github.com/RhinoSecurityLabs/pacu.git
 git clone https://github.com/duo-labs/cloudmapper.git
 git clone https://github.com/andresriancho/enumerate-iam.git
+git clone https://github.com/jordanpotti/AWSBucketDump.git
 
 cd ../
 mkdir Azure
@@ -289,6 +353,8 @@ git clone https://github.com/Azure/Stormspotter.git
 git clone https://github.com/dirkjanm/ROADtools.git
 git clone https://github.com/NetSPI/MicroBurst.git
 git clone https://github.com/Gerenios/AADInternals.git 
+
+echo "Cloning Hak5 Implant Resources"
 
 cd /home/pi/Repo/Hak5_Implants
 
@@ -306,3 +372,13 @@ git clone https://github.com/hak5/packetsquirrel-payloads.git
 git clone https://github.com/hak5/nano-tetra-modules.git
 git clone https://github.com/hak5/signalowl-payloads.git
 git clone https://github.com/hak5/plunderbug-scripts.git
+
+echo "Cloning Wireless Resources"
+
+cd /home/pi/Repo/Wireless
+
+git clone https://github.com/derv82/wifite2.git
+git clone https://github.com/wifiphisher/wifiphisher.git
+git clone https://github.com/sensepost/mana.git
+git clone https://github.com/joswr1ght/cowpatty.git
+git clone https://github.com/athanstan/EvilTwin_AP_CaptivePortal.git
