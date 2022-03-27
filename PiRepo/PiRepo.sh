@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo su
 cd /home/pi
 
 echo "Updating Your System"
