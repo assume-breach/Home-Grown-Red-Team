@@ -11,5 +11,4 @@ Change directories into the /LaZagne-2.4.3/Windows/ folder.
 
 run pyinstaller --onefile OUTPUT.py 
 
-EXMAPLE
-
+@assume_breach on Twitter if you run into problems.
