@@ -13,11 +13,8 @@ cat << "EOF"
  
 EOF
 
-pip install  pyinstaller 
-apt install unzip -y
-
-curl https://github.com/AlessandroZ/LaZagne/archive/refs/tags/2.4.3.zip -O -J -L
 unzip LaZagne-2.4.3.zip
+
 chmod -R 777 LaZagne-2.4.3
 
 echo "Enter A Random Word"
@@ -39,4 +36,20 @@ find -type f -exec sed -i s/LaZagne/$Random2/g {} +
 find -type f -exec sed -i s/laZagne/$Random3/g {} +
 
 mv lazagne/ $Random1
-mv laZagne.py $Random2.py
+mv LaZagne.py $Random2.py
+
+custom1=$(echo $custom1 | md5sum | head -c 20)
+custom2=$(echo $custom1 | md5sum | head -c 20)
+custom3=$(echo $custom1 | md5sum | head -c 20)
+custom4=$(echo $custom1 | md5sum | head -c 20)
+custom5=$(echo $custom1 | md5sum | head -c 20)
+
+find -type f -exec sed -i s/#comment1/#$custom1/g {} +
+find -type f -exec sed -i s/#comment2/#$custom2/g {} +
+find -type f -exec sed -i s/#comment3/#$custom3/g {} +
+find -type f -exec sed -i s/#comment4/#$custom4/g {} +
+find -type f -exec sed -i s/#comment5/#$custom5/g {} +
+
+echo "All Done! Your New Tool Should Get Past Most AV!"
+sleep 1
+echo "Compile Your Tool On A Windows Instance."
