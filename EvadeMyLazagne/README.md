@@ -3,14 +3,14 @@ Evade My Lasagne is an extremely simple bash script that allows you to quickly r
 
 USAGE
 
-1. Clone or copy the script from the repo to your linux box. 
+1. Clone the entire repo. 
 
-2. Copy the Lazagne folder to a Windows machine with python and pyinstaller installed (you may need other dependencies, check the original Lazagne repo for these). 
+2. CD into the EvadeMyLazagne directory 
 
-3. Change directories into the /LaZagne-2.4.3/Windows/ folder.
+3. Run the script.
 
-4. run pyinstaller --onefile OUTPUT.py 
+4. Transfer the entire Lazagne directory to a Windows box 
 
-NOTE: In the future I will have a forked copy of Lazagne with all of the comments removed and replaced with known values so they can also be changed to break up the signature of compiled PE. I just don't have time to work it right now. 
+5. run pyinstaller --onefile OUTPUT.py 
 
 @assume_breach on Twitter if you run into problems.
