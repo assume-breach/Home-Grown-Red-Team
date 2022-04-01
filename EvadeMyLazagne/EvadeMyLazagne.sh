@@ -17,6 +17,8 @@ unzip LaZagne-2.4.3.zip
 
 chmod -R 777 LaZagne-2.4.3
 
+cd LaZagne-2.4.3/Windows/
+
 echo "Enter A Random Word"
 
 read Random1
