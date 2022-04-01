@@ -13,4 +13,6 @@ USAGE
 
 5. run pyinstaller --onefile OUTPUT.py 
 
+Check my BashBunny repo for a BB payload. 
+
 @assume_breach on Twitter if you run into problems.
