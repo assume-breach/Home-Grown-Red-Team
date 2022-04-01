@@ -11,6 +11,6 @@ USAGE
 
 4. run pyinstaller --onefile OUTPUT.py 
 
-NOTE: In the future I will ahve a forked copy of Lazagne with all of the comments removed and replaced with known values so they can also be changed to break up the signature of compiled PE. I just don't have time to work it right now. 
+NOTE: In the future I will have a forked copy of Lazagne with all of the comments removed and replaced with known values so they can also be changed to break up the signature of compiled PE. I just don't have time to work it right now. 
 
 @assume_breach on Twitter if you run into problems.
