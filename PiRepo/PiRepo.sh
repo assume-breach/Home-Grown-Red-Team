@@ -206,8 +206,6 @@ cd /home/pi/Repo/Credential_Dumping/
 
 git clone https://github.com/gentilkiwi/mimikatz.git
 git clone https://github.com/outflanknl/Dumpert.git
-git clone https://github.com/xforcered/CredBandit.git
-git clone https://github.com/xforcered/CredBandit.git
 git clone https://github.com/swisskyrepo/SharpLAPS.git
 git clone https://github.com/GhostPack/SharpDPAPI.git
 git clone https://github.com/GhostPack/KeeThief.git
@@ -305,6 +303,7 @@ git clone https://github.com/0xthirteen/SharpRDP.git
 git clone https://github.com/0xthirteen/MoveKit.git
 git clone https://github.com/juliourena/SharpNoPSExec.git
 git clone https://github.com/lgandx/Responder.git
+git clone https://github.com/dirkjanm/mitm6.git
 git clone https://github.com/SecureAuthCorp/impacket.git
 git clone https://github.com/mdsecactivebreach/Farmer.git
 git clone https://github.com/FortyNorthSecurity/CIMplant.git
