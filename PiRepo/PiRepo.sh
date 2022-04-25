@@ -6,13 +6,18 @@ echo "Updating Your System"
 apt-get update -y && apt-get upgrade -y 
 apt update -y && apt upgrade -y
 apt autoremove -y
-
+echo ""
+echo "Installing System Dependencies"
+echo ""
+apt install git docker.io golang python3 python3-pip pipx-y
 echo "Removing Unneeded Directories"
 rm -rf Videos/
 rm -rf Music/
 rm -rf Public/
 rm -rf Templates/
-
+echo""
+echo "Installing Hackery Stuff"
+apt install nmap amass recon-ng -y
 echo "Creating Repo Folders"
 mkdir Repo
 cd Repo
@@ -33,24 +38,70 @@ mkdir Cloud
 mkdir Payload_Development
 mkdir Hak5_Implants
 mkdir Wireless
-
+echo""
 echo "Getting Resources"
 sleep 2
-
+echo""
 echo "Cloning Recon Resources"
-
+echo""
 cd Recon
+echo""
+echo "Installing RustScan"
+echo""
 git clone https://github.com/RustScan/RustScan.git
-git clone https://github.com/OWASP/Amass.git
+cd RustScan.git
+docker build -t rustscan .
+cd ../
+echo "Installing GitLeaks"
+echo ""
 git clone https://github.com/zricethezav/gitleaks.git
+cd gitleaks/
+make build
+cd ../
+echo ""
+cd ../
+echo "Installing S3Scanner"
+echo ""
 git clone https://github.com/sa7mon/S3Scanner.git
+cd S3Scanner/
+pip3 install -r requirements.txt
+python3 -m S3Scanner
+cd ../
+echo""
+echo "Installing Cloud_Enum"
+echo""
 git clone https://github.com/initstring/cloud_enum.git
-git clone https://github.com/lanmaster53/recon-ng.git
+cd cloud_enum
+pip3 install -r ./requirements.txt
+cd ../
+echo "Installing Buster"
+echo ""
 git clone https://github.com/sham00n/buster.git
+cd buster/
+python3 setup.py install
+cd ../
 git clone https://github.com/initstring/linkedin2username.git 
-git clone https://github.com/byt3bl33d3r/WitnessMe/git
+echo ""
+echo "Installing WitnessMe"
+python3 -m pip install --user pipx
+pipx install witnessme
+pipx ensurepath
+cd ../
+echo ""
+echo "Installing Pagodo"
+echo ""
 git clone https://github.com/opsdisk/pagodo.git
+cd pagodo
+pip install -r requirements.txt
+cd ../
+echo ""
+echo "Installing AttackSurfaceMapper"
+echo""
 git clone https://github.com/superhedgy/AttackSurfaceMapper.git
+cd AttackSurfaceMapper
+python3 -m pip install --no-cache-dir -r requirements.txt
+echo ""
+
 git clone https://github.com/smicallef/spiderfoot.git
 git clone https://github.com/rbsec/dnscan.git
 git clone https://github.com/BishopFox/spoofcheck.git
