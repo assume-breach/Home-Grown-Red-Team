@@ -1,1 +1,1 @@
-AutoC2 is a bash script written to install all of the red tools that you will ever need. This can transform your Ubuntu/Linux Mint/Debian instance into a Red Teaming beast! It takes a while to install everything so be patient.
+AutoC2 is a bash script written to install all of the red tools that you will ever need. This can transform your Ubuntu/Linux Mint/Debian/Raspberry Pi instance into a Red Teaming beast! It takes a while to install everything so be patient.
