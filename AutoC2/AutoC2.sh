@@ -1,5 +1,19 @@
 #!/bin/bash
-
+cat << "EOF"
+  __ _ ___ ___ _   _ _ __ ___   ___      | |__  _ __ ___  __ _  ___| |__  
+ / _` / __/ __| | | | '_ ` _ \ / _ \_____| '_ \| '__/ _ \/ _` |/ __| '_ \ 
+| (_| \__ \__ \ |_| | | | | | |  __/_____| |_) | | |  __/ (_| | (__| | | |
+ \__,_|___/___/\__,_|_| |_| |_|\___|     |_.__/|_|  \___|\__,_|\___|_| |_|
+                            
+                                **AutoC2**
+                                
+                          Use At Your Own Risk
+               
+                   
+ 
+EOF
+sleep 1
+echo           "WARNING THIS SCRIPT TAKES FUCKING FOREVER!!!"
 cd /home/pi
 
 echo "Updating Your System"
@@ -148,15 +162,30 @@ unzip aquatone_linux_amd64_1.7.0.zip
 cd ../
 echo""
 echo "Installing DNSrecon"
+echo ""
 git clone https://github.com/darkoperator/dnsrecon.git
+cd dnsrecon
+pip install -r requirements.txt
+python setup.py install
+../
+echo ""
+echo "Installing Social Mapper"
+echo ""
+git clone https://github.com/SpiderLabs/social_mapper.git
+cd /social_mapper/setup/
+pip install -r requirements.txt
+echo""
+cd /opt/Recon/
+echo "Installing theHarvester"
+git clone https://github.com/laramies/theHarvester.git
+cd theHarvester/
+pip3 install aiohttp
+pip3 install aiomultiprocess
+python3 -m pip install -r requirements/base.txt
+python3 setup.py install
+cd ../
 echo ""
 
-git clone https://github.com/SpiderLabs/social_mapper.git
-git clone https://github.com/xillwillx/skiptracer.git
-git clone https://github.com/dchrastil/ScrapedIn.git
-git clone https://github.com/NickSanzotta/linkScrape.git
-git clone https://github.com/ElevenPaths/FOCA
-git clone https://github.com/laramies/theHarvester.git
 git clone https://github.com/laramies/metagoofil.git
 git clone https://github.com/killswitch-GUI/SimplyEmail.git
 git clone https://github.com/dxa4481/truffleHog.git
@@ -164,6 +193,7 @@ git clone https://github.com/ChrisTruncer/Just-Metadata.git
 git clone https://github.com/nccgroup/typofinder.git
 git clone https://github.com/thewhiteh4t/pwnedOrNot.git
 git clone https://github.com/metac0rtex/GitHarvester.git
+
 
 echo "Cloning Initial Access Resources"
 cd ../Initial_Access
