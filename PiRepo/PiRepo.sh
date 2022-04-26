@@ -77,8 +77,6 @@ git clone https://github.com/michenriksen/aquatone.git
 git clone https://github.com/nmap/nmap.git
 git clone https://github.com/darkoperator/dnsrecon.git
 git clone https://github.com/SpiderLabs/social_mapper.git
-git clone https://github.com/xillwillx/skiptracer.git
-git clone https://github.com/dchrastil/ScrapedIn.git
 git clone https://github.com/NickSanzotta/linkScrape.git
 git clone https://github.com/ElevenPaths/FOCA
 git clone https://github.com/laramies/theHarvester.git
