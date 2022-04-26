@@ -9,7 +9,8 @@ apt autoremove -y
 echo ""
 echo "Installing System Dependencies"
 echo ""
-apt install git docker.io golang python3 python3-pip pipx-y
+apt install git docker.io golang python3 python3-pip pipx chromium-browser -y
+/usr/bin/python3 -m pip install --upgrade pip
 echo "Removing Unneeded Directories"
 rm -rf Videos/
 rm -rf Music/
@@ -17,7 +18,7 @@ rm -rf Public/
 rm -rf Templates/
 echo""
 echo "Installing Hackery Stuff"
-apt install nmap amass recon-ng -y
+apt install nmap amass recon-ng  -y
 echo "Creating Repo Folders"
 mkdir Repo
 cd Repo
@@ -100,16 +101,56 @@ echo""
 git clone https://github.com/superhedgy/AttackSurfaceMapper.git
 cd AttackSurfaceMapper
 python3 -m pip install --no-cache-dir -r requirements.txt
+cd ../
+echo ""
+echo "Installing SpiderFoot"
+echo ""
+git clone https://github.com/smicallef/spiderfoot.git
+cd spiderfoot
+pip3 install -r requirements.txt
+pip3 install cherrypy
+pip3 install cherrypy_cors
+pip3 install publicsuffixlist
+pip3 install networkx
+pip3 install openpyxl
+cd ../
+echo""
+echo "Installing DNScan"
+echo ""
+git clone https://github.com/rbsec/dnscan.git
+cd dnscan
+pip3 install -r requirements.txt
+pip3 install setuptools
+cd ../
+echo""
+echo "Installing SpoofCheck"
+echo""
+git clone https://github.com/BishopFox/spoofcheck.git
+cd spoofcheck
+pip3 install -r requirements.txt
+echo ""
+echo "Installing LinkedInt"
+echo""
+git clone https://github.com/vysecurity/LinkedInt.git
+cd LinkedInt
+pip3 install -r requirements.txt
+echo ""
+echo "Installing EyeWitness"
+git clone https://github.com/ChrisTruncer/EyeWitness.git
+cd EyeWitness/Python/setup
+bash setup.sh
+cd /opt/Recon/
+echo""
+echo "Installing Aquatone"
+echo ""
+wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
+unzip aquatone_linux_amd64_1.7.0.zip
+cd ../
+echo""
+echo "Installing DNSrecon"
+git clone https://github.com/darkoperator/dnsrecon.git
 echo ""
 
-git clone https://github.com/smicallef/spiderfoot.git
-git clone https://github.com/rbsec/dnscan.git
-git clone https://github.com/BishopFox/spoofcheck.git
-git clone https://github.com/vysecurity/LinkedInt.git
-git clone https://github.com/ChrisTruncer/EyeWitness.git
-git clone https://github.com/michenriksen/aquatone.git
-git clone https://github.com/nmap/nmap.git
-git clone https://github.com/darkoperator/dnsrecon.git
 git clone https://github.com/SpiderLabs/social_mapper.git
 git clone https://github.com/xillwillx/skiptracer.git
 git clone https://github.com/dchrastil/ScrapedIn.git
