@@ -185,13 +185,25 @@ python3 -m pip install -r requirements/base.txt
 python3 setup.py install
 cd ../
 echo ""
-
+echo "Installing Metagoofil"
 git clone https://github.com/laramies/metagoofil.git
-git clone https://github.com/killswitch-GUI/SimplyEmail.git
+echo""
+echo "Installing TruffleHog"
+echo ""
 git clone https://github.com/dxa4481/truffleHog.git
-git clone https://github.com/ChrisTruncer/Just-Metadata.git
-git clone https://github.com/nccgroup/typofinder.git
+cd trufflehog; go install
+cd ../
+echo""
+echo "Installing TypoFinder"
+echo ""
+echo "Installing Pwned0rNot -- API KEY REQUIRE"
 git clone https://github.com/thewhiteh4t/pwnedOrNot.git
+cd pwnedOrNot
+chmod +x install.sh
+./install.sh
+cd ../
+echo""
+echo "Installing GitHarvester"
 git clone https://github.com/metac0rtex/GitHarvester.git
 
 
