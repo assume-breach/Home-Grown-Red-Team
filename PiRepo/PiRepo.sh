@@ -45,63 +45,15 @@ echo""
 echo "Cloning Recon Resources"
 echo""
 cd Recon
-echo""
-echo "Installing RustScan"
-echo""
 git clone https://github.com/RustScan/RustScan.git
-cd RustScan.git
-docker build -t rustscan .
-cd ../
-echo "Installing GitLeaks"
-echo ""
 git clone https://github.com/zricethezav/gitleaks.git
-cd gitleaks/
-make build
-cd ../
-echo ""
-cd ../
-echo "Installing S3Scanner"
-echo ""
 git clone https://github.com/sa7mon/S3Scanner.git
-cd S3Scanner/
-pip3 install -r requirements.txt
-python3 -m S3Scanner
-cd ../
-echo""
-echo "Installing Cloud_Enum"
-echo""
 git clone https://github.com/initstring/cloud_enum.git
-cd cloud_enum
-pip3 install -r ./requirements.txt
-cd ../
-echo "Installing Buster"
-echo ""
 git clone https://github.com/sham00n/buster.git
-cd buster/
-python3 setup.py install
-cd ../
 git clone https://github.com/initstring/linkedin2username.git 
-echo ""
-echo "Installing WitnessMe"
-python3 -m pip install --user pipx
-pipx install witnessme
-pipx ensurepath
-cd ../
-echo ""
-echo "Installing Pagodo"
-echo ""
+git clone https://github.com/byt3bl33d3r/WitnessMe.git
 git clone https://github.com/opsdisk/pagodo.git
-cd pagodo
-pip install -r requirements.txt
-cd ../
-echo ""
-echo "Installing AttackSurfaceMapper"
-echo""
 git clone https://github.com/superhedgy/AttackSurfaceMapper.git
-cd AttackSurfaceMapper
-python3 -m pip install --no-cache-dir -r requirements.txt
-echo ""
-
 git clone https://github.com/smicallef/spiderfoot.git
 git clone https://github.com/rbsec/dnscan.git
 git clone https://github.com/BishopFox/spoofcheck.git
