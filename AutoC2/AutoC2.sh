@@ -18,6 +18,9 @@ echo""
 echo           "WARNING THIS SCRIPT TAKES FUCKING FOREVER!!!"
 echo""
 echo""
+echo           "All Tools Can Be Found In The /opt Directory"
+echo ""
+sleep 2
 read -p "Press enter to continue"
 
 
