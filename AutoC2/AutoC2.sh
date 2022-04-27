@@ -12,30 +12,46 @@ cat << "EOF"
                    
  
 EOF
-sleep 1
+sleep 2
+echo""
+echo""
 echo           "WARNING THIS SCRIPT TAKES FUCKING FOREVER!!!"
-cd /home/pi
+echo""
+echo""
+read -p "Press enter to continue"
+
 
 echo "Updating Your System"
+echo""
+sleep 2
 apt-get update -y && apt-get upgrade -y 
 apt update -y && apt upgrade -y
 apt autoremove -y
 echo ""
+sleep 2
 echo "Installing System Dependencies"
 echo ""
+sleep 2
 apt install git docker.io golang python3 python3-pip pipx chromium-browser -y
 /usr/bin/python3 -m pip install --upgrade pip
+echo ""
 echo "Removing Unneeded Directories"
+sleep 2
 rm -rf Videos/
 rm -rf Music/
 rm -rf Public/
 rm -rf Templates/
 echo""
 echo "Installing Hackery Stuff"
-apt install nmap amass recon-ng  -y
+echo ""
+sleep 2
+apt install nmap recon-ng snap -y
+snap install amass
+echo ""
 echo "Creating Repo Folders"
-mkdir Repo
-cd Repo
+echo ""
+sleep 2
+cd /opt
 mkdir Initial_Access
 mkdir Recon
 mkdir Delivery
@@ -43,7 +59,7 @@ mkdir Command_And_Control
 mkdir Situational_Awareness
 mkdir Credential_Dumping
 mkdir Privilege_Escallation
-mkidr Defense_Evasion
+mkdir Defense_Evasion
 mkdir Social_Engineering
 mkdir Phishing
 mkdir Persistence
@@ -59,66 +75,76 @@ sleep 2
 echo""
 echo "Cloning Recon Resources"
 echo""
+sleep 2
 cd Recon
 echo""
 echo "Installing RustScan"
 echo""
+sleep 2
 git clone https://github.com/RustScan/RustScan.git
 cd RustScan.git
 docker build -t rustscan .
-cd ../
+cd /opt/Recon/
 echo "Installing GitLeaks"
 echo ""
+sleep 2
 git clone https://github.com/zricethezav/gitleaks.git
 cd gitleaks/
 make build
-cd ../
 echo ""
-cd ../
+cd /opt/Recon/
 echo "Installing S3Scanner"
 echo ""
+sleep 2
 git clone https://github.com/sa7mon/S3Scanner.git
 cd S3Scanner/
 pip3 install -r requirements.txt
 python3 -m S3Scanner
-cd ../
+cd /opt/Recon/
 echo""
 echo "Installing Cloud_Enum"
 echo""
+sleep 2
 git clone https://github.com/initstring/cloud_enum.git
 cd cloud_enum
 pip3 install -r ./requirements.txt
-cd ../
+cd /opt/Recon/
 echo "Installing Buster"
 echo ""
+sleep 2
 git clone https://github.com/sham00n/buster.git
 cd buster/
 python3 setup.py install
-cd ../
+cd /opt/Repo/
 git clone https://github.com/initstring/linkedin2username.git 
 echo ""
 echo "Installing WitnessMe"
+echo ""
+sleep 2
 python3 -m pip install --user pipx
 pipx install witnessme
 pipx ensurepath
-cd ../
+cd /opt/Recon/
 echo ""
 echo "Installing Pagodo"
 echo ""
+sleep 2
 git clone https://github.com/opsdisk/pagodo.git
 cd pagodo
 pip install -r requirements.txt
-cd ../
+cd /opt/Recon/
 echo ""
 echo "Installing AttackSurfaceMapper"
 echo""
+sleep 2
 git clone https://github.com/superhedgy/AttackSurfaceMapper.git
 cd AttackSurfaceMapper
 python3 -m pip install --no-cache-dir -r requirements.txt
-cd ../
+cd /opt/Recon/
 echo ""
 echo "Installing SpiderFoot"
 echo ""
+sleep 2
 git clone https://github.com/smicallef/spiderfoot.git
 cd spiderfoot
 pip3 install -r requirements.txt
@@ -127,29 +153,36 @@ pip3 install cherrypy_cors
 pip3 install publicsuffixlist
 pip3 install networkx
 pip3 install openpyxl
-cd ../
+cd /opt/Recon/
 echo""
 echo "Installing DNScan"
 echo ""
+sleep 2
 git clone https://github.com/rbsec/dnscan.git
 cd dnscan
 pip3 install -r requirements.txt
 pip3 install setuptools
-cd ../
+cd /opt/Recon/
 echo""
 echo "Installing SpoofCheck"
 echo""
+sleep 2
 git clone https://github.com/BishopFox/spoofcheck.git
 cd spoofcheck
 pip3 install -r requirements.txt
+cd /opt/Recon/
 echo ""
 echo "Installing LinkedInt"
 echo""
+sleep 2
 git clone https://github.com/vysecurity/LinkedInt.git
 cd LinkedInt
 pip3 install -r requirements.txt
+cd /opt/Recon/
 echo ""
 echo "Installing EyeWitness"
+echo ""
+sleep 2
 git clone https://github.com/ChrisTruncer/EyeWitness.git
 cd EyeWitness/Python/setup
 bash setup.sh
@@ -157,57 +190,68 @@ cd /opt/Recon/
 echo""
 echo "Installing Aquatone"
 echo ""
+sleep 2
+mkdir Aquatone
+cd Aquatone/
 wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
 unzip aquatone_linux_amd64_1.7.0.zip
-cd ../
+cd /opt/Recon/
 echo""
 echo "Installing DNSrecon"
 echo ""
+sleep 2
 git clone https://github.com/darkoperator/dnsrecon.git
 cd dnsrecon
 pip install -r requirements.txt
 python setup.py install
-../
+cd /opt/Recon/
 echo ""
 echo "Installing Social Mapper"
 echo ""
+sleep 2
 git clone https://github.com/SpiderLabs/social_mapper.git
 cd /social_mapper/setup/
 pip install -r requirements.txt
 echo""
 cd /opt/Recon/
 echo "Installing theHarvester"
+echo ""
+sleep 2
 git clone https://github.com/laramies/theHarvester.git
 cd theHarvester/
 pip3 install aiohttp
 pip3 install aiomultiprocess
 python3 -m pip install -r requirements/base.txt
 python3 setup.py install
-cd ../
+cd /opt/Recon/
 echo ""
 echo "Installing Metagoofil"
+echo ""
+sleep 2
 git clone https://github.com/laramies/metagoofil.git
 echo""
 echo "Installing TruffleHog"
 echo ""
+sleep 2
 git clone https://github.com/dxa4481/truffleHog.git
 cd trufflehog; go install
-cd ../
+cd /opt/Recon/
 echo""
-echo "Installing TypoFinder"
-echo ""
 echo "Installing Pwned0rNot -- API KEY REQUIRE"
 git clone https://github.com/thewhiteh4t/pwnedOrNot.git
 cd pwnedOrNot
 chmod +x install.sh
 ./install.sh
-cd ../
+cd /opt/Recon/
 echo""
 echo "Installing GitHarvester"
+echo ""
+sleep 2
 git clone https://github.com/metac0rtex/GitHarvester.git
-
-
+echo ""
 echo "Cloning Initial Access Resources"
+echo ""
+sleep 2
 cd ../Initial_Access
 git clone https://github.com/byt3bl33d3r/SprayingToolkit.git
 git clone https://github.com/nyxgeek/o365recon.git
