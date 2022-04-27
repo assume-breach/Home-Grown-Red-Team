@@ -285,16 +285,51 @@ echo "Cloning Payload Development Resources"
 echo ""
 sleep 2
 cd ../Payload_Development
-
+echo "Installing Unicorn"
 git clone https://github.com/trustedsec/unicorn.git
+echo""
+echo "Installing Demiguise"
+echo ""
+sleep 2
 git clone https://github.com/nccgroup/demiguise.git
-git clone https://github.com/secretsquirrel/the-backdoor-factory.git
+echo ""
+echo "Installing The Backdoor Factory"
+echo ""
+docker pull secretsquirrel/the-backdoor-factory
+echo ""
+sleep 2
+echo "Installing Avet"
+echo ""
 git clone https://github.com/govolution/avet.git
+cd avet
+bash setup.sh
+cd /opt/Payload_Development/
+sleep 2
+echo ""
+echo "Installing MetaTwin"
 git clone https://github.com/threatexpress/metatwin.git
+echo "'"
+sleep 2
+echo "Installing PSAmsi"
 git clone https://github.com/cobbr/PSAmsi.git
+sleep 2
+echo ""
+echo "Worse-PDF"
+echo ""
 git clone https://github.com/3gstudent/Worse-PDF.git
+echo ""
+sleep 2
+echo "Installing Ivy"
 git clone https://github.com/optiv/Ivy.git
+cd Ivy
+go get github.com/fatih/color
+go get github.com/KyleBanks/XOREncryption/Go
+go build Ivy.go
+echo ""
+cd /opt/Payload_Development/
+echo "Installing PEzor"
 git clone https://github.com/phra/PEzor.git
+
 git clone https://github.com/med0x2e/GadgetToJScript.git
 git clone https://github.com/optiv/ScareCrow.git
 git clone https://github.com/TheWover/donut.git
