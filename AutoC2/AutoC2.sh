@@ -75,7 +75,7 @@ echo""
 echo "Getting Resources"
 sleep 2
 echo""
-echo "Cloning Recon Resources"
+echo "Installing Recon Resources"
 echo""
 sleep 2
 cd Recon
@@ -281,7 +281,7 @@ cd TREVORspray/
 pip3 install -r requirements.txt
 sleep2
 echo ""
-echo "Cloning Payload Development Resources"
+echo "Installing Payload Development Resources"
 echo ""
 sleep 2
 cd ../Payload_Development
@@ -764,71 +764,259 @@ echo "Installing C2 Concealer"
 echo ""
 sleep 2
 git clone https://github.com/FortyNorthSecurity/C2concealer.git
+cd C2concealer/
+bash install.sh
+cd /opt/Staging/
+echo ""
+echo "Installing FindFrontableDomains"
+echo ""
+sleep 2
 git clone https://github.com/rvrsh3ll/FindFrontableDomains.git
+cd FindFrontableDomains/
+bash install.sh
+echo ""
+echo "Installing DomainHunter"
+echo ""
+cd /opt/Staging/
+sleep 2
 git clone https://github.com/threatexpress/domainhunter.git
+cd domainhunter/
+pip3 install -r requirements.txt
+echo ""
+cd /opt/Staging/
+echo "Installing RedWarden"
+echo ""
+sleep 2
 git clone https://github.com/mgeeky/RedWarden.git
+cd RedWarden/
+pip3 install -r requirements.txt
+cd /opt/Staging/
+echo ""
+echo "Installing AzureC2Relay"
+echo ""
+sleep 2
 git clone https://github.com/Flangvik/AzureC2Relay.git
+echo ""
+echo "Installing C3"
+echo ""
+sleep 2
+cd /opt/Windows_OS
 git clone https://github.com/FSecureLABS/C3.git
+echo ""
+cd /opt/Staging/
+echo "Installing Chameleon"
+echo ""
+sleep 2
 git clone https://github.com/mdsecactivebreach/Chameleon.git
+cd Chameleon/
+pip3 install -r requirements.txt
+cd /opt/Staging/
+echo ""
+echo "Installing Redirect Rules"
+echo ""
+sleep 2
 git clone https://github.com/0xZDH/redirect.rules.git 
-
-echo "Cloning Log Aggregation Resources"
-
-cd ../
+cd redirect.rules/
+bash setup.sh
+echo ""
+echo "Installing Log Aggregation Resources"
+echo ""
+sleep 2
+cd /opt
 mkdir Log_Aggregation
 cd Log_Aggregation
-
+echo ""
+echo "Installing RedELK"
+echo ""
+sleep 2
 git clone https://github.com/outflanknl/RedELK.git
+echo ""
+echo "Installing RedTeamSIEM"
+echo ""
+sleep 2
 git clone https://github.com/SecurityRiskAdvisors/RedTeamSIEM.git
-
-echo "Cloning Situational Awareness Resources"
-
-cd /home/pi/Repo/Situational_Awareness
+echo ""
+echo "Installing Situational Awareness Resources"
+echo ""
+sleep 2
+cd /opt/Situational_Awareness
 mkdir Host_Situtational_Awareness
 cd Host_Situational_Awareness
-
+echo ""
+echo "Installing AggressiveProxy"
+echo ""
+sleep 2
+cd /opt/Windows_OS
 git clone https://github.com/EncodeGroup/AggressiveProxy.git
+echo ""
+echo "Installing Gopher"
+echo ""
+sleep 2
 git clone https://github.com/EncodeGroup/Gopher.git
+echo ""
+echo "Installing SharpEDRChecker"
+echo ""
+sleep 2
 git clone https://github.com/PwnDexter/SharpEDRChecker.git
+echo ""
+echo "Installing CS-Situational-Awareness-BOF"
+echo ""
+sleep 2
 git clone https://github.com/trustedsec/CS-Situational-Awareness-BOF.git
+echo ""
+echo "Installing Seatbelt"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/Seatbelt.git
+echo ""
+echo "Installing SauronEye"
+echo ""
+sleep 2
 git clone https://github.com/vivami/SauronEye.git
+echo ""
+echo "Installing SharpShares"
+echo ""
+sleep 2
 git clone https://github.com/mitchmoser/SharpShares.git
+echo ""
+echo "Installing SharpAppLocker"
+echo ""
+sleep2
 git clone https://github.com/Flangvik/SharpAppLocker/.git
+echo ""
+echo "Installing SharpPrinter"
+echo ""
+sleep 2
 git clone https://github.com/rvrsh3ll/SharpPrinter.git
-
-cd ../
-mkdir Domain_Situational_Awareness
-cd Domain_Situational_Awareness
-
+echo ""
+echo "Installing Standin"
+echo ""
 git clone https://github.com/FuzzySecurity/StandIn.git
+echo ""
+echo "Installing Recon-AD"
+echo ""
+sleep 2
 git clone https://github.com/outflanknl/Recon-AD.git
+echo ""
+echo "Cloning BloodHound For Windows"
+echo ""
+sleep 2
 git clone https://github.com/BloodHoundAD/BloodHound.git
+echo ""
+echo "Installing PSPKIAudit"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/PSPKIAudit.git
+echo ""
+echo "Installing SharpView"
+echo ""
+sleep 2
 git clone https://github.com/tevora-threat/SharpView.git
+echo ""
+echo "Installing Rubeus"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/Rubeus.git
+echo ""
+echo "Installing Grouper"
+echo ""
+sleep 2
 git clone https://github.com/l0ss/Grouper.git
+echo ""
+echo "Installing ImproHound"
+echo ""
+sleep 2
 git clone https://github.com/improsec/ImproHound.git
+echo ""
+echo "Installing ADRecon"
+echo ""
+sleep 2
 git clone https://github.com/adrecon/ADRecon.git
+echo ""
+echo "Installing ADCSPwn"
+echo ""
+sleep2
 git clone https://github.com/bats3c/ADCSPwn.git
-
-cd /home/pi/Repo/Credential_Dumping/
-
+echo ""
+cd /opt/Windows_OS
+echo "Cloning Mimikatz"
+echo ""
+sleep2
 git clone https://github.com/gentilkiwi/mimikatz.git
+echo ""
+echo "Cloning Dumpert"
+echo ""
+sleep 2
 git clone https://github.com/outflanknl/Dumpert.git
+echo ""
+echo "Cloning SharpLAPS"
+echo ""
+sleep 2
 git clone https://github.com/swisskyrepo/SharpLAPS.git
+echo ""
+echo "Cloning SharpDPAPI"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/SharpDPAPI.git
+echo ""
+echo "Cloning KeeThief"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/KeeThief.git
+echo ""
+echo "Cloning SafetyKatz"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/SafetyKatz.git
+echo ""
+echo "Cloning Forkatz"
+echo ""
+sleep 2
 git clone https://github.com/Barbarisch/forkatz.git
+echo ""
+echo "Cloning PPLKiller"
+echo ""
+sleep 2
 git clone https://github.com/RedCursorSecurityConsulting/PPLKiller.git
+echo ""
+echo "Cloning LaZagne"
+echo ""
+sleep 2
 git clone https://github.com/AlessandroZ/LaZagne.git
+echo ""
+echo "Cloning AndrewSpecial"
+echo ""
+sleep 2
 git clone https://github.com/hoangprod/AndrewSpecial.git
+echo ""
+echo "Cloning Net-GPPassword"
+echo ""
+sleep 2
 git clone https://github.com/outflanknl/Net-GPPPassword.git
+echo ""
+echo "Cloning SharpChromium"
+echo ""
+sleep 2
 git clone https://github.com/djhohnstein/SharpChromium.git
+echo ""
+echo "Cloning Chlonium"
+echo ""
+sleep 2
 git clone https://github.com/rxwx/chlonium.git
+echo ""
+echo "Cloning SharpCloud"
+echo ""
+sleep 2
 git clone https://github.com/chrismaddalena/SharpCloud.git
+echo ""
+echo "Cloning PypyKatz"
+echo ""
+sleep 2
 git clone https://github.com/skelsec/pypykatz.git
+echo ""
+echo "Cloning NanoDump"
+echo ""
+sleep 2
 git clone https://github.com/helpsystems/nanodump.git
 
 echo "Cloning Privilege Escallation Resources"
