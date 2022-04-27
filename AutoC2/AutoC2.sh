@@ -22,8 +22,7 @@ echo           "All Tools Can Be Found In The /opt Directory"
 echo ""
 sleep 2
 read -p "Press enter to continue"
-
-
+echo ""
 echo "Updating Your System"
 echo""
 sleep 2
