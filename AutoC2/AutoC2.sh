@@ -1058,7 +1058,7 @@ echo "Cloning MultiPotato"
 echo ""
 git clone https://github.com/S3cur3Th1sSh1t/MultiPotato.git
 echo ""
-echo "Cloning Defense Evasion Resources"
+echo "Cloning Defense Evasion Resources -- This is all Windows Based"
 echo ""
 sleep 2
 cd /opt/Windows_OS/
@@ -1098,27 +1098,93 @@ echo "Installing Social Engineering Payloads"
 echo ""
 sleep 2
 git clone https://github.com/bhdresh/SocialEngineeringPayloads.git
-
-
+echo ""
 echo "Cloning Phishing Resources"
-
-cd /home/pi/Phishing
-git clone https://github.com/ryhanson/phishery.git
+echo ""
+sleep 2
+cd /opt/Phishing/
+echo ""
+echo "Installing Phishery"
+echo ""
+sleep 2
+mkdir phishery
+cd phishery
+wget https://github.com/ryhanson/phishery/releases/download/v1.0.2/phishery1.0.2linux-amd64.tar.gz
+tar -xzvf phishery*.tar.gz
+cp phishery /usr/local/bin
+cd /opt/Phishing/
+echo ""
+echo "Installing EvilginX2"
+echo ""
+sleep 2
 git clone https://github.com/kgretzky/evilginx2.git
+cd evilginx2/
+make
+sudo make install
+cd /opt/Phishing/
+echo ""
+echo "Installing PwnAuth"
+echo ""
+sleep 2
 git clone https://github.com/fireeye/PwnAuth.git
+cd PwnAuth/
+bash setup.sh
+cd /opt/Phishing/
+echo ""
+echo "Installig Modlishka"
+echo ""
+sleep 2
 git clone https://github.com/drk1wi/Modlishka.git
+cd Modlishka/
+make 
+go build
+cd /opt/Phishing/
+echo ""
+echo "Installing King-Phisher"
+echo ""
+sleep 2
 git clone https://github.com/securestate/king-phisher.git
+echo ""
+echo "Installing FiercePhish"
+echo ""
+sleep 2
 git clone https://github.com/Raikia/FiercePhish.git
+cd FiercePhish/
+bash install.sh
+echo ""
+echo "Installing ReelPhish"
+echo ""
+sleep 2
 git clone https://github.com/fireeye/ReelPhish.git
+cd ReelPhish/
+pip3 install -r requirements.txt
+cd /opt/Phishing/
+echo ""
+echo "Installing GoPhish"
+echo ""
+sleep 2
 git clone https://github.com/gophish/gophish.git
+cd gophish/
+go build
+echo ""
+cd /opt/Phishing/
+echo "Installing CredSniper"
+echo ""
+sleep 2
 git clone https://github.com/ustayready/CredSniper.git
-git clone https://github.com/pentestgeek/phishing-frenzy.git
+cd CredSniper/
+read -p "Just Hit Enter Until All Dependencies Are Installed"
+cd /opt/Phishing/
+echo ""
+echo "Cloning Phishing Pretexts"
+echo ""
+sleep 2
 git clone https://github.com/L4bF0x/PhishingPretexts.git
-
+echo ""
 echo "Cloning Persistence Resources"
-
-cd /home/pi/Repo/Persistence
-
+cd /opt/Windows_OS
+mkdir Persistence
+cd Persistence/
 git clone https://github.com/0xthirteen/SharpStay.git
 git clone https://github.com/fireeye/SharPersist.git
 git clone https://github.com/outflanknl/SharpHide.git
@@ -1129,10 +1195,14 @@ git clone https://github.com/sensepost/reGeorg.git
 git clone https://github.com/HarmJ0y/DAMP.git
 git clone https://github.com/0x09AL/IIS-Raid.git
 git clone https://github.com/antonioCoco/SharPyShell.git
-
+echo ""
 echo "Cloning Lateral Movement Resources"
-
-cd /home/pi/Repo/Lateral_Movement
+echo ""
+echo "
+cd /opt/Lateral_Movement/
+git clone https://github.com/lgandx/Responder.git
+git clone https://github.com/dirkjanm/mitm6.git
+git clone https://github.com/SecureAuthCorp/impacket.git
 
 git clone https://github.com/RiccardoAncarani/LiquidSnake.git
 git clone https://github.com/NetSPI/PowerUpSQL.git
