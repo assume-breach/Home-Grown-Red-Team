@@ -34,7 +34,7 @@ sleep 2
 echo "Installing System Dependencies"
 echo ""
 sleep 2
-apt install git docker.io golang python3 python3-pip pipx chromium-browser -y
+apt install git docker.io golang python3 python3-pip pipx chromium-browser dnsmasq hostapd openssl build-essential libpcap-dev net-tools -y
 /usr/bin/python3 -m pip install --upgrade pip
 echo ""
 echo "Removing Unneeded Directories"
@@ -47,8 +47,14 @@ echo""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
-apt install nmap recon-ng snap -y
+apt install nmap wifite hcxtools aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd 7zr lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
 snap install amass
+echo ""
+sleep 2
+echo "Installing CherryTree For Documentation"
+sleep 3
+sudo apt-get install cherrytree -y
+apt --fix-broken install -y
 echo ""
 echo "Creating Repo Folders"
 echo ""
@@ -60,7 +66,7 @@ mkdir Delivery
 mkdir Command_And_Control
 mkdir Situational_Awareness
 mkdir Credential_Dumping
-mkdir Privilege_Escallation
+mkdir Privilege_Escalation
 mkdir Defense_Evasion
 mkdir Social_Engineering
 mkdir Phishing
@@ -71,9 +77,18 @@ mkdir Cloud
 mkdir Payload_Development
 mkdir Hak5_Implants
 mkdir Wireless
+mkdir Wordlists
+mkdir Virtual_Machines
 echo""
 echo "Getting Resources"
 sleep 2
+echo ""
+echo "Installing Wordlists & Rule Sets"
+sleep 3
+cd /opt/Wordlists/
+git clone https://github.com/NotSoSecure/password_cracking_rules.git
+git clone https://github.com/praetorian-inc/Hob0Rules.git
+git clone https://github.com/danielmiessler/SecLists.git
 echo""
 echo "Installing Recon Resources"
 echo""
@@ -104,6 +119,13 @@ pip3 install -r requirements.txt
 python3 -m S3Scanner
 cd /opt/Recon/
 echo""
+echo "Installing Enum4Linux"
+cd /opt/Recon/
+echo ""
+sleep 2
+git clone https://github.com/CiscoCXSecurity/enum4linux.git
+echo "alias enum4linux='/opt/enum4linux/./enum4linux.pl'" >> /root/.bashrc
+echo ""
 echo "Installing Cloud_Enum"
 echo""
 sleep 2
@@ -839,14 +861,13 @@ echo ""
 echo "Installing Situational Awareness Resources"
 echo ""
 sleep 2
-cd /opt/Situational_Awareness
-mkdir Host_Situtational_Awareness
-cd Host_Situational_Awareness
+cd /opt/Windows_OS
+mkdir Situational_Awareness
+cd Situational_Awareness/
 echo ""
 echo "Installing AggressiveProxy"
 echo ""
 sleep 2
-cd /opt/Windows_OS
 git clone https://github.com/EncodeGroup/AggressiveProxy.git
 echo ""
 echo "Installing Gopher"
@@ -938,7 +959,13 @@ echo ""
 sleep2
 git clone https://github.com/bats3c/ADCSPwn.git
 echo ""
+echo "Cloning Credential Dumping Resource"
+echo ""
+sleep 2
 cd /opt/Windows_OS
+mkdir Credential_Dumping
+cd Credential_Dumping/
+echo ""
 echo "Cloning Mimikatz"
 echo ""
 sleep2
@@ -1020,12 +1047,15 @@ sleep 2
 git clone https://github.com/helpsystems/nanodump.git
 echo ""
 sleep 2
-echo "Installing Privilege Escallation Resources"
+echo "Installing Privilege Escalation Resources"
 echo ""
-cd /opt/Privilege_Escallation
+cd /opt/Windows_OS/
+mkdir Privilege_Escalation
+cd Privilege_Escalation/
 echo ""
 echo "Installing ElevateKit"
 echo ""
+sleep 2
 git clone https://github.com/rsmudge/ElevateKit.git
 echo ""
 echo "Cloning Watson"
@@ -1062,6 +1092,8 @@ echo "Cloning Defense Evasion Resources -- This is all Windows Based"
 echo ""
 sleep 2
 cd /opt/Windows_OS/
+mkdir Defense_Evasion
+cd Defense_Evasion/
 git clone https://github.com/hlldz/RefleXXion.git
 git clone https://github.com/wavestone-cdt/EDRSandblast.git
 git clone https://github.com/APTortellini/unDefender.git
@@ -1080,9 +1112,10 @@ git clone https://github.com/bats3c/DarkLoadLibrary.git
 git clone https://github.com/Soledge/BlockEtw.git
 git clone https://github.com/mdsecactivebreach/firewalker.git
 git clone https://github.com/Cerbersec/KillDefenderBOF.git
-
+echo ""
 echo "Cloning Social Engineering Resources"
-
+echo ""
+sleep 2
 cd /opt/Social_Engineering
 echo ""
 echo "Installing Social Engineering Toolkit"
@@ -1198,12 +1231,36 @@ git clone https://github.com/antonioCoco/SharPyShell.git
 echo ""
 echo "Cloning Lateral Movement Resources"
 echo ""
-echo "
+echo ""
 cd /opt/Lateral_Movement/
+echo ""
+echo "Installing Responder"
+echo ""
+sleep 2
 git clone https://github.com/lgandx/Responder.git
+echo ""
+echo "Installing MITM6"
+echo ""
+sleep 2
 git clone https://github.com/dirkjanm/mitm6.git
+cd mitm6/
+pip3 install -r requirements.txt
+python3 setup.py install
+cd /opt/Lateral_Movement/
+echo ""
+echo "Installing Impacket"
+echo ""
+sleep 2
 git clone https://github.com/SecureAuthCorp/impacket.git
-
+cd impacket/
+python3 setup.py install
+echo ""
+echo "Cloning Windows Lateral Movement Resources"
+echo ""
+sleep 2
+cd /opt/Windows_OS/
+mkdir Lateral_Movement
+cd Lateral_Movement/
 git clone https://github.com/RiccardoAncarani/LiquidSnake.git
 git clone https://github.com/NetSPI/PowerUpSQL.git
 git clone https://github.com/0xthirteen/SharpRDP.git
@@ -1231,38 +1288,107 @@ git clone https://github.com/PowerShellMafia/PowerSploit.git
 git clone https://github.com/NetSPI/PowerUpSQL.git
 git clone https://github.com/DanMcInerney/icebreaker.git
 git clone https://github.com/JavelinNetworks/HoneypotBuster.git
+echo ""
 echo "Cloning Exfiltration Resources"
-
-cd /home/pi/Repo/Exfiltration
-
+echo ""
+sleep 2
+cd /opt/Windows_OS
+mkdir Exfiltration
+cd Exfiltration/
+echo ""
+sleep 2
 git clone https://github.com/Flangvik/SharpExfiltrate.git
 git clone https://github.com/Arno0x/DNSExfiltrator.git
 git clone https://github.com/FortyNorthSecurity/Egress-Assess.git
-
+echo ""
 echo "Cloning Cloud Resources"
-
-cd /home/pi/Repo/Cloud
-
+echo ""
+sleep 2
+cd /opt/Cloud
+echo ""
 mkdir AWS
+echo "Installing AWS Resources"
+echo ""
+sleep 2
+echo ""
+echo "Installing Pacu"
+echo ""
+sleep 2
 git clone https://github.com/RhinoSecurityLabs/pacu.git
+cd pacu/
+bash install.sh
+echo ""
+cd /opt/Cloud/AWS/
+echo "Installing CloudMapper"
+echo ""
+sleep 2
 git clone https://github.com/duo-labs/cloudmapper.git
+pip3 install -r requirements.txt
+echo ""
+echo "Installing Enumerate-IAM"
+echo ""
+sleep 2
+cd /opt/Cloud/AWS/
 git clone https://github.com/andresriancho/enumerate-iam.git
+cd enumerate-iam/
+pip3 install -r requirements.txt
+echo ""
+cd /opt/Cloud/AWS/
+echo "Installing AWSBucketDump"
+echo ""
+sleep 2
 git clone https://github.com/jordanpotti/AWSBucketDump.git
-
-cd ../
+cd AWSBucketDump/
+pip3 install -r requirements.txt
+cd /opt/Cloud/
 mkdir Azure
 cd Azure
-
+echo "Installing Azure Resources"
+echo ""
+echo "Installing ADConnectDump"
+echo ""
+sleep 2
 git clone https://github.com/fox-it/adconnectdump.git
+echo ""
+cd /opt/Cloud/Azure/
+echo ""
+echo "Installing Stormspotter"
+echo ""
+sleep 2
 git clone https://github.com/Azure/Stormspotter.git
+cd /opt/Cloud/Azure/
+echo ""
+echo "Installing ROADtools"
+echo ""
+sleep 2
 git clone https://github.com/dirkjanm/ROADtools.git
+cd ROADtools/
+pip install -e roadlib/
+pip install -e roadrecon/
+cd roadrecon/frontend/
+npm install
+npm audit fix
+echo ""
+echo "Installing MicroBurst"
+echo ""
+sleep 2
+cd /opt/Cloud/Azure/
+echo ""
+echo "Installing MicroBurst"
+echo ""
+sleep 2
+cd /opt/Windows_OS/
+mkdir Cloud
+cd Cloud
+mkdir Azure
+cd Azure
 git clone https://github.com/NetSPI/MicroBurst.git
 git clone https://github.com/Gerenios/AADInternals.git 
-
+echo ""
 echo "Cloning Hak5 Implant Resources"
-
-cd /home/pi/Repo/Hak5_Implants
-
+echo ""
+cd /opt/Hak5_Implants
+echo ""
 git clone https://github.com/hak5/omg-payloads.git
 git clone https://github.com/hak5/bashbunny-payloads.git
 git clone https://github.com/hak5/usbrubberducky-payloads.git
@@ -1277,13 +1403,58 @@ git clone https://github.com/hak5/packetsquirrel-payloads.git
 git clone https://github.com/hak5/nano-tetra-modules.git
 git clone https://github.com/hak5/signalowl-payloads.git
 git clone https://github.com/hak5/plunderbug-scripts.git
-
+echo ""
 echo "Cloning Wireless Resources"
-
-cd /home/pi/Repo/Wireless
-
-git clone https://github.com/derv82/wifite2.git
-git clone https://github.com/wifiphisher/wifiphisher.git
-git clone https://github.com/sensepost/mana.git
-git clone https://github.com/joswr1ght/cowpatty.git
+echo ""
+cd /opt/Wireless
+echo ""
+echo "Installing BeRateAP"
+echo ""
+sleep 2
+git clone https://github.com/sensepost/berate_ap
+echo ""
+cd /opt/Wireless
+echo "Installing EvilTwin Capitive Portal"
+echo ""
+sleep 2
 git clone https://github.com/athanstan/EvilTwin_AP_CaptivePortal.git
+echo ""
+cd /opt/Wireless
+echo "Installing Fluxion"
+echo ""
+sleep 2
+git clone https://www.github.com/FluxionNetwork/fluxion.git
+echo ""
+echo "Installing Bettercap"
+echo ""
+sleep 2
+git clone https://github.com/bettercap/bettercap
+cd bettercap/
+bash build.sh
+echo ""
+echo "Installing Airgeddon"
+echo ""
+sleep 2
+git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+echo ""
+cd /opt/Virtual_Machines
+echo "Installing VirtualBox"
+echo ""
+sleep 3
+apt --fix-broken install -y
+wget https://download.virtualbox.org/virtualbox/6.1.34/virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
+dpkg --install virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
+echo""
+echo "Downloading Kali VM"
+echo ""
+wget https://kali.download/virtual-images/kali-2022.1/kali-linux-2022.1-virtualbox-amd64.ova
+echo ""
+echo "Downloading Windows Ops Box"
+echo ""
+sleep 2
+wget https://az792536.vo.msecnd.net/vms/VMBuild_20190311/VirtualBox/MSEdge/MSEdge.Win10.VirtualBox.zip
+echo ""
+sleep 2 
+echo ""
+read -p "All Done! Press Enter To Reboot Your New C2 Box"
+reboot now
