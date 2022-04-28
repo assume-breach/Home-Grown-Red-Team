@@ -1018,23 +1018,50 @@ echo "Cloning NanoDump"
 echo ""
 sleep 2
 git clone https://github.com/helpsystems/nanodump.git
-
-echo "Cloning Privilege Escallation Resources"
-
-cd /home/pi/Repo/Privilege_Escallation
-
+echo ""
+sleep 2
+echo "Installing Privilege Escallation Resources"
+echo ""
+cd /opt/Privilege_Escallation
+echo ""
+echo "Installing ElevateKit"
+echo ""
 git clone https://github.com/rsmudge/ElevateKit.git
+echo ""
+echo "Cloning Watson"
+cd /opt/Windows_OS/
+echo ""
+sleep 2
 git clone https://github.com/rasta-mouse/Watson.git
+echo ""
+echo "Cloning SharpUp"
+echo ""
+sleep 2
 git clone https://github.com/GhostPack/SharpUp.git
+echo ""
+echo "Cloning dazzleUp"
+echo ""
+sleep 2
 git clone https://github.com/hlldz/dazzleUP.git
+echo ""
+echo "Cloning PEASS-ng"
+echo ""
+sleep 2
 git clone https://github.com/carlospolop/PEASS-ng.git
+echo ""
+echo "Cloning SweetPotato"
+echo ""
+sleep 2
 git clone https://github.com/CCob/SweetPotato.git
+echo ""
+echo "Cloning MultiPotato"
+echo ""
 git clone https://github.com/S3cur3Th1sSh1t/MultiPotato.git
-
+echo ""
 echo "Cloning Defense Evasion Resources"
-
-cd /home/pi/Repo/Defense_Evasion
-
+echo ""
+sleep 2
+cd /opt/Windows_OS/
 git clone https://github.com/hlldz/RefleXXion.git
 git clone https://github.com/wavestone-cdt/EDRSandblast.git
 git clone https://github.com/APTortellini/unDefender.git
@@ -1056,8 +1083,20 @@ git clone https://github.com/Cerbersec/KillDefenderBOF.git
 
 echo "Cloning Social Engineering Resources"
 
-cd /home/pi/Social_Engineering
+cd /opt/Social_Engineering
+echo ""
+echo "Installing Social Engineering Toolkit"
+echo ""
+sleep 2
 git clone https://github.com/trustedsec/social-engineer-toolkit.git
+cd social-engineering-toolkit/
+pip3 install -r requirements.txt
+python3 setup.py install
+cd /opt/Social_Engineering/
+echo ""
+echo "Installing Social Engineering Payloads"
+echo ""
+sleep 2
 git clone https://github.com/bhdresh/SocialEngineeringPayloads.git
 
 
