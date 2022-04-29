@@ -357,7 +357,7 @@ git clone https://github.com/phra/PEzor.git
 cd PEzor/
 bash install.sh
 echo ""
-read -p "Open A New Terminal And Export The Path For PEzor To Work!"
+#read -p "Open A New Terminal And Export The Path For PEzor To Work!"
 echo ""
 sleep 2
 echo "Installing ScareCrow"
@@ -580,7 +580,7 @@ read Random3
 
 custom1=$(echo $custom1 | md5sum | head -c 20)
 cd /opt/Command_And_Control/
-sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git /opt/Covenant
+sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git
 
 cd /opt/Command_And_Control/Covenant/Covenant/
 
