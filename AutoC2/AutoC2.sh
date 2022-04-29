@@ -47,7 +47,7 @@ echo""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
-apt install nmap wifite hcxtools aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd 7zr lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
+apt install nmap wifite hcxtools aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd 7zip lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
 snap install amass
 echo ""
 sleep 2
@@ -79,6 +79,9 @@ mkdir Hak5_Implants
 mkdir Wireless
 mkdir Wordlists
 mkdir Virtual_Machines
+mkdir Staging
+mkdir Log_Aggregation
+mkdir Windows_OS
 echo""
 echo "Getting Resources"
 sleep 2
@@ -387,8 +390,7 @@ git clone https://github.com/D00MFist/Mystikal.git
 cd /opt/Payload_Development/
 echo ""
 sleep 2
-mkdir Windows_OS
-cd Windows_OS
+cd /opt/Windows_OS
 echo "Installing GadgetToJscript"
 git clone https://github.com/med0x2e/GadgetToJScript.git
 echo ""
@@ -400,7 +402,7 @@ cd /opt/Payload_Development/
 echo "Installing Invisibility Cloak"
 git clone https://github.com/xforcered/InvisibilityCloak.git
 echo ""
-cd /opt/Payload_Development/Windows_OS/
+cd /opt/Windows_OS/
 echo "Installing Dendrobate"
 echo ""
 git clone https://github.com/FuzzySecurity/Dendrobate.git
@@ -421,14 +423,14 @@ echo "Installing DarkArmour"
 echo ""
 sleep 2
 git clone https://github.com/bats3c/darkarmour.git
-sudo apt install mingw-w64-tools mingw-w64-common g++-mingw-w64 gcc-mingw-w64 upx-ucl osslsigncode
+sudo apt install mingw-w64-tools mingw-w64-common g++-mingw-w64 gcc-mingw-w64 upx-ucl osslsigncode -y
 echo ""
 echo "Installing InlineWhispers"
 echo""
 sleep 2
 git clone https://github.com/outflanknl/InlineWhispers.git
 echo ""
-cd /opt/Payload_Development/Windows_OS/
+cd /opt/Windows_OS/
 echo "Installing EvilClippy"
 echo ""
 sleep 2
@@ -519,7 +521,7 @@ cd beef
 echo ""
 echo "Cloning Your C2 Resources"
 echo ""
-cd /opt/Command_And_Control
+cd /opt/Command_And_Control/
 echo "Cloning C2 Frameworks"
 echo ""
 echo "Installing Empire & Starkiller"
@@ -562,7 +564,8 @@ sleep 2
 git clone https://github.com/its-a-feature/Mythic.git
 cd Mythic/
 ./install_docker_ubuntu.sh
-cd /opt/Command_And_Control
+echo ""
+cd /opt/Command_And_Control/
 echo ""
 echo "Installing Covenant With Random Profile"
 echo ""
@@ -576,10 +579,10 @@ echo "Enter A Different Random Word!"
 read Random3
 
 custom1=$(echo $custom1 | md5sum | head -c 20)
-
+cd /opt/Command_And_Control/
 sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git /opt/Covenant
 
-cd /opt/Covenant/Covenant/
+cd /opt/Command_And_Control/Covenant/Covenant/
 
 mv ./Data/AssemblyReferences/ ../AssemblyReferences/
 
@@ -597,9 +600,6 @@ mv ./Data/Grunt/GruntSMB/ ./Data/Grunt/${Random2^}SMB/
 mv ./Components/GruntTaskings/ ./Components/${Random2^}Taskings/
 mv ./Components/GruntTasks/ ./Components/${Random2^}Tasks/
 mv ./Data/Grunt/ ./Data/${Random2^}/
-
-
-
 find ./ -type f -print0 | xargs -0 sed -i "s/Grunt/${Random2^}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/GRUNT/${Random2^^}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/grunt/${Random2,,}/g"
@@ -728,15 +728,14 @@ mv ../EmbeddedResources/ ./Data/
 dotnet build
 echo ""
 cd /opt/Command_And_Control/
-echo"Installing Shad0w"
+echo "Installing Shad0w"
 echo ""
 sleep 2
 git clone https://github.com/bats3c/shad0w.git
 cd shad0w/
 bash install.sh
 echo ""
-cd /opt/Command_And_
-/
+cd /opt/Command_And_Control/
 echo "Installing Sliver"
 echo ""
 sleep 2
@@ -766,6 +765,7 @@ systemctl start postgresql
 systemctl enable postgresql
 apt install curl -y
 apt --fix-broken install -y
+cd /opt/Command_And_Control/
 curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
 chmod +x msfinstall
 ./msfinstall
@@ -773,9 +773,8 @@ apt --fix-broken install -y
 echo ""
 echo "Cloning Staging Resources"
 echo ""
-cd /opt/
-mkdir Staging
-cd Staging/
+cd /opt/Staging/
+echo""
 echo "Installing PwnDrop"
 git clone https://github.com/kgretzky/pwndrop.git
 cd pwndrop/
@@ -844,9 +843,7 @@ echo ""
 echo "Installing Log Aggregation Resources"
 echo ""
 sleep 2
-cd /opt
-mkdir Log_Aggregation
-cd Log_Aggregation
+cd /opt/Log_Aggregation
 echo ""
 echo "Installing RedELK"
 echo ""
@@ -1441,6 +1438,7 @@ cd /opt/Virtual_Machines
 echo "Installing VirtualBox"
 echo ""
 sleep 3
+apt-get update -y && apt-get upgrade -y
 apt --fix-broken install -y
 wget https://download.virtualbox.org/virtualbox/6.1.34/virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
 dpkg --install virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
