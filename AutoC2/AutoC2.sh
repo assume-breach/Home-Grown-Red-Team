@@ -34,16 +34,9 @@ sleep 2
 echo "Installing System Dependencies"
 echo ""
 sleep 2
-apt install git docker.io golang python3 python3-pip pipx chromium-browser dnsmasq hostapd openssl build-essential libpcap-dev net-tools -y
+apt install git docker.io golang python3 snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl build-essential libpcap-dev net-tools -y
 /usr/bin/python3 -m pip install --upgrade pip
 echo ""
-echo "Removing Unneeded Directories"
-sleep 2
-rm -rf Videos/
-rm -rf Music/
-rm -rf Public/
-rm -rf Templates/
-echo""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
@@ -56,23 +49,16 @@ sleep 3
 sudo apt-get install cherrytree -y
 apt --fix-broken install -y
 echo ""
-echo "Creating Repo Folders"
+echo "Creating Tool Folders"
 echo ""
 sleep 2
 cd /opt
 mkdir Initial_Access
 mkdir Recon
-mkdir Delivery
 mkdir Command_And_Control
-mkdir Situational_Awareness
-mkdir Credential_Dumping
-mkdir Privilege_Escalation
-mkdir Defense_Evasion
 mkdir Social_Engineering
 mkdir Phishing
-mkdir Persistence
 mkdir Lateral_Movement
-mkdir Exfiltration
 mkdir Cloud
 mkdir Payload_Development
 mkdir Hak5_Implants
@@ -279,7 +265,9 @@ echo ""
 echo "Cloning Initial Access Resources"
 echo ""
 sleep 2
+
 ###Break For Recon Folder###
+
 cd /opt/Initial_Access
 echo "Installing Initial Access Tools"
 echo ""
@@ -304,12 +292,15 @@ sleep 2
 git clone https://github.com/blacklanternsecurity/TREVORspray.git
 cd TREVORspray/
 pip3 install -r requirements.txt
-sleep2
+sleep 2
+
+###Break Initial Access###
+
 echo ""
 echo "Installing Payload Development Resources"
 echo ""
 sleep 2
-cd ../Payload_Development
+cd /opt/Payload_Development
 echo "Installing Unicorn"
 git clone https://github.com/trustedsec/unicorn.git
 echo""
@@ -345,6 +336,7 @@ git clone https://github.com/3gstudent/Worse-PDF.git
 echo ""
 sleep 2
 echo "Installing Ivy"
+echo ""
 git clone https://github.com/optiv/Ivy.git
 cd Ivy
 go get github.com/fatih/color
@@ -353,6 +345,7 @@ go build Ivy.go
 echo ""
 cd /opt/Payload_Development/
 echo "Installing PEzor"
+echo ""
 git clone https://github.com/phra/PEzor.git
 cd PEzor/
 bash install.sh
@@ -501,9 +494,12 @@ sleep 2
 git clone https://github.com/Mr-Un1k0d3r/RedTeamCCode.git
 echo ""
 sleep 2
+
+###Break For Payload Development###
+
 echo "Cloning Delivery Resources"
 echo ""
-cd /opt/Payload_Development/Delivery/
+cd /opt/Delivery/
 echo ""
 echo "Installing O365 Attack Toolkit"
 echo ""
@@ -511,14 +507,18 @@ sleep 2
 git clone https://github.com/mdsecactivebreach/o365-attack-toolkit.git
 echo ""
 sleep 2
-echo "
+echo ""
 echo "Installing BEEF"
 echo ""
 sleep 2
 git clone https://github.com/beefproject/beef.git
 cd beef
+bundle install
 ./install
 echo ""
+
+###Break For Delivery###
+
 echo "Cloning Your C2 Resources"
 echo ""
 cd /opt/Command_And_Control/
@@ -582,7 +582,7 @@ custom1=$(echo $custom1 | md5sum | head -c 20)
 cd /opt/Command_And_Control/
 sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git
 
-cd /opt/Command_And_Control/Covenant/Covenant/
+cd /Covenant/Covenant/
 
 mv ./Data/AssemblyReferences/ ../AssemblyReferences/
 
@@ -750,7 +750,7 @@ sleep 2
 git clone https://github.com/byt3bl33d3r/SILENTTRINITY.git
 cd SILENTTRINITY/
 pip3 install -r requirements.txt
-cd /opt/Command_And_Control
+cd /opt/Command_And_Control/
 echo ""
 echo "Installing Pupy C2"
 echo ""
@@ -771,6 +771,9 @@ chmod +x msfinstall
 ./msfinstall
 apt --fix-broken install -y
 echo ""
+
+###Break For C2 Frameworks###
+
 echo "Cloning Staging Resources"
 echo ""
 cd /opt/Staging/
