@@ -1469,5 +1469,5 @@ wget https://az792536.vo.msecnd.net/vms/VMBuild_20190311/VirtualBox/MSEdge/MSEdg
 echo ""
 sleep 2 
 echo ""
-read -p "All Done! Press Enter To Reboot Your New C2 Box"
+read -p "Press Enter To Reboot Your New C2 Box"
 reboot now
