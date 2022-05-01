@@ -355,6 +355,7 @@ echo ""
 sleep 2
 echo "Installing ScareCrow"
 echo""
+cd /opt/Payload_Development/
 git clone https://github.com/optiv/ScareCrow.git
 cd ScareCrow/
 go get github.com/fatih/color
@@ -483,7 +484,7 @@ echo ""
 sleep 2
 git clone https://github.com/klezVirus/inceptor.git
 echo ""
-echo "Installing Mortar
+echo "Installing Mortar"
 echo ""
 sleep 2
 git clone https://github.com/0xsp-SRD/mortar.git
