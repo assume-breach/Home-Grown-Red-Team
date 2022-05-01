@@ -324,7 +324,7 @@ sleep 2
 echo ""
 echo "Installing MetaTwin"
 git clone https://github.com/threatexpress/metatwin.git
-echo "'"
+echo ""
 sleep 2
 echo "Installing PSAmsi"
 git clone https://github.com/cobbr/PSAmsi.git
