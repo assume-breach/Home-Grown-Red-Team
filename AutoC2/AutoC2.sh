@@ -34,7 +34,7 @@ sleep 2
 echo "Installing System Dependencies"
 echo ""
 sleep 2
-apt install git docker.io golang python3 snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl build-essential libpcap-dev net-tools -y
+apt install git docker.io golang python3 snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
 /usr/bin/python3 -m pip install --upgrade pip
 echo ""
 echo "Installing Hackery Stuff"
@@ -582,7 +582,18 @@ custom1=$(echo $custom1 | md5sum | head -c 20)
 cd /opt/Command_And_Control/
 sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git
 
-cd /Covenant/Covenant/
+cd opt/Command_And_Control/Covenant/Covenant/
+
+wget -q https://packages.microsoft.com/config/ubuntu/"$version"/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update -y
+apt --fix-broken install -y
+sudo apt-get install apt-transport-https -y
+apt --fix-broken install -y
+sudo apt-get update -y
+apt --fix-broken install -y
+sudo apt-get install dotnet-sdk-3.1 -y
+apt --fix-broken install -y
 
 mv ./Data/AssemblyReferences/ ../AssemblyReferences/
 
@@ -1307,6 +1318,7 @@ sleep 2
 cd /opt/Cloud
 echo ""
 mkdir AWS
+cd AWS/
 echo "Installing AWS Resources"
 echo ""
 sleep 2
