@@ -585,7 +585,7 @@ sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenan
 
 cd /opt/Command_And_Control/Covenant/Covenant/
 
-wget -q https://packages.microsoft.com/config/ubuntu/"$version"/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 sudo apt-get update -y
 apt --fix-broken install -y
