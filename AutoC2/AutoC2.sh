@@ -583,7 +583,7 @@ custom1=$(echo $custom1 | md5sum | head -c 20)
 cd /opt/Command_And_Control/
 sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git
 
-cd opt/Command_And_Control/Covenant/Covenant/
+cd /opt/Command_And_Control/Covenant/Covenant/
 
 wget -q https://packages.microsoft.com/config/ubuntu/"$version"/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
