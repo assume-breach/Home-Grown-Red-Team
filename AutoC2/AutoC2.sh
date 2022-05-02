@@ -34,7 +34,8 @@ sleep 2
 echo "Installing System Dependencies"
 echo ""
 sleep 2
-apt install git docker.io golang python3 snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
+apt install git -y
+apt install docker.io golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
 /usr/bin/python3 -m pip install --upgrade pip
 echo ""
 echo "Installing Hackery Stuff"
@@ -58,6 +59,7 @@ mkdir Recon
 mkdir Command_And_Control
 mkdir Social_Engineering
 mkdir Phishing
+mkdir Delivery
 mkdir Lateral_Movement
 mkdir Cloud
 mkdir Payload_Development
@@ -82,7 +84,7 @@ echo""
 echo "Installing Recon Resources"
 echo""
 sleep 2
-cd Recon
+cd /opt/Recon/
 echo""
 echo "Installing RustScan"
 echo""
@@ -539,6 +541,7 @@ find ./ -type f -print0 | xargs -0 sed -i "s/16.04/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/22.04/${version}/g"
 cd setup/
 bash install.sh
+cd ../
 sudo wget https://github.com/BC-SECURITY/Starkiller/releases/download/v1.8.0/starkiller-1.8.0.AppImage
 sudo chmod +x starkiller-1.0.0.AppImage
 echo""
@@ -1267,6 +1270,11 @@ git clone https://github.com/SecureAuthCorp/impacket.git
 cd impacket/
 python3 setup.py install
 echo ""
+sleep 2
+cd /opt/Lateral_Movement/
+echo "Cloning CrackMapExec"
+git clone https://github.com/byt3bl33d3r/CrackMapExec.git
+cd CrackMapExec/
 echo "Cloning Windows Lateral Movement Resources"
 echo ""
 sleep 2
@@ -1278,9 +1286,6 @@ git clone https://github.com/NetSPI/PowerUpSQL.git
 git clone https://github.com/0xthirteen/SharpRDP.git
 git clone https://github.com/0xthirteen/MoveKit.git
 git clone https://github.com/juliourena/SharpNoPSExec.git
-git clone https://github.com/lgandx/Responder.git
-git clone https://github.com/dirkjanm/mitm6.git
-git clone https://github.com/SecureAuthCorp/impacket.git
 git clone https://github.com/mdsecactivebreach/Farmer.git
 git clone https://github.com/FortyNorthSecurity/CIMplant.git
 git clone https://github.com/Mr-Un1k0d3r/PowerLessShell.git
@@ -1290,14 +1295,10 @@ git clone https://github.com/blackarrowsec/mssqlproxy.git
 git clone https://github.com/Kevin-Robertson/Invoke-TheHash.git
 git clone https://github.com/Kevin-Robertson/InveighZero.git
 git clone https://github.com/jnqpblc/SharpSpray/git
-git clone https://github.com/byt3bl33d3r/CrackMapExec.git
 git clone https://github.com/pkb1s/SharpAllowedToAct.git
 git clone https://github.com/bohops/SharpRDPHijack.git
 git clone https://github.com/klezVirus/CheeseTools.git
-git clone https://github.com/iomoath/SharpSpray.git
-git clone https://github.com/BloodHoundAD/SharpHound.git
 git clone https://github.com/PowerShellMafia/PowerSploit.git
-git clone https://github.com/NetSPI/PowerUpSQL.git
 git clone https://github.com/DanMcInerney/icebreaker.git
 git clone https://github.com/JavelinNetworks/HoneypotBuster.git
 echo ""
@@ -1386,8 +1387,9 @@ echo "Installing MicroBurst"
 echo ""
 sleep 2
 cd /opt/Cloud/Azure/
+git clone https://github.com/NetSPI/MicroBurst.git
 echo ""
-echo "Installing MicroBurst"
+echo "Installing AADInternals"
 echo ""
 sleep 2
 cd /opt/Windows_OS/
@@ -1395,7 +1397,6 @@ mkdir Cloud
 cd Cloud
 mkdir Azure
 cd Azure
-git clone https://github.com/NetSPI/MicroBurst.git
 git clone https://github.com/Gerenios/AADInternals.git 
 echo ""
 echo "Cloning Hak5 Implant Resources"
