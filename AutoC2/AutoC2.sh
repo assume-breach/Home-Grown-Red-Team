@@ -1450,6 +1450,13 @@ echo ""
 sleep 2
 git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
 echo ""
+cd /opt/Wireless/
+mkdir Wireless_Drivers
+cd Wireless_Drivers/
+apt install dkms -y
+git clone https://github.com/aircrack-ng/rtl8812au
+cd rtl8812au/
+make && make install
 cd /opt/Virtual_Machines
 echo "Installing VirtualBox"
 echo ""
