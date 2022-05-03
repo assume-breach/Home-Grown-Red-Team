@@ -37,13 +37,13 @@ sleep 2
 apt --fix-broken install
 apt install git -y
 apt --fix-broken install
-apt install docker.io golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
+apt install docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
 apt --fix-broken install
 echo ""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
-apt install nmap wifite nikto aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
+apt install nmap wifite nikto wpscan aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
 snap install amass
 echo ""
 sleep 2
@@ -68,6 +68,7 @@ mkdir Payload_Development
 mkdir Hak5_Implants
 mkdir Wireless
 mkdir Wordlists
+mkdir Web
 mkdir Virtual_Machines
 mkdir Staging
 mkdir Log_Aggregation
@@ -1139,6 +1140,22 @@ git clone https://github.com/Soledge/BlockEtw.git
 git clone https://github.com/mdsecactivebreach/firewalker.git
 git clone https://github.com/Cerbersec/KillDefenderBOF.git
 echo ""
+echo "Cloning Web Resources"
+echo ""
+sleep 2 
+cd /opt/Web/
+git clone https://github.com/rastating/wordpress-exploit-framework
+apt-get install ruby-dev zlib1g-dev liblzma-dev libsqlite3-dev -y
+apt-get install build-essential patch -y
+cd wordpress-exploit-framework/
+./rebuild_and_install_gem.sh
+cd /opt/Web/
+echo "Installing RED HAWK Framework"
+echo ""
+sleep 2
+git clone https://github.com/Tuhinshubhra/RED_HAWK
+cd RED_HAWK
+php rhawk.php
 echo "Cloning Social Engineering Resources"
 echo ""
 sleep 2
