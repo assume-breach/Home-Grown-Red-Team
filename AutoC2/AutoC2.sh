@@ -43,7 +43,7 @@ echo ""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
-apt install nmap wifite aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
+apt install nmap wifite nikto aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
 snap install amass
 echo ""
 sleep 2
@@ -102,6 +102,13 @@ git clone https://github.com/zricethezav/gitleaks.git
 cd gitleaks/
 make build
 echo ""
+cd /opt/Windows_OS/
+mkdir Recon
+cd Recon/
+echo "Installing MFA Sweep"
+echo ""
+sleep 2
+git clone https://github.com/dafthack/MFASweep 
 cd /opt/Recon/
 echo "Installing S3Scanner"
 echo ""
@@ -1077,6 +1084,8 @@ git clone https://github.com/rsmudge/ElevateKit.git
 echo ""
 echo "Cloning Watson"
 cd /opt/Windows_OS/
+mkdir Privilege_Escalation/
+cd Privilege_Escalation/
 echo ""
 sleep 2
 git clone https://github.com/rasta-mouse/Watson.git
@@ -1307,7 +1316,7 @@ echo ""
 echo "Cloning Exfiltration Resources"
 echo ""
 sleep 2
-cd /opt/Windows_OS
+cd /opt/Windows_OS/
 mkdir Exfiltration
 cd Exfiltration/
 echo ""
@@ -1422,20 +1431,20 @@ git clone https://github.com/hak5/plunderbug-scripts.git
 echo ""
 echo "Cloning Wireless Resources"
 echo ""
-cd /opt/Wireless
+cd /opt/Wireless/
 echo ""
 echo "Installing BeRateAP"
 echo ""
 sleep 2
 git clone https://github.com/sensepost/berate_ap
 echo ""
-cd /opt/Wireless
+cd /opt/Wireless/
 echo "Installing EvilTwin Capitive Portal"
 echo ""
 sleep 2
 git clone https://github.com/athanstan/EvilTwin_AP_CaptivePortal.git
 echo ""
-cd /opt/Wireless
+cd /opt/Wireless/
 echo "Installing Fluxion"
 echo ""
 sleep 2
@@ -1454,6 +1463,32 @@ sleep 2
 git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
 echo ""
 cd /opt/Wireless/
+echo "Installing HCXTools"
+echo ""
+sleep 2
+git clone https://github.com/ZerBea/hcxtools
+cd hcxtools/
+make && make install
+echo "Installing HCX Dump Tool"
+cd /opt/Wireless/
+git clone https://github.com/ZerBea/hcxdumptool
+cd hcxdumptool/
+make && make install
+cd /opt/Wireless/
+echo "Installing Bully"
+echo ""
+sleep 2
+git clone https://github.com/aanarchyy/bully
+cd bully/src
+make && make install
+cd /opt/Wireless/
+echo "Installing EapHammer"
+echo ""
+sleep 2
+git clone https://github.com/s0lst1c3/eaphammer.git
+cd eaphammer/
+./kali-setup
+cd /opt/Wireless
 mkdir Wireless_Drivers
 cd Wireless_Drivers/
 apt install dkms -y
@@ -1480,5 +1515,6 @@ wget https://az792536.vo.msecnd.net/vms/VMBuild_20190311/VirtualBox/MSEdge/MSEdg
 echo ""
 sleep 2 
 echo ""
+apt --fix-broken install -y
 read -p "Press Enter To Reboot Your New C2 Box"
 reboot now
