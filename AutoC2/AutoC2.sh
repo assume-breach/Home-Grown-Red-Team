@@ -543,7 +543,7 @@ cd setup/
 bash install.sh
 cd ../
 sudo wget https://github.com/BC-SECURITY/Starkiller/releases/download/v1.8.0/starkiller-1.8.0.AppImage
-sudo chmod +x starkiller-1.0.0.AppImage
+sudo chmod +x starkiller-1.8.0.AppImage
 echo""
 sleep 2
 cd /opt/Command_And_Control/
