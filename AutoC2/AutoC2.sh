@@ -1166,7 +1166,6 @@ echo ""
 sleep 2
 git clone https://github.com/trustedsec/social-engineer-toolkit.git
 cd social-engineering-toolkit/
-pip3 install -r requirements.txt
 python3 setup.py install
 cd /opt/Social_Engineering/
 echo ""
