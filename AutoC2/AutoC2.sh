@@ -43,7 +43,7 @@ echo ""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
-apt install nmap wifite aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd 7zip lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
+apt install nmap wifite aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
 snap install amass
 echo ""
 sleep 2
