@@ -2,7 +2,7 @@ AutoC2 is a bash script written to install all of the red team tools that you kn
 
 Usage
 
-1) Install Ubuntu 21.01 or Linux Mint on your computer. You can also install this as a VM on your computer, but remember to give your VM hypervisor rights.
+1) Install Ubuntu 21.01 or Linux Mint on your computer. You can also install it as a VM on your computer, but remember to give your VM hypervisor rights.
 2) Git clone the bash script or copy and paste it over to your instance.
 3) Run the script: bash AutoC2.sh
 4) Wait for the script to run and reboot your VM. Once rebooted, your new workstation should be good to go.
