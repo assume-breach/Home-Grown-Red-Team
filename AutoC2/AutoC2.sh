@@ -438,7 +438,8 @@ echo""
 sleep 2
 git clone https://github.com/outflanknl/InlineWhispers.git
 echo ""
-cd /opt/Windows_OS/
+mkdir /opt/Windows_OS/Payload_Development/
+cd /opt/Windows_OS/Payload_Development/
 echo "Installing EvilClippy"
 echo ""
 sleep 2
