@@ -10,7 +10,7 @@ Usage
 2) Git clone the bash script or copy and paste it over to your instance.
 3) Run the script: bash AutoC2.sh
 4) Wait for the script to run and reboot your VM. Once rebooted, your new workstation should be good to go.
-5) 
+5) Transfer the /opt/Windows_OS/ directory to your Windows instance and run the Commando VM ps script from mandiant.
 
 #Issues
 
