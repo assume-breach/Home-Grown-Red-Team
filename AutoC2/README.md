@@ -1,8 +1,17 @@
 AutoC2 is a bash script written to install all of the red team tools that you know and love. This can transform your Ubuntu/Linux Mint Virtual Machine into a Red Teaming development workstation! It takes a while to install everything so be patient.
 
+#Usage
+
+1) Install Ubuntu 21.01 or Linux Mint on your computer. You can also install this as a VM on your computer, but remember to give your VM hypervisor rights.
+2) Git clone the bash script or copy and paste it over to your instance.
+3) Run the script: bash AutoC2.sh
+4) Wait for the script to run and reboot your VM. Once rebooted, your new workstation should be good to go.
+
 #Issues
 
 There are some issues with software that is installed based on your release. For instance, Empire won't install on Linux Mint currently with the script. This is because the install script determines the version of the VM and Mint isn't on Empire's compatability list. For some software, you will have to go into the setup files and change the version to install. 98% of the tools and their dependencies will be automatically installed and will work out of box.
+
+A lot of software does not work with the latest Ubuntu 22.04 version. For instance, VirtualBox does not have a version for 22.04 yet. I recommend using Ubuntu 21.10 for now until they get things up to date. 
 
 If you run into an issue with a piece of software, open an issue or hit me up on twitter @assume_breach. Additionally, if you want more tools added to the script you can do the same!
 
