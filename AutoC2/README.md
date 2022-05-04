@@ -28,9 +28,6 @@ VirtualBox
 Kali Linux VirtualBox image
 Windows 10 Development Image
 
-
-#Tools Installed
-
 #Documentation
 
 CherryTree
