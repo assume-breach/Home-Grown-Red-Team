@@ -1,5 +1,9 @@
 AutoC2 is a bash script written to install all of the red team tools that you know and love. This can transform your Ubuntu/Linux Mint Virtual Machine into a Red Teaming development workstation! It takes a while to install everything so be patient.
 
+Why Not Just Use Kali?
+
+Kali is great, but there are certain things that make Ubuntu/Mint more of a personal computer (Office apps, Music apps, Thunderbird for email, ect). I don't typically use all of the tools on Kali and almost all of them run on Ubuntu/Mint with a little tweaking. But, we love Kali so we have an instance if we want to spin that up. It's also nice to have a Windows VM for testing and operating so that's included too. 
+
 Usage
 
 1) Install Ubuntu 21.01 or Linux Mint on your computer. You can also install it as a VM on your computer, but remember to give your VM hypervisor rights.
