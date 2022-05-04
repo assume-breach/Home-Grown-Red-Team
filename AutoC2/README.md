@@ -1,4 +1,10 @@
-AutoC2 is a bash script written to install all of the red tools that you will ever need. This can transform your Ubuntu/Linux Mint/Debian/Raspberry Pi instance into a Red Teaming beast! It takes a while to install everything so be patient.
+AutoC2 is a bash script written to install all of the red tools that you will ever need. This can transform your Ubuntu/Linux Mint Virtual Machine into a Red Teaming development workstation! It takes a while to install everything so be patient.
+
+#Issues
+
+There are some issues with software that is installed based on your release. For instance, Empire won't install on Linux Mint currently with the script. This is because the install script determines the version of the VM and Mint isn't on Empire's compatability list. For some software, you will have to go into the setup files and change the version to install. 98% of the tools and their dependencies will be automatically installed and will work out of box.
+
+If you run into an issue with a piece of software, open an issue or hit me up on twitter @assume_breach. Additionally, if you want more tools added to the script you can do the same!
 
 #Software Installed
 
