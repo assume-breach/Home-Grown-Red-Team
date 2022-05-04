@@ -508,7 +508,28 @@ echo ""
 sleep 2
 git clone https://github.com/Mr-Un1k0d3r/RedTeamCCode.git
 echo ""
+cd /opt/Payload_Development/
+echo "Installing Nimcrypt2"
+echo ""
+git clone https://github.com/icyguider/Nimcrypt2.git
+apt install gcc mingw-w64 xz-utils git
+cd Nimcrypt2/
+curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+echo "export PATH=$HOME/.nimble/bin:$PATH" >> ~/.bashrc
+export PATH=$HOME/.nimble/bin:$PATH
+nimble install winim nimcrypto docopt ptr_math strenc
+nim c -d=release --cc:gcc --embedsrc=on --hints=on --app=console --cpu=amd64 --out=nimcrypt nimcrypt.nim
+cd /opt/Payload_Development/
+echo ""
+echo "Installing FourEye"
+echo ""
 sleep 2
+git clone https://github.com/lengjibo/FourEye.git
+cd FourEye/
+chmod 755 setup.sh
+./setup.sh
+echo ""
+
 
 ###Break For Payload Development###
 
