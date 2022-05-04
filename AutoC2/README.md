@@ -1,4 +1,4 @@
-AutoC2 is a bash script written to install all of the red tools that you will ever need. This can transform your Ubuntu/Linux Mint Virtual Machine into a Red Teaming development workstation! It takes a while to install everything so be patient.
+AutoC2 is a bash script written to install all of the red team tools that you know and love. This can transform your Ubuntu/Linux Mint Virtual Machine into a Red Teaming development workstation! It takes a while to install everything so be patient.
 
 #Issues
 
