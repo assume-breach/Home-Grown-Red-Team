@@ -545,6 +545,9 @@ sleep 2
 git clone https://github.com/BC-SECURITY/Empire.git
 version=$(lsb_release -sr)
 cd Empire/
+pip install poetry -y
+wget https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/powershell-lts_7.2.2-1.deb_amd64.deb
+dpkg -i powershell-lts_7.2.2-1.deb_amd64.deb
 find ./ -type f -print0 | xargs -0 sed -i "s/20.04/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/18.04/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/21.04/${version}/g"
@@ -1086,9 +1089,6 @@ sleep 2
 git clone https://github.com/rsmudge/ElevateKit.git
 echo ""
 echo "Cloning Watson"
-cd /opt/Windows_OS/
-mkdir Privilege_Escalation/
-cd Privilege_Escalation/
 echo ""
 sleep 2
 git clone https://github.com/rasta-mouse/Watson.git
