@@ -37,13 +37,14 @@ sleep 2
 apt --fix-broken install
 apt install git -y
 apt --fix-broken install
-apt install docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
+apt install php-curl php-xml docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev net-tools -y
 apt --fix-broken install
 echo ""
 echo "Installing Hackery Stuff"
 echo ""
 sleep 2
 apt install nmap wifite nikto wpscan aircrack-ng ettercap-graphical john hashcat crunch tshark macchanger recon-ng snap dhcpd lighttpd mdk4 dsniff mdk3 php-cgi xterm cewl crunch hydra sqlmap ncrack gobuster dirb wfuzz medusa netcat -y
+apt --fix-broken install
 snap install amass
 echo ""
 sleep 2
