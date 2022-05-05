@@ -1552,6 +1552,11 @@ echo "Downloading Kali VM"
 echo ""
 wget https://kali.download/virtual-images/kali-2022.1/kali-linux-2022.1-virtualbox-amd64.ova
 echo ""
+echo "Downloading GParted Live ISO"
+echo ""
+sleep 2
+wget https://sourceforge.net/projects/gparted/files/gparted-live-stable/1.4.0-1/gparted-live-1.4.0-1-amd64.iso/download?use_mirror=iweb
+echo ""
 echo "Downloading Windows Ops Box"
 echo ""
 sleep 2
