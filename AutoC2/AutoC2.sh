@@ -1334,6 +1334,7 @@ sleep 2
 cd /opt/Windows_OS/
 mkdir Lateral_Movement
 cd Lateral_Movement/
+git clone https://github.com/nettitude/SharpWSUS
 git clone https://github.com/RiccardoAncarani/LiquidSnake.git
 git clone https://github.com/NetSPI/PowerUpSQL.git
 git clone https://github.com/0xthirteen/SharpRDP.git
