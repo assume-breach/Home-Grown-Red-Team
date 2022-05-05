@@ -398,7 +398,9 @@ git clone https://github.com/D00MFist/Mystikal.git
 cd /opt/Payload_Development/
 echo ""
 sleep 2
-cd /opt/Windows_OS
+cd /opt/Windows_OS/
+mkdir Payload_Development/
+cd Payload_Development/
 echo "Installing GadgetToJscript"
 git clone https://github.com/med0x2e/GadgetToJScript.git
 echo ""
@@ -410,7 +412,7 @@ cd /opt/Payload_Development/
 echo "Installing Invisibility Cloak"
 git clone https://github.com/xforcered/InvisibilityCloak.git
 echo ""
-cd /opt/Windows_OS/
+cd /opt/Windows_OS/Payload_Development/
 echo "Installing Dendrobate"
 echo ""
 git clone https://github.com/FuzzySecurity/Dendrobate.git
@@ -438,7 +440,6 @@ echo""
 sleep 2
 git clone https://github.com/outflanknl/InlineWhispers.git
 echo ""
-mkdir /opt/Windows_OS/Payload_Development/
 cd /opt/Windows_OS/Payload_Development/
 echo "Installing EvilClippy"
 echo ""
@@ -530,7 +531,6 @@ cd FourEye/
 chmod 755 setup.sh
 ./setup.sh
 echo ""
-
 
 ###Break For Payload Development###
 
