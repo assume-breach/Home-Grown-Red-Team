@@ -1182,7 +1182,6 @@ cd RED_HAWK
 apt-get update -y && apt-get upgrade -y
 apt --fix-broken install -y
 apt install php -y
-php rhawk.php
 echo "Cloning Social Engineering Resources"
 echo ""
 sleep 2
