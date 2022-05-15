@@ -13,7 +13,7 @@ ifconfig br0 up
 sleep 2
 ifconfig br0 10.1.1.1 netmask 255.255.255.0
 sysctl net.ipv4.ip_forward=1
-echo "<meta http-equiv="refresh" content=2;URL='http://10.1.1.1/signin.html'>">> /var/www/html/index.html
+echo "<meta http-equiv="refresh" content=2;URL='http://10.1.1.1/authenticate.html'>">> /var/www/html/index.html
 iptables --flush
 iptables -t nat --flush
 iptables -t nat -A PREROUTING -i br0 -p udp -m udp --dport 53 -j DNAT --to-destination >
