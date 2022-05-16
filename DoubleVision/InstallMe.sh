@@ -7,7 +7,7 @@ fi
 
 apt-get update -y && apt-get upgrade -y
 
-apt install tmux iptables git guacamole php dnsmasq apache2 dnsmasq-base python hostapd macchanger -y
+apt install tmux iptables git guacamole php dnsmasq apache2 dnsmasq-base python hostapd aircrack-ng macchanger -y
 
 git clone https://github.com/adamff24/PwrDeauther.git
 
