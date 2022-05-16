@@ -7,7 +7,11 @@ fi
 
 apt-get update -y && apt-get upgrade -y
 
-apt install tmux apache2 iptables git php dnsmasq apache2 dnsmasq-base python docker hostapd mdk3 macchanger -y
+apt install tmux apache2 iptables git php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
 
 docker pull capsulecode/singlefile
 
