@@ -9,13 +9,6 @@ apt-get update -y && apt-get upgrade -y
 
 apt install tmux apache2 iptables git npm php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
 
-curl -fsSL https://get.docker.com -o get-docker.sh
-
-sudo sh get-docker.sh
-
-docker pull capsulecode/singlefile
-
-docker tag capsulecode/singlefile singlefile
 
 git clone https://github.com/adamff24/PwrDeauther.git
 
@@ -39,5 +32,14 @@ cd /etc/apache2/mods-enabled
 
 ln -s ../mods-available/rewrite.load rewrite.load
 
+git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
+
+cd SingleFile
+
+npm install
+
+cd cli
+
+chmod +x single-file
 
 
