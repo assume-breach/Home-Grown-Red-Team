@@ -11,7 +11,6 @@ sudo apt install tmux apache2 iptables git npm php dnsmasq apache2 dnsmasq-base 
 
 git clone https://github.com/adamff24/PwrDeauther.git
 
-cp -f hostapd.conf /etc/hostapd/
 
 cp -f dnsmasq.conf /etc/
 
@@ -20,6 +19,8 @@ cp -Rf html /var/www/
 chown -R www-data:www-data /var/www/html
 
 chown root:www-data /var/www/html/.htaccess
+
+chmod 777 /var/www/html/creds.txt
 
 cp -f override.conf /etc/apache2/conf-available/
 
