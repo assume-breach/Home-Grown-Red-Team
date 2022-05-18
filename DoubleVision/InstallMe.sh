@@ -33,6 +33,8 @@ ln -s ../mods-available/rewrite.load rewrite.load
 
 git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
 
+chown -R pi:pi SingleFile/
+
 cd SingleFile
 
 npm install
