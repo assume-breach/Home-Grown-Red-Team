@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
-if [ "$(id -u)" != "1000" ]; then
-   echo "Run as Pi! Not Root" 1>&2
+if [ "$(id -u)" != "0" ]; then
+   echo "Run as Root" 1>&2
    exit 1
 fi
 
