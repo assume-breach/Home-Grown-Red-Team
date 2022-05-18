@@ -1,14 +1,13 @@
 #!/bin/sh -e
 
-if [ "$(id -u)" != "0" ]; then
-   echo "Run As Root!" 1>&2
+if [ "$(id -u)" != "1000" ]; then
+   echo "Run as Pi! Not Root" 1>&2
    exit 1
 fi
 
-apt-get update -y && apt-get upgrade -y
+sudo apt-get update -y && apt-get upgrade -y
 
-apt install tmux apache2 iptables git npm php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
-
+sudo apt install tmux apache2 iptables git npm php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
 
 git clone https://github.com/adamff24/PwrDeauther.git
 
