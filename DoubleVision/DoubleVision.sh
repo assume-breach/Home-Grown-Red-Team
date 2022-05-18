@@ -36,7 +36,7 @@ echo "Cloning $URL"
 systemctl stop dnsmasq
 cp Resources/hostapd.conf .
 sed -i s/AP/$AP/g hostapd.conf
-sed -i s/SID/$SSID/g hostapd.conf
+sed -i s/SSID/$SSID/g hostapd.conf
 rm /etc/hostapd/hostapd.conf
 cp hostapd.conf /etc/hostapd/hostapd.conf
 #rm /var/www/html/index.html
