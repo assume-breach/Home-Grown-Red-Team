@@ -34,13 +34,16 @@ read URL
 echo ""
 echo "Cloning $URL"
 systemctl stop dnsmasq
+sleep 1
 cp Resources/hostapd.conf .
-sed -i s/AP/$AP/g hostapd.conf
-sed -i s/SSID/$SSID/g hostapd.conf
+sleep 1
+sed -i "s/AP/${AP}/g" hostapd.conf
+sed -i "s/SSID/${SSID}/g" hostapd.conf
+sleep 1
 rm /etc/hostapd/hostapd.conf
 cp hostapd.conf /etc/hostapd/hostapd.conf
-#rm /var/www/html/index.html
-runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/usr/bin/chromium-browser /home/pi/index.html 
+runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/usr/bin/chromium-browser /home/pi/index.html
+sleep 1
 mv /home/pi/index.html /var/www/html/index.html
 service apache2 start
 sleep 1
