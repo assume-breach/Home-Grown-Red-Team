@@ -43,4 +43,5 @@ cd cli
 
 chmod +x single-file
 
-
+systemctl disable hostapd
+systemctl disable dnsmasq
