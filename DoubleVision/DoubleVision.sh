@@ -40,7 +40,7 @@ echo -e ${green}"What is the Wifi network you want to spoof? Example: Starbucks 
 echo ""
 read SSID
 echo ""
-echo ${yellow}"Using $SSID as your spoofed network"${clear}
+echo -e ${yellow}"Using $SSID as your spoofed network"${clear}
 sleep 1
 echo ""
 echo -e ${green}"Enter Website URL To Clone. Example: https://starbucks.com"${clear}
@@ -50,10 +50,10 @@ echo ""
 echo -e ${yellow}"Cloning $URL"${clear}
 echo ""
 systemctl stop dnsmasq
-cp Resources/hostapd.conf .
+cp Resources/hostapd.conf . 2>/dev/null
 sed -i "s/AP/${AP}/g" hostapd.conf
 sed -i "s/SSID/${SSID}/g" hostapd.conf
-rm /etc/hostapd/hostapd.conf
+rm /etc/hostapd/hostapd.conf 2>/dev/null
 cp hostapd.conf /etc/hostapd/hostapd.conf
 /usr/bin/chromium-browser --no-sandbox 2>/dev/null
 runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/usr/bin/chromium-browser /home/pi/index.html
