@@ -5,6 +5,20 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
+
+chown -R pi:pi SingleFile/
+
+cd SingleFile
+
+npm install
+
+cd cli
+
+chmod +x single-file
+
+cd ../../
+
 sudo apt-get update -y && apt-get upgrade -y
 
 sudo apt install tmux apache2 iptables git npm php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
@@ -31,17 +45,6 @@ cd /etc/apache2/mods-enabled
 
 ln -s ../mods-available/rewrite.load rewrite.load
 
-git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
-
-chown -R pi:pi SingleFile/
-
-cd SingleFile
-
-npm install
-
-cd cli
-
-chmod +x single-file
 
 systemctl disable hostapd
 systemctl disable dnsmasq
