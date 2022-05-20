@@ -4,6 +4,9 @@ if [ "$(id -u)" != "0" ]; then
    echo "Run as Root" 1>&2
    exit 1
 fi
+
+sudo apt-get update -y && apt-get upgrade -y
+
 apt install npm -y
 
 git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
@@ -19,8 +22,6 @@ cd cli
 chmod +x single-file
 
 cd ../../
-
-sudo apt-get update -y && apt-get upgrade -y
 
 sudo apt install tmux apache2 iptables php dnsmasq apache2 dnsmasq-base python hostapd mdk3 macchanger -y
 
