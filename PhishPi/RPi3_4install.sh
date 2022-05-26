@@ -24,7 +24,7 @@ chmod +x single-file
 cd ../../
 
 sudo apt install tmux apache2 iptables php dnsmasq apache2 dnsmasq-base python hostapd mdk4 macchanger pkg-config libnl-3-dev libnl-genl-3-dev libpcap-dev
--y
+wifite cewl -y
 
 git clone https://github.com/adamff24/PwrDeauther.git
 
