@@ -49,7 +49,6 @@ echo ""
 echo -e ${green}"Enter Website URL To Clone. Example: https://www.starbucks.com"${clear}
 echo ""
 read URL
-echo ""
 echo -e ${yellow}"Cloning $URL"${clear}
 echo ""
 systemctl stop dnsmasq
