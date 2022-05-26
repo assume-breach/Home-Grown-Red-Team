@@ -41,7 +41,6 @@ function easyexit()
 
 function title() {
 echo -e "$BOLD_GREEN
-  
 	______ _     _     _    ______ _ 
 	| ___ \ |   (_)   | |   | ___ (_)
 	| |_/ / |__  _ ___| |__ | |_/ /_ 
@@ -55,11 +54,10 @@ echo -e "$BOLD_GREEN
 
                 Use At Your Own Risk"
 }
-
 title
 echo -e $BOLD_CYAN
-echo " Choose an option:"
-echo " "
+echo "Choose an option:"
+echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE Office 365 Domain Credential Phish"
 echo -e "$BOLD_BLUE 2.$BOLD_WHITE Clone A Single Website"
 echo -e "$BOLD_BLUE 3.$BOLD_WHITE Deauth A Wifi Network"
