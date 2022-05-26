@@ -27,12 +27,14 @@ echo -e ${green}"Which interface do you want to use as your AP NIC? Example: wla
 echo ""
 read AP
 sleep 1
+echo ""
 echo -e ${yellow}"Using $AP as your AP interface"${clear}
 echo ""
 echo -e ${green}"What is the Wifi network you want to spoof? Example: Starbucks Corporate Wifi"${clear}
 echo ""
 read SSID
 sleep 1
+echo ""
 echo -e ${yellow}"Using $SSID as your spoofed network"${clear}
 sleep 1
 echo ""
@@ -40,12 +42,14 @@ echo -e ${green}"What is the domain you want to spoof on your network? Example: 
 echo ""
 read domain
 sleep 1
+echo ""
 echo -e ${yellow}"Using $domain as your spoofed domain"${clear}
 sleep 1
 echo ""
 echo -e ${green}"Enter Website URL To Clone. Example: https://www.starbucks.com"${clear}
 echo ""
 read URL
+echo ""
 echo -e ${yellow}"Cloning $URL"${clear}
 echo ""
 systemctl stop dnsmasq
