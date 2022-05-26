@@ -67,8 +67,6 @@ read CHOICE
 clear
 
 if [ $CHOICE == 1 ]; then
-	title
-	echo -e $BOLD_CYAN
 	echo ""
 	bash 0365_Captive.sh
 
