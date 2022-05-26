@@ -64,7 +64,7 @@ sleep 2
 #Copying Resources To Local Directory
 
 cp Resources/hosts . 2>/dev/null
-cp Resources/dnsmasq.conf . 2>/dev/null
+#cp Resources/dnsmasq.conf . 2>/dev/null
 cp Resources/hostapd.conf . 2>/dev/null
 cp Resources/index.html . 2>/dev/null
 cp Resources/authenticate.html . 2>/dev/null
@@ -73,7 +73,7 @@ cp Resources/post.php . 2>/dev/null
 #Replacing Variables In Files
 sed -i "s/domain/${domain}g/" post.php
 sed -i "s/domain/${domain}/g" index.html
-sed -i "s/domain/${domain}/g" dnsmasq.conf
+#sed -i "s/domain/${domain}/g" dnsmasq.conf
 sed -i "s/AP/${AP}/g" hostapd.conf
 sed -i "s/SSID/${SSID}/g" hostapd.conf
 sed -i "s/domain/${domain}/g" authenticate.html
