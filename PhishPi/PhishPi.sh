@@ -59,8 +59,9 @@ echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE Office 365 Domain Credential Phish"
-echo -e "$BOLD_BLUE 2.$BOLD_WHITE Clone A Single Website"
-echo -e "$BOLD_BLUE 3.$BOLD_WHITE Deauth A Wifi Network"
+echo -e "$BOLD_BLUE 2.$BOLD_WHITE Wifite With A Cewl Generated Wordlist"
+echo -e "$BOLD_BLUE 3.$BOLD_WHITE Clone A Single Website"
+echo -e "$BOLD_BLUE 4.$BOLD_WHITE Deauth A Wifi Network"
 echo " "
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -69,12 +70,14 @@ clear
 if [ $CHOICE == 1 ]; then
 	echo ""
 	bash 0365_Captive.sh
-
-
-elif [ $CHOICE == 2 ]; then
+	
+elif [ $CHOICE == 3 ]; then
+	bash Auto_Wifite.sh
+	
+elif [ $CHOICE == 3 ]; then
 	bash cloner.sh
 
-elif [ $CHOICE == 3 ]; then
+elif [ $CHOICE == 4 ]; then
         bash deauth.sh
         title
 else 
