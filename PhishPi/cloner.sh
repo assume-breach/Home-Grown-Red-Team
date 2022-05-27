@@ -1,5 +1,11 @@
 #!/bin/bash
-echo "Cloning Banner"
+cat << "EOF"
+   ____ _                       
+  / ___| | ___  _ __   ___ _ __ 
+ | |   | |/ _ \| '_ \ / _ \ '__|
+ | |___| | (_) | | | |  __/ |   
+  \____|_|\___/|_| |_|\___|_|  
+EOF
 echo""
 echo -e ${green}"Enter Website URL To Clone. Example: https://www.starbucks.com"${clear}
 echo ""
