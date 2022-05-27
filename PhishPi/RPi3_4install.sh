@@ -24,8 +24,8 @@ chmod +x single-file
 cd ../../
 
 sudo apt install tmux apache2 iptables php dnsmasq apache2 dnsmasq-base python hostapd mdk4 macchanger pkg-config libnl-3-dev libnl-genl-3-dev libpcap-dev
-wifite cewl -y
-
+wifite cewl hashcat -y
+https://github.com/praetorian-inc/Hob0Rules.git
 git clone https://github.com/adamff24/PwrDeauther.git
 
 cp -f dnsmasq.conf /etc/
