@@ -71,7 +71,7 @@ if [ $CHOICE == 1 ]; then
 	echo ""
 	bash 0365_Captive.sh
 	
-elif [ $CHOICE == 3 ]; then
+elif [ $CHOICE == 2 ]; then
 	bash Auto_Wifite.sh
 	
 elif [ $CHOICE == 3 ]; then
