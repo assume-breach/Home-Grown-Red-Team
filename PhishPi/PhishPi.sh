@@ -60,8 +60,9 @@ echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE Office 365 Domain Credential Phish"
 echo -e "$BOLD_BLUE 2.$BOLD_WHITE Wifite With A Cewl Generated Wordlist"
-echo -e "$BOLD_BLUE 3.$BOLD_WHITE Clone A Single Website For Email Phishing"
+echo -e "$BOLD_BLUE 3.$BOLD_WHITE Clone A Single Website Page"
 echo -e "$BOLD_BLUE 4.$BOLD_WHITE Deauth A Wifi Network"
+echo -e "$BOLD_BLUE 5.$BOLD_WHITE Clone A Login Page For Credential Harvesting"
 echo " "
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -79,6 +80,10 @@ elif [ $CHOICE == 3 ]; then
 
 elif [ $CHOICE == 4 ]; then
         bash deauth.sh
+        title
+	
+elif [ $CHOICE == 5 ]; then
+        bash CredCapture.sh
         title
 else 
 	echo -e $BOLD_RED Invalid option
