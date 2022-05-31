@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 
 NO_COLOR="\e[0m"
 WHITE="\e[0;17m"
