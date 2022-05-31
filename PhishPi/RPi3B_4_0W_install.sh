@@ -8,7 +8,7 @@ fi
 sudo apt-get update -y && apt-get upgrade -y
 
 apt install npm -y
-
+git clone https://github.com/praetorian-inc/Hob0Rules.git
 git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
 
 chown -R pi:pi SingleFile/
@@ -24,7 +24,6 @@ chmod +x single-file
 cd ../../
 
 sudo apt install tmux apache2 iptables php dnsmasq dnsmasq-base python hcxtools hostapd mdk4 macchanger pkg-config libnl-3-dev libnl-genl-3-dev libpcap-dev wifite cewl hashcat -y
-git clone https://github.com/praetorian-inc/Hob0Rules.git
 
 cp -f dnsmasq.conf /etc/
 
