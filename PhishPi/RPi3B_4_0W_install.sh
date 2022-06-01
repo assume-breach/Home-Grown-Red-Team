@@ -6,7 +6,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 sudo apt-get update -y && apt-get upgrade -y
-
+chmod 777 Cloned_Pages/
 apt install npm -y
 git clone https://github.com/praetorian-inc/Hob0Rules.git
 git clone --depth 1 --recursive https://github.com/gildas-lormeau/SingleFile.git
