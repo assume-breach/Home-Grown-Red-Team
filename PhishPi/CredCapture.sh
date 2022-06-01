@@ -26,7 +26,7 @@ cat << "EOF"
 
 EOF
 echo""
-echo -e ${green}"Enter Login URL To Clone. Example: https://www.instagram.com/accounts/login/"${clear}
+echo -e ${green}"Enter Login URL To Clone. Example: https://www.facebook.com"${clear}
 echo ""
 read URL
 echo ""
