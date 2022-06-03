@@ -27,6 +27,7 @@ cat << "EOF"
  | |__| | | | (_| | |_) | |_) |  __/ |        
   \_____|_|  \__,_|_.__/|_.__/ \___|_|        
 EOF
+rm -rf /var/www/html/*
 echo ""
 echo -e ${green}"Which interface do you want to use as your AP NIC? Example: wlan1"${clear}
 echo ""
@@ -59,11 +60,13 @@ echo ""
 echo -e ${yellow}"Using $domain as your spoofed company"${clear}
 sleep 1
 
+mkdir /var/www/html/redirect/
 cp Resources/hosts . 2>/dev/null
 cp Resources/hostapd.conf . 2>/dev/null
 cp Resources/router.html . 2>/dev/null
 cp Resources/router.php . 2>/dev/null
 cp Resources/index2.html . 2>/dev/null
+cp html/.htaccess . 2>/dev/null
 
 sed -i "s/SSID/${SSID}/g" router.html
 sed -i "s/AP/${AP}/g" hostapd.conf
@@ -74,11 +77,13 @@ sed -i "s/domain/${domain}/g" hosts
 
 rm /etc/hostapd/hostapd.conf 2>/dev/null
 mv hostapd.conf /etc/hostapd/hostapd.conf
-mv router.html /var/www/html
+mv router.html /var/www/html/
+#cp Resources/index2.html /var/www/html/index.html
+#mv index2.html /var/www/html/index.html
 mv index2.html /var/www/html/redirect/index.html
 mv router.php /var/www/html/
 mv hosts /etc/hosts
-
+mv .htaccess /var/www/html
 echo ""
 echo -e ${green}"Changing $AP MAC Address"${clear}
 echo ""
