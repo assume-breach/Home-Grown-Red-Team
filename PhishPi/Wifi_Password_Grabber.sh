@@ -100,9 +100,6 @@ sleep 2
 ifconfig br0 10.1.1.1 netmask 255.255.255.0
 sysctl net.ipv4.ip_forward=1
 echo ""
-echo -e ${green}"Copying Redirect Into Cloned Page"${clear}
-echo ""
-echo "<meta http-equiv="refresh" content=2;URL='http://${domain}/authenticate.html'>">> /var/www/html/index.html
 echo -e ${green}"Setting IPTables"${clear}
 iptables --flush
 iptables -t nat --flush
