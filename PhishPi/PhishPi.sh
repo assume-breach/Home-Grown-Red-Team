@@ -59,10 +59,11 @@ echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE Office 365 Domain Credential Phish"
-echo -e "$BOLD_BLUE 2.$BOLD_WHITE Wifite With A Cewl Generated Wordlist"
-echo -e "$BOLD_BLUE 3.$BOLD_WHITE Clone A Single Website Page"
-echo -e "$BOLD_BLUE 4.$BOLD_WHITE Deauth A Wifi Network"
-echo -e "$BOLD_BLUE 5.$BOLD_WHITE Clone A Login Page For Credential Harvesting"
+echo -e "$BOLD_BLUE 2.$BOLD_WHITE Wifi Password Grabber"
+echo -e "$BOLD_BLUE 3.$BOLD_WHITE Wifite With A Cewl Generated Wordlist"
+echo -e "$BOLD_BLUE 4.$BOLD_WHITE Clone A Single Website Page"
+echo -e "$BOLD_BLUE 5.$BOLD_WHITE Deauth A Wifi Network"
+echo -e "$BOLD_BLUE 6.$BOLD_WHITE Clone A Login Page For Credential Harvesting"
 echo " "
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -71,18 +72,21 @@ clear
 if [ $CHOICE == 1 ]; then
 	echo ""
 	bash 0365_Captive.sh
-	
+
 elif [ $CHOICE == 2 ]; then
-	bash Auto_Wifite.sh
+	bash Wifi_Password_Grabber.sh
 	
 elif [ $CHOICE == 3 ]; then
+	bash Auto_Wifite.sh
+	
+elif [ $CHOICE == 4 ]; then
 	bash cloner.sh
 
-elif [ $CHOICE == 4 ]; then
+elif [ $CHOICE == 5 ]; then
         bash deauth.sh
         title
 	
-elif [ $CHOICE == 5 ]; then
+elif [ $CHOICE == 6 ]; then
         bash CredCapture.sh
         title
 else 
