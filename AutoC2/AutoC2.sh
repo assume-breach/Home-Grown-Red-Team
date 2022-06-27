@@ -37,7 +37,7 @@ sleep 2
 apt --fix-broken install
 apt install git -y
 apt --fix-broken install
-apt install net-tools gparted php-curl php-xml docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev terminator -y
+apt install net-tools gparted php-curl nim php-xml docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev terminator -y
 apt --fix-broken install
 echo ""
 echo "Installing Hackery Stuff"
@@ -1550,7 +1550,7 @@ dpkg --install virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
 echo""
 echo "Downloading Kali VM"
 echo ""
-wget https://kali.download/virtual-images/kali-2022.1/kali-linux-2022.1-virtualbox-amd64.ova
+wget https://kali.download/virtual-images/kali-2022.2/kali-linux-2022.2-virtualbox-amd64.ova
 echo ""
 echo "Downloading Windows Ops Box"
 echo ""
