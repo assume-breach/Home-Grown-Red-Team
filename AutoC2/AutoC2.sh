@@ -37,7 +37,7 @@ sleep 2
 apt --fix-broken install
 apt install git -y
 apt --fix-broken install
-apt install net-tools gparted php-curl php-xml docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev -y
+apt install net-tools gparted php-curl php-xml docker.io ruby-bundler golang python-pip python3 make snap fuse ruby-bundler python3-pip pipx chromium-browser dnsmasq hostapd openssl open-vm-tools-desktop build-essential libpcap-dev terminator -y
 apt --fix-broken install
 echo ""
 echo "Installing Hackery Stuff"
