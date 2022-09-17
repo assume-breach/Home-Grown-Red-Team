@@ -26,6 +26,8 @@ echo ""
 echo "Enter A Different Random Word!"
 read Random3
 
+apt install -y docker.io
+
 custom1=$(echo $custom1 | md5sum | head -c 20)
 
 sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git /opt/Covenant
@@ -178,4 +180,4 @@ mv ../ReferenceSourceLibraries/ ./Data/
 
 mv ../EmbeddedResources/ ./Data/ 
 
-dotnet build
+docker build -t covenant .
