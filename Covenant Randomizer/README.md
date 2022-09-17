@@ -4,5 +4,5 @@ https://assume-breach.medium.com/home-grown-red-team-bypassing-windows-11-defens
 
 UPDATE: Covenant Randomizer now uses docker since Ubuntu and Kali are being difficult with Dotnet. Use this command to start Covenant once you have built it with Covenant Randomizer
 
-docker run -it -p 7443:7443 -p 80:80 -p 443:443 --name Cov3nant -v /opt/Covenant/Covenant/Data>:/app/Data covenant
+docker run -it -p 7443:7443 -p 80:80 -p 443:443 --name Cov3nant -v /opt/Covenant/Covenant/Data:/app/Data covenant
 
