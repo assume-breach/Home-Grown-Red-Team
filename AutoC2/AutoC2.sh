@@ -656,10 +656,12 @@ git clone https://github.com/its-a-feature/Mythic.git
 cd Mythic/
 ./install_docker_ubuntu.sh
 echo ""
-cd /opt/Command_And_Control/
+echo "Welcome To Covenant Randomizer!"
+sleep 2
 echo ""
-echo "Installing Covenant With Random Profile"
+echo "Covenant Randomizer now uses Docker. Refer to the github for the docker command to start Covenant"
 echo ""
+sleep 3
 echo "Enter A Random Word!"
 read Random1
 echo ""
@@ -669,22 +671,13 @@ echo ""
 echo "Enter A Different Random Word!"
 read Random3
 
+apt install -y docker.io
+
 custom1=$(echo $custom1 | md5sum | head -c 20)
-cd /opt/Command_And_Control/
-sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git
 
-cd /opt/Command_And_Control/Covenant/Covenant/
+sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git /opt/Covenant
 
-wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update -y
-apt --fix-broken install -y
-sudo apt-get install apt-transport-https -y
-apt --fix-broken install -y
-sudo apt-get update -y
-apt --fix-broken install -y
-sudo apt-get install dotnet-sdk-3.1 -y
-apt --fix-broken install -y
+cd /opt/Covenant/Covenant/
 
 mv ./Data/AssemblyReferences/ ../AssemblyReferences/
 
@@ -702,6 +695,9 @@ mv ./Data/Grunt/GruntSMB/ ./Data/Grunt/${Random2^}SMB/
 mv ./Components/GruntTaskings/ ./Components/${Random2^}Taskings/
 mv ./Components/GruntTasks/ ./Components/${Random2^}Tasks/
 mv ./Data/Grunt/ ./Data/${Random2^}/
+
+
+
 find ./ -type f -print0 | xargs -0 sed -i "s/Grunt/${Random2^}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/GRUNT/${Random2^^}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/grunt/${Random2,,}/g"
@@ -827,7 +823,8 @@ mv ../ReferenceSourceLibraries/ ./Data/
 
 mv ../EmbeddedResources/ ./Data/ 
 
-dotnet build
+docker build -t covenant .
+
 echo ""
 cd /opt/Command_And_Control/
 echo "Installing Shad0w"
