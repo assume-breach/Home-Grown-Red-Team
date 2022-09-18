@@ -1593,6 +1593,7 @@ apt-get update -y && apt-get upgrade -y
 apt --fix-broken install -y
 wget https://download.virtualbox.org/virtualbox/6.1.38/Oracle_VM_VirtualBox_Extension_Pack-6.1.38.vbox-extpack
 wget https://download.virtualbox.org/virtualbox/6.1.38/virtualbox-6.1_6.1.38-153438~Ubuntu~jammy_amd64.deb
+apt --fix-broken install -y
 dpkg --install virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
 echo""
 echo "Downloading Kali VM"
