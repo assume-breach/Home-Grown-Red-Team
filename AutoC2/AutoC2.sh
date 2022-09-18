@@ -1591,13 +1591,13 @@ echo ""
 sleep 3
 apt-get update -y && apt-get upgrade -y
 apt --fix-broken install -y
-wget https://download.virtualbox.org/virtualbox/6.1.34/Oracle_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack
-wget https://download.virtualbox.org/virtualbox/6.1.34/virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
+wget https://download.virtualbox.org/virtualbox/6.1.38/Oracle_VM_VirtualBox_Extension_Pack-6.1.38.vbox-extpack
+wget https://download.virtualbox.org/virtualbox/6.1.38/virtualbox-6.1_6.1.38-153438~Ubuntu~jammy_amd64.deb
 dpkg --install virtualbox-6.1_6.1.34-150636.1~Ubuntu~eoan_amd64.deb
 echo""
 echo "Downloading Kali VM"
 echo ""
-wget https://kali.download/virtual-images/kali-2022.2/kali-linux-2022.2-virtualbox-amd64.ova
+wget https://kali.download/virtual-images/kali-2022.3/kali-linux-2022.3-virtualbox-amd64.7z
 echo ""
 echo "Downloading Windows Ops Box"
 echo ""
