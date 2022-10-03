@@ -46,7 +46,7 @@ cp ../template.cpp Resources/template.cpp
 echo -e ${yellow}"Encrypting Payload" ${clear}
 echo ""
 sleep 2
-python2 aesencrypt.py $Shellcode > shell.txt
+python aesencrypt.py $Shellcode > shell.txt
 echo -e ${yellow}"Encryption Completed"${clear}
 echo ""
 sed -i s/Random1/$Random1/g Resources/template.cpp
