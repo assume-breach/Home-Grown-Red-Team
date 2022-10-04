@@ -417,6 +417,18 @@ echo ""
 #read -p "Open A New Terminal And Export The Path For PEzor To Work!"
 echo ""
 sleep 2
+echo "Installing FUD-UUID-Shellcode"
+echo ""
+cd /opt/Payload_Development/
+git clone https://github.com/Bl4ckM1rror/FUD-UUID-Shellcode.git
+echo ""
+sleep 2
+echo "Installing Optive/Freeze"
+echo ""
+cd /opt/Payload_Development/
+git clone https://github.com/optiv/Freeze.git
+echo ""
+sleep 2
 echo "Installing ScareCrow"
 echo""
 cd /opt/Payload_Development/
@@ -835,6 +847,11 @@ cd shad0w/
 bash install.sh
 echo ""
 cd /opt/Command_And_Control/
+echo "Installing Havoc C2"
+echo ""
+git clone https://github.com/HavocFramework/Havoc.git
+echo ""
+sleep 2
 echo "Installing Sliver"
 echo ""
 sleep 2
