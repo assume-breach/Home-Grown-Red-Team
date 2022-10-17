@@ -3,27 +3,43 @@
 
 **Meet Harriet!**
 
-Harriet was inspired by the Charlotte C++ shellcode loader. This tool uses AES encryption and function/variable obfuscation to get around AV and Windows Defender.
+Harriet was inspired by the Charlotte C++ shellcode loader. This tool uses AES encryption and function/variable obfuscation to get around AV and Windows Defender. Most of the code was taken from the Sektor 7 Malware Development Essentials course. All credit goes to reenz0h and @Sektor7net. I wrote this mainly as a way to get a quick undetected executable for testing and to not have to switch over to a Windows VM every five seconds for compiling. 
 
-<img width="779" alt="Screen Shot 2022-10-01 at 4 52 22 PM" src="https://user-images.githubusercontent.com/76174163/193458862-256141c2-7696-40aa-a272-c7db0635c453.png">
+![Screen Shot 2022-10-17 at 12 14 33 PM](https://user-images.githubusercontent.com/76174163/196229183-c96e9a38-8466-4ebd-81ab-35934877d559.png)
 
- At the time of writing, this is only detected by 1 vendor per AntiScan.me and will give you an undetected Meterpreter reverse shell. As we all know, Meterpreter is heavily signatured so you will have to play with the features (getsystem, hashdump,ect) to see what gets caught and what doesn't. I would recommend using my Covenant Randomizer script with this to get an initial access executable and then session pass to MSF, Sliver or another C2 for better OPSEC.
+The payload framework is very effective when paired with my Covenant Randomizer script.
 
-The executables got past Windows Defender on both fully patched Windows 10/11 machines with the meterpreter reverse tcp payload. 
+![Screen Shot 2022-10-17 at 12 15 10 PM](https://user-images.githubusercontent.com/76174163/196229270-49bb9d83-a18d-4cb6-b1b7-b798fca19d4c.png)
 
-![Screen Shot 2022-10-02 at 1 01 50 PM](https://user-images.githubusercontent.com/76174163/193466612-b08f97cd-83bf-4bdb-905e-8f4ffc1a2e9e.png)
+I was able to bypass Defender with Covenant with no problems.
 
-The executable also returned a Covenant grunt without detection. 
+![Screen Shot 2022-10-17 at 11 59 31 AM](https://user-images.githubusercontent.com/76174163/196239034-54866187-c461-4735-be81-9821c3a1e9a0.png)
 
-![Screen Shot 2022-10-02 at 1 07 57 PM](https://user-images.githubusercontent.com/76174163/193466844-35b0f9b2-50c1-4fb3-aa40-3ce6f32a577e.png)
+I was also able to bypass Defender with a Meterpreter payload. This might not be as effective since Meterpreter is signatured so heavily. Your results will vary without modifying your Meterpreter payload's template inside Metasploit. Going with lesser used payloads will probably yield good results. 
 
+**Modules**
 
-There is no fancy process injection, it's just a straight AES encrypted executable. I will be working to implement other templates into the script in the future (XOR string encryption, Process Injection, ect).  
+![Screen Shot 2022-10-17 at 12 12 15 PM](https://user-images.githubusercontent.com/76174163/196239966-8d41b19b-6d66-4a80-a72c-4d1554197702.png)
+
+There are four modules currently. As of this post, all of them bypass AV/Defender. 
  
-The majority of this script was taken from the Sektor 7 Malware Development course. All credit goes to reenz0h and @Sektor7net. I wrote this mainly as a way to get a quick undetected executable for testing and to not have to switch over to a Windows VM every five seconds for compiling. 
+AES Encrypted payload
+AES Encrypted payload with process injection
+QueueUserAPC shellcode execution
+ThreadPoolWait shellcode execution. 
 
+All of the modules use XOR encryption for strings and function obfuscation and AES encryption for payload exection. Once the payload is compiled, the script uses SigThief to sign the binary with a Microsoft certificate. 
 
 **Usage:** 
+
+Clone The Repo
+
+**git clone https://github.com/assume-breach/Home-Grown-Red-Team.git**
+
+Run The Setup Script
+
+**cd Home-Grown-Red-Team/Harriet/
+bash setup.sh**
 
 Create Your Payload
 
@@ -36,3 +52,7 @@ Run the Script
 Fill In The Values As Prompted
 
 **Enjoy and DON'T UPLOAD TO Virus Total!!!!!**
+
+**Mitigations**
+
+There are a few issues that you should be aware of. The first is that this will be detected at some point. Eventually, it will wind up on VT or the AV engines will signature it. There are mitigations that you can take to customize it. The first is to change the Virt_Alloc variable in all of the scripts. The second is to change all of the values in the perl scripts. Adding various sleep functions within the scripts can also keep the script from being signatured. 
