@@ -24,8 +24,11 @@ I was also able to bypass Defender with a Meterpreter payload. This might not be
 There are four modules currently. As of this post, all of them bypass AV/Defender. 
  
 AES Encrypted payload
+
 AES Encrypted payload with process injection
+
 QueueUserAPC shellcode execution
+
 ThreadPoolWait shellcode execution. 
 
 All of the modules use XOR encryption for strings and function obfuscation and AES encryption for payload exection. Once the payload is compiled, the script uses SigThief to sign the binary with a Microsoft certificate. 
@@ -51,8 +54,8 @@ Run the Script
 
 Fill In The Values As Prompted
 
-**Enjoy and DON'T UPLOAD TO Virus Total!!!!!**
-
 **Mitigations**
 
-There are a few issues that you should be aware of. The first is that this will be detected at some point. Eventually, it will wind up on VT or the AV engines will signature it. There are mitigations that you can take to customize it. The first is to change the Virt_Alloc variable in all of the scripts. The second is to change all of the values in the perl scripts. Adding various sleep functions within the scripts can also keep the script from being signatured. 
+There are a few issues that you should be aware of. The first is that this will be detected at some point. Eventually, it will wind up on VT or the AV engines will signature it. There are mitigations that you can take to customize it. The first is to change the Virt_Alloc variable in all of the scripts. The second is to change all of the values in the perl scripts. Adding various sleep functions within the scripts can also keep the script from being signatured. The binary that Harriet uses to sign your malware is a Microsoft Office 365 updater. You can switch this out with a different binary and replace the path for your new exe in the scripts. This can help with keeping your malware undetected. 
+
+**Enjoy and DON'T UPLOAD TO Virus Total!!!!!**
