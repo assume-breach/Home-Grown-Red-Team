@@ -30,7 +30,7 @@ apt install -y docker.io
 
 custom1=$(echo $custom1 | md5sum | head -c 20)
 
-sudo git clone --recurse-submodules https://github.com/ZeroPointSecurity/Covenant.git /opt/Covenant
+sudo git clone --recurse-submodules https://github.com/assume-breach/Covenant.git /opt/Covenant
 
 cd /opt/Covenant/Covenant/
 
