@@ -93,7 +93,6 @@ apt install gobuster -y
 apt install dirb -y
 apt install wfuzz -y
 apt install medusa -y
-apt isntall netcat -y
 apt --fix-broken install
 snap install amass
 echo ""
@@ -186,14 +185,6 @@ git clone https://github.com/initstring/cloud_enum.git
 cd cloud_enum
 pip3 install -r ./requirements.txt
 cd /opt/Recon/
-echo "Installing Buster"
-echo ""
-sleep 2
-git clone https://github.com/sham00n/buster.git
-cd buster/
-python3 setup.py install
-cd /opt/Repo/
-git clone https://github.com/initstring/linkedin2username.git 
 echo ""
 echo "Installing WitnessMe"
 echo ""
@@ -638,6 +629,8 @@ find ./ -type f -print0 | xargs -0 sed -i "s/21.04/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/21.10/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/16.04/${version}/g"
 find ./ -type f -print0 | xargs -0 sed -i "s/22.04/${version}/g"
+find ./ -type f -print0 | xargs -0 sed -i "s/22.10/${version}/g"
+
 cd setup/
 bash install.sh
 cd ../
@@ -860,19 +853,6 @@ cd sliver/
 python3 build.py
 cd /opt/Command_And_Control
 echo ""
-echo "Installing SilentTrinity"
-echo ""
-sleep 2
-git clone https://github.com/byt3bl33d3r/SILENTTRINITY.git
-cd SILENTTRINITY/
-pip3 install -r requirements.txt
-cd /opt/Command_And_Control/
-echo ""
-echo "Installing Pupy C2"
-echo ""
-sleep 2
-git clone https://github.com/n1nj4sec/pupy.git
-echo ""
 echo "Installing Metasploit"
 sleep 2
 echo ""
@@ -1018,7 +998,7 @@ git clone https://github.com/mitchmoser/SharpShares.git
 echo ""
 echo "Installing SharpAppLocker"
 echo ""
-sleep2
+sleep 2
 git clone https://github.com/Flangvik/SharpAppLocker/.git
 echo ""
 echo "Installing SharpPrinter"
