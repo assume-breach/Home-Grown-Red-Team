@@ -1207,6 +1207,7 @@ git clone https://github.com/bats3c/DarkLoadLibrary.git
 git clone https://github.com/Soledge/BlockEtw.git
 git clone https://github.com/mdsecactivebreach/firewalker.git
 git clone https://github.com/Cerbersec/KillDefenderBOF.git
+git clone https://github.com/matterpreter/OffensiveCSharp.git
 echo ""
 echo "Cloning Web Resources"
 echo ""
