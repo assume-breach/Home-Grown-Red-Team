@@ -8,7 +8,7 @@ Replace the file path with the file path of the executable that you want to open
 
 Compile HighBorn.c into a dll.
 
-**linux command: "x86_64-w64-mingw32-gcc -shared -o secur32.dll highborn.c -lcomctl32 -Wl,--subsystem,windows"**
+**linux command: "x86_64-w64-mingw32-gcc -shared -o secur32.dll HighBorn.c -lcomctl32 -Wl,--subsystem,windows"**
 
 Host the dll on your Kali box.
 
