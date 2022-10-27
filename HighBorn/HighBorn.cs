@@ -87,7 +87,8 @@ namespace HighBorn
             }
 
             Console.WriteLine("[^] Cleaning Up");
-            
+		
+            	DeleteFileW(@"C:\Windows\temp\secur32.dll");
         	DeleteFileW(@"C:\Windows \System32\ComputerDefaults.exe");
 		DeleteFileW(@"C:\Windows \System32\secur32.dll");
 		RemoveDirectory(@"C:\Windows \System32\");
