@@ -23,4 +23,4 @@ Execute on C2
 
 **command: dotnet inline-execute HighBorn.exe**
 
-Replace the ComputerDefaults.exe and secur32.dll with other EXEs and DLLs as you find DLLs that can be hijacked. ComputerDefaults is a popular one is probably monitored pretty closely.
+Replace the ComputerDefaults.exe and secur32.dll with other EXEs and DLLs as you find DLLs that can be hijacked. ComputerDefaults is a popular one so it is probably monitored pretty closely.
