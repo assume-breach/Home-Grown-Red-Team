@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\Debug\HighBorn.exe.config
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\Debug\HighBorn.exe
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\Debug\HighBorn.pdb
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.csproj.Fody.CopyLocal.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.exe
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\Debug\HighBorn.pdb

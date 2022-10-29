@@ -1,0 +1,12 @@
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\x86\Release\HighBorn.exe.config
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\x86\Release\HighBorn.exe
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\x86\Release\HighBorn.pdb
+C:\Users\User\Desktop\HighBorn\HighBorn\bin\x86\Release\System.Diagnostics.DiagnosticSource.xml
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.Fody.CopyLocal.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.csproj.CopyComplete
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.exe
+C:\Users\User\Desktop\HighBorn\HighBorn\obj\x86\Release\HighBorn.pdb
