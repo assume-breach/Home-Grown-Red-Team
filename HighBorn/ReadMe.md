@@ -1,4 +1,4 @@
-Windows UAC Bypass utilizing mock directories and DLL Hijacking. This is a tool that I created to use with the "dotnet inline-execution" command on Havoc C2, but it can be used with any C2 that has in-memory execution. This was just a quick and dirty POC.
+Windows UAC Bypass utilizing mock directories and DLL Hijacking. This is a tool that I created to use with the "dotnet inline-execution" command on Havoc C2, but it can be used with any C2 that has in-memory execution. SharpSploit's ETW Bypass has been added to evade Defender/AV/EDR. This was just a quick and dirty POC.
 
 **Usage:**
 
@@ -14,7 +14,21 @@ Host the dll on your Kali box.
 
 command: python3 -m http.server PORT
 
-Compile on Kali
+Compiling HighBorn On Visual Studio
+
+git clone https://github.com/cobbr/SharpSploit.git
+
+Compile SharpSploit by changing the build to Release and then click Build. 
+
+Open the HighBorn sln file. Right click on "Add Reference" and then click "Browse."
+
+Go to your SharpSploit compiled folder and in "Release" click on the SharpSploit.dll file to add it to HighBorn.
+
+Now compile HighBorn by changing the build tab to Release. 
+
+Compiling HighBorn Withoug ETW Bypass On Linux
+
+Remove the SharpSploit references in the HighBorn.cs file.
 
 **apt install mono-complete -y
 mcs -out:HighBorn.exe Highborn.cs**
