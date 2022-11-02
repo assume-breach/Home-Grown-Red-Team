@@ -38,3 +38,6 @@ Execute on C2
 **command: dotnet inline-execute HighBorn.exe**
 
 Replace the ComputerDefaults.exe and secur32.dll with other EXEs and DLLs as you find DLLs that can be hijacked. ComputerDefaults is a popular one so it is probably monitored pretty closely.
+
+Still need help? I've documented the whole process here:
+https://assume-breach.medium.com/home-grown-red-team-uac-bypass-on-windows-defender-for-endpoint-with-highborn-e9ea16546029
