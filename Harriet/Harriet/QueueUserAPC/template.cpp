@@ -44,6 +44,7 @@ int Random1(char * Random3, unsigned int Random3_len, char * Random2, size_t Ran
 
 int main()
 {
+	DWORD oldprotect = 0;
 	char Random2[]=KEYVALUE
 	unsigned char Random3[]=PAYVAL
 
