@@ -97,11 +97,6 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
 Random7=$(cat shell.txt)
 sed -i "s/Random7/$Random7/g" Harriet/FULLInj/Resources/template.cpp
 
-#EXECUTE MEMORY
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
-Random8=$(cat shell.txt)
-sed -i "s/Random8/$Random8/g" Harriet/FULLInj/Resources/template.cpp
-
 #Exec VARIABLE
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-9} | head -n 1 > shell.txt
 Random8=$(cat shell.txt)
