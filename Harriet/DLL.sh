@@ -59,7 +59,7 @@ clear
 
 if [ $CHOICE == 1 ]; then
 	echo ""
-	bash Harriet/DLLAES/DLLInj.sh
+	bash Harriet/DLLInj/DLLInj.sh
 
 else 
 	echo -e $BOLD_RED Invalid option
