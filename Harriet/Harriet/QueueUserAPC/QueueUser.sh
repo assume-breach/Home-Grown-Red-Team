@@ -32,7 +32,7 @@ cp Harriet/QueueUserAPC/template.cpp Harriet/QueueUserAPC/Resources/template.cpp
 echo -e ${yellow}"+++Encrypting Payload+++" ${clear}
 echo ""
 sleep 2
-python Harriet/QueueUserAPC/Resources/aesencrypt.py $Shellcode > shell.txt
+python3 Harriet/QueueUserAPC/Resources/aesencrypt.py $Shellcode > shell.txt
 echo -e ${yellow}"***Encryption Completed***"${clear}
 echo ""
 cp shell.txt shell2.txt
