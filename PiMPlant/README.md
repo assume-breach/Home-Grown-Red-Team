@@ -8,7 +8,7 @@ Usage:
 
 1.) Set up a C2 droplet and enable SSH.
 
-2.) Run bash PiMPlant.sh
+2.) Run bash PiMPlant.sh (run as pi user with sudo!!)
 
 3.) Fill in the prompts.
 
