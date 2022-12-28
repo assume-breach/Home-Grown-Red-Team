@@ -14,7 +14,7 @@ cat << "EOF"
 ███████║╚██████╗██║  ██║██║██║        ██║                            
 ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝         
 
-         **For Kali Linux On A Raspberry Pi**
+                **For Kali Linux On A Raspberry Pi**
 EOF
 echo ""
 echo "Welcome To The PiMPlant Script!"
