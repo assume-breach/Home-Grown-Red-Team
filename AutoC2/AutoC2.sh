@@ -1347,6 +1347,10 @@ echo ""
 echo ""
 cd /opt/Lateral_Movement/
 echo ""
+echo "Installing Petitpotam"
+sleep 2
+git clone https://github.com/topotam/PetitPotam.git
+echo ""
 echo "Installing Responder"
 echo ""
 sleep 2
