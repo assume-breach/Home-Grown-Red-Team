@@ -1,0 +1,1 @@
+MemoryPull is a simple (extremely simple) C# shellcode runner that will call out to external server hosting raw shellcode and run it. The URL is hard coded inside the shellcode runner so you don't have enter anything in a command prompt. This is extremely useful for converting EXEs to shellcode with Donut and running them in memory. 
