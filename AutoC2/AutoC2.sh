@@ -1347,6 +1347,14 @@ echo ""
 echo ""
 cd /opt/Lateral_Movement/
 echo ""
+echo "Installing LDAP Tools"
+echo ""
+apt install ldap-utils -y
+echo ""
+echo "Installing Kerbrute"
+echo ""
+git clone https://github.com/ropnop/kerbrute.git"
+echo ""
 echo "Installing Petitpotam"
 sleep 2
 git clone https://github.com/topotam/PetitPotam.git
