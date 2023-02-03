@@ -123,6 +123,7 @@ mkdir Virtual_Machines
 mkdir Staging
 mkdir Log_Aggregation
 mkdir Windows_OS
+mkdir Powershell
 echo""
 echo "Getting Resources"
 sleep 2
@@ -583,6 +584,19 @@ git clone https://github.com/lengjibo/FourEye.git
 cd FourEye/
 chmod 755 setup.sh
 ./setup.sh
+echo ""
+###Break For Powershell###
+
+echo "Creating Powershell Resources"
+echo ""
+echo "Cloning PowerSploit"
+echo ""
+cd /opt/Powershell
+git clone https://github.com/PowerShellMafia/PowerSploit.git
+echo""
+echo "Cloning PowerSCCM"
+echo ""
+git clone https://github.com/PowerShellMafia/PowerSCCM.git
 echo ""
 
 ###Break For Payload Development###
