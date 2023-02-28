@@ -6,7 +6,7 @@ Kali is great, but there are certain things that make Ubuntu/Mint more of a pers
 
 Usage
 
-1) Install Ubuntu 21.01 or Linux Mint on your computer. You can also install it as a VM on your computer, but remember to give your VM hypervisor rights.
+1) Install Ubuntu 21.10 or Linux Mint on your computer. You can also install it as a VM on your computer, but remember to give your VM hypervisor rights.
 2) Git clone the bash script or copy and paste it over to your instance.
 3) Run the script: bash AutoC2.sh
 4) Wait for the script to run and reboot your VM. Once rebooted, your new workstation should be good to go.
@@ -19,6 +19,8 @@ There are some issues with software that is installed based on your release. For
 A lot of software does not work with the latest Ubuntu 22.04 version. For instance, VirtualBox does not have a version for 22.04 yet. I recommend using Ubuntu 21.10 for now until they get things up to date. 
 
 If you run into an issue with a piece of software, open an issue or hit me up on twitter @assume_breach. Additionally, if you want more tools added to the script you can do the same!
+
+UPDATE: It seems that most of the errors with Ubuntu have beens solved per the latest release, but Linux Mint is still the best option for this script. 
 
 #Software Installed
 
