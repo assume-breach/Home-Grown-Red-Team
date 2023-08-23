@@ -41,5 +41,6 @@ apt install mdk3 -y
 apt install php-cgi -y
 ap install xterm -y
 apt install tshark -y
+apt install socat -y
 apt --fix-broken install
 echo ""
