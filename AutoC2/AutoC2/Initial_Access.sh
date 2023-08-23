@@ -31,3 +31,7 @@ echo ""
 sleep 2
 git clone https://github.com/mdsecactivebreach/o365-attack-toolkit.git
 echo ""
+echo "Installing Wireshark"
+echo ""
+sleep 2
+apt install wireshark-qt -y
