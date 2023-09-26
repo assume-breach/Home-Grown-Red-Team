@@ -41,7 +41,18 @@ cd ../
 git clone https://github.com/michenriksen/aquatone.git
 git clone https://github.com/darkoperator/dnsrecon.git
 git clone https://github.com/dirkjanm/mitm6.git
-sudo apt install python2 wifite hcxtools hydra medusa cewl hashcat macchanger nmap postgresql tmux -y
+sudo apt install aircrack-ng -y
+sudo apt install python2 -y
+sudo apt install wifite -y
+sudo apt install hcxtools -y
+sudo apt install hydra -y
+sudo apt install medusa -y
+sudo apt install cewl -y
+sudo apt install hashcat -y 
+sudo apt install macchanger -y 
+sudo apt install nmap -y
+sudo apt install postgresql -y 
+sudo apt install tmux -y
 cd /home/pi
 ssh-keygen
 echo "Enter Your C2 Server's IP/Domain"
