@@ -25,7 +25,9 @@ cat << "EOF"
 | . ` |/ _` | __| \ \ / / _ \ |  _  ||  __/  | |/ __|                 
 | |\  | (_| | |_| |\ V /  __/ | | | || |    _| |\__ \                 
 \_| \_/\__,_|\__|_| \_/ \___| \_| |_/\_|    \___/___/                 
-                                                                      
+                     	
+                      credit: @VirtualAlllocEx
+https://github.com/VirtualAlllocEx/Direct-Syscalls-A-journey-from-high-to-low.git                                                 
                                                                      
 EOF
 
