@@ -98,7 +98,7 @@ sed -i "s/Random9/$Random9/g" Harriet/DirectSyscalls/Resources/template.cpp
 
 
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/DirectSyscalls/Resources/template.cpp -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive -lntdll -Wno-narrowing -O2 -O3 -Os>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/DirectSyscalls/Resources/template.cpp -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive -lntdll -Wno-narrowing -O2 >/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
