@@ -52,6 +52,8 @@ echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE AES Encryption w/ Process Injection DLL"
+echo -e "$BOLD_BLUE 2.$BOLD_WHITE DLL Syscalls"
+
 echo ""
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -61,6 +63,9 @@ if [ $CHOICE == 1 ]; then
 	echo ""
 	bash Harriet/DLLInj/DLLInj.sh
 
+elif [ $CHOICE == 2 ]; then
+        echo ""
+        bash Harriet/DLLSyscalls/DLLSyscalls.sh
 else 
 	echo -e $BOLD_RED Invalid option
 	sleep 3
