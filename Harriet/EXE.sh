@@ -55,6 +55,8 @@ echo -e "$BOLD_BLUE 1.$BOLD_WHITE Fully-Automated AES Encryption"
 echo -e "$BOLD_BLUE 2.$BOLD_WHITE Fully-Automated AES Encryption w/ Process Injection"
 echo -e "$BOLD_BLUE 3.$BOLD_WHITE Fully-Automated AES Encrypted QueueUserAPC Shellcode Execution"
 echo -e "$BOLD_BLUE 4.$BOLD_WHITE Fully-Automated AES Encrypted NativeAPI Shellcode Execution"
+echo -e "$BOLD_BLUE 5.$BOLD_WHITE Fully-Automated AES Encrypted Direct Syscall Execution"
+
 echo ""
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -75,8 +77,15 @@ elif [ $CHOICE == 3 ]; then
 elif [ $CHOICE == 4 ]; then
         echo ""
         bash Harriet/NativeAPI/NativeAPI.sh
+
+elif [ $CHOICE == 5 ]; then
+        echo ""
+        bash Harriet/DirectSyscalls/DirectSyscalls.sh
+
+
 else 
 	echo -e $BOLD_RED Invalid option
 	sleep 3
 	trap easyexit EXIT
 fi
+
