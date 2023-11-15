@@ -10,7 +10,7 @@ On our POC, we enter the folder/file location and hostname.
 
 ![Screenshot 2023-11-15 at 11 40 07 AM](https://github.com/assume-breach/Home-Grown-Red-Team/assets/76174163/21e8deb3-08d4-42f0-b547-aaeeb3a93aa6)
 
-We then compile x86_64-w64-mingw32-g++ -o smbex.exe smb.cpp -lws2_32 -lntdll
+We then compile x86_64-w64-mingw32-g++ -o sharable.exe sharable.cpp -lws2_32 -lntdll
 
 We upload the executable to the domain controller and execute.
 
