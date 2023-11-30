@@ -32,7 +32,7 @@ Run the tool.
 
 ![Screenshot 2023-11-29 at 1 58 54 PM](https://github.com/assume-breach/Home-Grown-Red-Team/assets/76174163/af11eac6-2e2a-4d69-92d4-6e974260997d)
 
-If you get access to another machine on the network that has access to the shared/shared folder you can access the shellcode file and get a beacon. I ran the tool on my DC which has access to the shared folder. 
+If you get onto another machine on the network that has access to the shared/shared folder you can retrieve the shellcode file and get a beacon. I ran the tool on my DC which has access to the shared folder. 
 
 ![Screenshot 2023-11-29 at 2 01 04 PM](https://github.com/assume-breach/Home-Grown-Red-Team/assets/76174163/f90ba02d-ca6c-447d-91e7-0960aa4f2fae)
 
