@@ -54,7 +54,7 @@ title
 echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
-echo -e "$BOLD_BLUE 1.$BOLD_WHITE AES Encrypted SMB Stager"
+#echo -e "$BOLD_BLUE 1.$BOLD_WHITE AES Encrypted SMB Stager"
 echo -e "$BOLD_BLUE 2.$BOLD_WHITE AES Encrypted TCP Stager"
 echo ""
 echo -n -e "$BOLD_WHITE > "
