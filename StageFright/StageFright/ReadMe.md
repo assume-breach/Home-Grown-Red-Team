@@ -4,7 +4,7 @@ StageFright is a staged payload framework that allows the user to run customized
 
 Right now, the only protocols in the framework are SMB and TCP. More will be available in the future; ie http/https.
 
-At this time, the tool will give you both DLLs and EXEs. 
+At this time, the tool will give you both DLLs and EXEs. All EXEs and DLLs are signed using SigThief. This seems to cut down on some alerts in Microsoft Defender For Endpoint.
 
 This is a replacement for the Shareable tool I uploaded a little while ago. Eventually, this tool will be merged into the Harriet tool, but for now, this is what I have finished. You can watch out for updates on Twitter as I will tweet out when new features and things have been added.
 
