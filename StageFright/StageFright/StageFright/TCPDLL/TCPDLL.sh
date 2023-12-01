@@ -161,6 +161,7 @@ rm shell*
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
+echo -e ${yellow}"***Edit And Run The TCP Server***"${clear}
 #echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
 #echo ""
 #sleep 2
