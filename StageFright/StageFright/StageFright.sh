@@ -55,7 +55,7 @@ echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE Create Staged EXE"
-#echo -e "$BOLD_BLUE 2.$BOLD_WHITE Create FUD DLL"
+echo -e "$BOLD_BLUE 2.$BOLD_WHITE Create Staged DLL"
 echo ""
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
