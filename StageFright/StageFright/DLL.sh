@@ -56,6 +56,7 @@ echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE SMB Stager DLL"
 echo -e "$BOLD_BLUE 2.$BOLD_WHITE TCP Stager DLL"
+echo -e "$BOLD_BLUE 3.$BOLD_WHITE HTTP Stager DLL"
 echo ""
 echo -n -e "$BOLD_WHITE > "
 read CHOICE
@@ -69,6 +70,9 @@ elif [ $CHOICE == 2 ]; then
 	echo ""
 	bash StageFright/TCPDLL/TCPDLL.sh
 
+elif [ $CHOICE == 3 ]; then
+        echo ""
+        bash StageFright/HTTPDLL/HTTPDLL.sh
 else 
 	echo -e $BOLD_RED Invalid option
 	sleep 3
