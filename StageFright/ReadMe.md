@@ -2,7 +2,7 @@
 
 StageFright is a staged payload framework that allows the user to run customized staged payloads over various protocols. The framework is based on my blog article found here: https://medium.com/@assume-breach/home-grown-red-team-hosting-encrypted-stager-shellcode-1dc5e06eaeb3
 
-Right now, the only protocols in the framework are SMB and TCP. More will be available in the future; ie http/https.
+Right now, the only protocols in the framework are SMB, TCP and HTTP. I might do FTP, but that seems a little outdated.
 
 At this time, the tool will give you both DLLs and EXEs. 
 
