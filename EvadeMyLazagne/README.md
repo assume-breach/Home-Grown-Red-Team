@@ -1,3 +1,4 @@
+UPDATE: This doens't work any more and I probably won't have to time to revisit.
 
 Evade My Lasagne is an extremely simple bash script that allows you to quickly replace the known strings of the Lazagne project to evade AV/Windows Defender.
 
