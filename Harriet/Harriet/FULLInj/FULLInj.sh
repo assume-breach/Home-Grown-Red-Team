@@ -150,7 +150,7 @@ rm proc*
 
 #Compiling Malware
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing -O3 -O2>/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
