@@ -114,6 +114,11 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
 Random3=$(cat shell.txt)
 sed -i "s/Random3/$Random3/g" StageFright/TCP/Resources/template.cpp
 
+#sPayloadSize
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
+Random4=$(cat shell.txt)
+sed -i "s/Random4/$Random4/g" StageFright/TCP/Resources/template.cpp
+
 #bSTATE
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
 Random5=$(cat shell.txt)
