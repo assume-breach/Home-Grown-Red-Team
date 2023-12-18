@@ -110,8 +110,10 @@ read Random2
 echo ""
 echo "Enter A Different Random Word!"
 read Random3
+apt --fix-broken install
 
-apt install -y docker.io
+apt install -y docker
+apt --fix-broken install
 
 custom1=$(echo $custom1 | md5sum | head -c 20)
 
