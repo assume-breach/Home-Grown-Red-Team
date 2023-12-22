@@ -43,6 +43,7 @@ Run The Setup Script
 
 **cd Home-Grown-Red-Team/Harriet/
 bash setup.sh**
+The setup script will give you the self-signed cert you need for executable signing.
 
 Create Your Payload
 
