@@ -52,7 +52,7 @@ echo -e $BOLD_CYAN
 echo "Choose an option:"
 echo ""
 echo -e "$BOLD_BLUE 1.$BOLD_WHITE AES Encryption w/ Process Injection DLL"
-echo -e "$BOLD_BLUE 2.$BOLD_WHITE DLL Syscalls"
+#echo -e "$BOLD_BLUE 2.$BOLD_WHITE DLL Syscalls"
 
 echo ""
 echo -n -e "$BOLD_WHITE > "
