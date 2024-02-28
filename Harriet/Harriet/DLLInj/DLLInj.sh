@@ -139,7 +139,7 @@ rm proc*
 
 #Compiling Malware
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
-x86_64-w64-mingw32-g++ -shared -o $MALWARE Harriet/DLLInj/Resources/template.cpp -lcomctl32 -Wl,--subsystem,windows -fpermissive -Wno-narrowing >/dev/null 2>&1
+x86_64-w64-mingw32-g++ -shared -o $MALWARE Harriet/DLLInj/Resources/template.cpp -lcomctl32 -Wl,--subsystem,windows -fpermissive -Wno-narrowing -O2 -O3 >/dev/null 2>&1
 echo ""
 sleep 2
 rm shell*
