@@ -98,7 +98,7 @@ echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -o $MALWARE Harriet/DirectSyscalls/Resources/template.cpp -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc Harriet/Resources/resources.res -mwindows -fpermissive -lntdll -Wno-narrowing -O2 >/dev/null 2>&1
 echo ""
 sleep 2
-rm shell*
+rm -f shell*.txt
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2

