@@ -88,7 +88,7 @@ cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-7} | head -n 1 > shell.txt
 RandomC=$(cat shell.txt)
 sed -i "s/RandomC/$RandomC/g" Harriet/QueueUserAPC/Resources/template.cpp
 
-rm shell*
+rm -f shell*.txt
 echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -o $MALWARE Harriet/QueueUserAPC/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -lntdll -mwindows -O2 -Os >/dev/null 2>&1
 echo ""

